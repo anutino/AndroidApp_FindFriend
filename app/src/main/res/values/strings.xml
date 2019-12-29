@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">FindFriend</string>
+    <string name="txtLogo">Найти Друга</string>
+    <string name="title_activity_search">SearchActivity</string>
+    <string name="tVName">TextView</string>
+    <string name="tVAge">TextView</string>
+</resources>
