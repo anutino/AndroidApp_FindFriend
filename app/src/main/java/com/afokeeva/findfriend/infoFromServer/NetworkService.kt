@@ -3,7 +3,7 @@ package com.afokeeva.findfriend.infoFromServer
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class NetworkService {
+open class NetworkService {
     private var BASE_URL = "http:localhost:8080/"
     private var retrofit: Retrofit
 
@@ -14,7 +14,6 @@ class NetworkService {
             .build()
     }
 
-
     companion object{
         var  instance =  NetworkService
 
@@ -24,7 +23,9 @@ class NetworkService {
             }
             return instance
         }
+
+        fun getJSONApi(): JSONPlaceHolderApi {
+            return NetworkService().retrofit.create(JSONPlaceHolderApi::class.java)
+        }
     }
-
-
 }

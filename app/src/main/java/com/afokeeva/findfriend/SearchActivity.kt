@@ -13,13 +13,21 @@ import kotlinx.android.synthetic.main.activity_search.*
 
 class SearchActivity : AppCompatActivity() {
 
-    val array = listOf("http://www.camdenconference.org/wp-content/uploads/2017/01/CC_30th-Anniv-Booklet-PAGE-1-cropped.jpg")
+    val array = listOf("https://i.ytimg.com/vi/-PB8fVx4axw/hqdefault.jpg",
+
+        "https://wallscloud.net/uploads/cache/1266658504/blue-space-planet-krB5-1024x576-MM-90.jpg",
+
+        "https://avatars.mds.yandex.net/get-pdb/1025580/369ea651-40b4-4467-91da-069ba497b3d1/s1200",
+
+        "https://pp.userapi.com/c824502/v824502702/18b194/TAYpSgN3JeU.jpg"
+
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
 
-        list_item.adapter = adapter
+        imageList.adapter = adapter
     }
 
     fun getImageUrl(){
