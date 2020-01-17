@@ -4,7 +4,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 open class NetworkService {
-    private var BASE_URL = "http:localhost:8080/"
+    private var BASE_URL = "https://itunes.apple.com/" //"http:localhost:8080/"
     private var retrofit: Retrofit
 
     constructor() {

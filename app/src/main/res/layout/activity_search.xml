@@ -5,10 +5,11 @@
     android:layout_height="match_parent"
     tools:context=".SearchActivity">
 
-
-    <ListView
-        android:id="@+id/imageList"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycleViewImage"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
-    </ListView>
+        android:layout_height="match_parent"
+        android:scrollbars="vertical">
+        android:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+    </androidx.recyclerview.widget.RecyclerView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
