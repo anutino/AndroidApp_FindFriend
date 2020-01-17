@@ -38,6 +38,7 @@ class TestActivity : AppCompatActivity() {
     //https://codelabs.developers.google.com/codelabs/android-paging/index.html?index=..%2F..%2Findex#9
 
     //https://www.simplifiedcoding.net/android-paging-library-tutorial/#Android-Paging-Library-Tutorial-Source-Code
+    //https://bloggie.io/@_junrong/part-1-understanding-the-paging-library-pagedlist
     companion object arrayObj {
         val TAG = "SearchActivity"
         var listTests = mutableListOf<Test>()//: ArrayList<Test> = ArrayList()
@@ -58,7 +59,6 @@ class TestActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(com.afokeeva.findfriend.R.layout.activity_search)
         val rv = findViewById<RecyclerView>(com.afokeeva.findfriend.R.id.recycleViewImage)
-        val articleLiveData: LiveData<PagedList<Test>>
         var test: Test? = null
         var testFactory = TestDataSourceFactory()
         val dataSource: LiveData<PageKeyedDataSource<Integer, Test>>
@@ -70,6 +70,10 @@ class TestActivity : AppCompatActivity() {
             .build()
 
         var executor : MainThreadExecutor = MainThreadExecutor()
+        val pagedList = PagedList.Builder(TestDataSourceFactory().create(), config)
+            .setFetchExecutor(Executors.newSingleThreadExecutor())
+            .setNotifyExecutor(Executors.newSingleThreadExecutor())
+            .build()
 
        /* val list1 = PagedList.Builder(testFactory.getItemLiveDataSource(), config)
             .setFetchExecutor(executor)
@@ -77,6 +81,7 @@ class TestActivity : AppCompatActivity() {
             .build();
         */
         rv.adapter=TestAdapter()
+       // rv.adapter.submitList(pagedList);
         rv.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
        // rv.setHasFixedSize(true)
     }
