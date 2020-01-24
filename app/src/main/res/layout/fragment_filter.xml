@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="350dp"
+    android:layout_height="400dp"
+    android:layout_marginLeft="60dp"
+    android:layout_marginTop="10dp"
+    tools:context=".FilterFragment">
+
+    <TextView
+        android:id="@+id/fragment_filter_age_id"
+        android:text="@string/fragment_filter_age"
+        android:gravity="center"
+        android:layout_width="147dp"
+        android:layout_height="54dp"
+        android:layout_marginLeft="65dp"
+        android:layout_marginTop="10dp" />
+
+    <SeekBar
+        android:id="@+id/seekBar3"
+        android:layout_width="280dp"
+        android:layout_height="78dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="65dp" />
+
+    <Button
+        android:id="@+id/fragment_filter_dog_id"
+        android:layout_width="130dp"
+        android:layout_height="107dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="155dp" />
+    <Button
+        android:id="@+id/fragment_filter_cat_id"
+        android:layout_width="130dp"
+        android:layout_height="107dp"
+        android:layout_marginLeft="155dp"
+        android:layout_marginTop="155dp" />
+
+    <Button
+        android:id="@+id/fragment_filter_apply"
+        android:text="@string/fragment_filter_apply_ok"
+        android:gravity="center"
+        android:layout_width="275dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="275dp" />
+</FrameLayout>

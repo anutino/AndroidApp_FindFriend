@@ -1,7 +1,25 @@
 <resources>
     <string name="app_name">FindFriend</string>
-    <string name="txtLogo">Найти Друга</string>
+    <!-- activity main -->
+    <string name="appNameRus">Найти Друга</string>
+
+    <!--activity_animal_info -->
+    <string name="animalInfo_name_age">Loading...</string>
+    <string name="animalInfo_description">Loading...</string>
+
+    <!-- Block -->
+    <string name="block_name_age">Loading...</string>
+
     <string name="title_activity_search">SearchActivity</string>
     <string name="tVName">TextView</string>
     <string name="tVAge">TextView</string>
+    <string name="title_activity_animal__info">animal_InfoActivity</string>
+
+    <!-- fragment_filter -->
+    <!--    <string name="hello_blank_fragment">Hello blank fragment</string>-->
+    <string name="fragment_filter_age">возраст</string>
+    <string name="fragment_filter_apply_ok">применить</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
 </resources>

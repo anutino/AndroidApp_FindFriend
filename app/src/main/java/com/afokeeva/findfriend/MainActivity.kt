@@ -4,7 +4,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import com.afokeeva.findfriend.infoFromServer.SearchActivity2
 
 class MainActivity : AppCompatActivity(),  View.OnClickListener {
 
@@ -30,7 +29,7 @@ class MainActivity : AppCompatActivity(),  View.OnClickListener {
 
     override fun onClick(v: View) {
         when(v.id) {
-            R.id.imageButtonDog -> { chosenAnimal(Animals.DOG); startActivity(Intent(this@MainActivity, TestActivity::class.java))}
+            R.id.imageButtonDog -> { chosenAnimal(Animals.DOG); startActivity(Intent(this@MainActivity, SearchActivity::class.java))}
             R.id.imageButtonCat -> { chosenAnimal(Animals.CAT); startActivity(Intent(this@MainActivity, SearchActivity::class.java))}
             R.id.imageButtonDogAndCat -> { chosenAnimal(Animals.DOGS_AND_CATS); startActivity(Intent(this@MainActivity, SearchActivity::class.java))}
         }

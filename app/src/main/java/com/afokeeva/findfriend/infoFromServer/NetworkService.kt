@@ -27,5 +27,7 @@ open class NetworkService {
         fun getJSONApi(): JSONPlaceHolderApi {
             return NetworkService().retrofit.create(JSONPlaceHolderApi::class.java)
         }
+
+
     }
 }
