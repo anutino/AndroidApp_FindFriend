@@ -16,7 +16,7 @@
     <string name="title_activity_animal__info">animal_InfoActivity</string>
 
     <!-- fragment_filter -->
-    <!--    <string name="hello_blank_fragment">Hello blank fragment</string>-->
+<!--        <string name="hello_blank_fragment">Hello blank fragment</string>-->
     <string name="fragment_filter_age">возраст</string>
     <string name="fragment_filter_apply_ok">применить</string>
     <string name="title_activity_main2">Main2Activity</string>

@@ -33,8 +33,6 @@ import com.bumptech.glide.annotation.GlideModule
 import java.util.concurrent.Executors
 
 class SearchActivity : AppCompatActivity() {
-    var btnFilter : Button? = null
-
     /*TODO 1.change ItemClickListener()
          2. maybe AnimalViewHolders remove to TestAdapter
      //https://codelabs.developers.google.com/codelabs/android-paging/index.html?index=..%2F..%2Findex#9
@@ -90,13 +88,12 @@ class SearchActivity : AppCompatActivity() {
                 .build();
          rv.setHasFixedSize(true)
 
-        btnFilter = findViewById(R.id.btnFilter)
-//        btnFilter?.setOnClickListener {
-//             var manager = supportFragmentManager
-//             var transaction = manager.beginTransaction();
-//             transaction.add(R.id.container,R.id.fr,YOUR_FRAGMENT_STRING_TAG);
-//             transaction.addToBackStack(null);
-//             transaction.commit();
+        var btnFilter = findViewById<Button>(R.id.btnFilter)
+ //        btnFilter?.setOnClickListener {
+//             supportFragmentManager.beginTransaction()
+//             .add(R.id.activity_search_fragment_filter, FilterFragment())
+//             .addToBackStack(null)
+//             .commit()
 //        }
     }
 
