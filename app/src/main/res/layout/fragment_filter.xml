@@ -5,6 +5,7 @@
     android:layout_height="400dp"
     android:layout_marginLeft="60dp"
     android:layout_marginTop="10dp"
+    android:background="@color/design_default_color_background"
     tools:context=".FilterFragment">
 
     <TextView
@@ -17,23 +18,29 @@
         android:layout_marginTop="10dp" />
 
     <SeekBar
-        android:id="@+id/seekBar3"
+        android:id="@+id/seekBarAge"
         android:layout_width="250dp"
         android:layout_height="78dp"
-        android:layout_marginTop="65dp" />
+        android:layout_marginTop="65dp"
+        android:max="20"
+        android:progress="5" />
 
     <Button
         android:id="@+id/fragment_filter_dog_id"
         android:layout_width="105dp"
         android:layout_height="100dp"
-        android:layout_marginTop="155dp" />
+        android:layout_marginTop="155dp"
+        android:background="@color/cardview_light_background"
+        android:text="Dog" />
 
     <Button
         android:id="@+id/fragment_filter_cat_id"
         android:layout_width="105dp"
         android:layout_height="100dp"
         android:layout_marginLeft="140dp"
-        android:layout_marginTop="155dp" />
+        android:layout_marginTop="155dp"
+        android:text="Cat"
+        android:background="@color/cardview_light_background"/>
 
     <Button
         android:id="@+id/fragment_filter_apply"

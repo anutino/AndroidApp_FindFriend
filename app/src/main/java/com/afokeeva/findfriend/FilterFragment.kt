@@ -1,12 +1,15 @@
 package com.afokeeva.findfriend
 
 import android.content.Context
-import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.SeekBar
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -21,11 +24,18 @@ private const val ARG_PARAM2 = "param2"
  * Use the [FilterFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class FilterFragment : Fragment() {
+class FilterFragment : Fragment(), SeekBar.OnSeekBarChangeListener, View.OnTouchListener {
+
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
     private var listener: OnFragmentInteractionListener? = null
+    private var age = 5.0
+    private var TAG = "FilterFragment"
+    var chosenAnimal = ChosenAnimal.ALL
+    lateinit var btnDog : Button
+    lateinit var btnCat: Button
+    lateinit var btnApply: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,18 +44,94 @@ class FilterFragment : Fragment() {
             param2 = it.getString(ARG_PARAM2)
         }
     }
+    override fun onTouch(v: View?, event: MotionEvent?): Boolean {
+        Log.d(TAG, "___2 ")
+        when (event?.action) {
+            MotionEvent.ACTION_DOWN -> {
+            when (v?.id) {
+                R.id.fragment_filter_dog_id -> {
+                    Log.d(TAG, "___3 ")
+                    Log.d(SearchActivity.TAG, " dog ")
+                    btnDog.setBackgroundColor(getResources().getColor(R.color.blue))
+                    chosenAnimal = ChosenAnimal.DOG
+                }
+                R.id.fragment_filter_cat_id -> {
+                    btnCat.setBackgroundColor(getResources().getColor(R.color.blue))
+                    Log.d(SearchActivity.TAG, " cat ")
+                    chosenAnimal = ChosenAnimal.CAT
+                }
+                R.id.fragment_filter_apply -> {
+                    btnApply.setBackgroundColor(getResources().getColor(R.color.blue))
+                    Log.d(SearchActivity.TAG, " apply ")
+                    chosenAnimal = ChosenAnimal.ALL
+                }
+            }
+        }
+            MotionEvent.ACTION_UP -> {
+                when (v?.id) {
+                    R.id.fragment_filter_dog_id -> {
+                        Log.d(SearchActivity.TAG, " dog ")
+                        btnDog.setBackgroundColor(getResources().getColor(R.color.red))
+                        chosenAnimal = ChosenAnimal.DOG
+                    }
+                    R.id.fragment_filter_cat_id -> {
+                        btnCat.setBackgroundColor(getResources().getColor(R.color.red))
+                        Log.d(SearchActivity.TAG, " cat ")
+                        chosenAnimal = ChosenAnimal.CAT
+                    }
+                    R.id.fragment_filter_apply -> {
+                        btnApply.setBackgroundColor(getResources().getColor(R.color.red))
+                        Log.d(SearchActivity.TAG, " apply ")
+                        chosenAnimal = ChosenAnimal.ALL
+                    }
+                }
+            }
+        }
+        return v?.onTouchEvent(event) ?: true
+    }
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
+        var view = inflater.inflate(R.layout.fragment_filter, container, false)
+        btnDog = view.findViewById<Button>(R.id.fragment_filter_dog_id)
+        btnCat = view.findViewById<Button>(R.id.fragment_filter_cat_id)
+        btnApply = view.findViewById<Button>(R.id.fragment_filter_apply)
+        var seekBarAge = view.findViewById<SeekBar>(R.id.seekBarAge)
+        seekBarAge.setOnSeekBarChangeListener(this)
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_filter, container, false)
+        //https://www.codota.com/code/java/methods/android.view.View/performClick
+        btnDog.setOnClickListener {
+            Log.d(TAG, "___0 ")
+            if(btnDog.isPressed) {
+                Log.d(TAG, "___1 ")
+                btnDog.performClick()
+            }
+        }
+        btnCat.setOnClickListener {
+            btnCat.performClick()
+        }
+        btnApply.setOnClickListener {
+            btnApply.performClick()
+        }
+
+//        btnApply.setOnClickListener {
+//            if(btnApply.isPressed){
+//                Log.d(TAG, " apply")
+//                btnApply.setBackgroundColor(getResources().getColor(R.color.red))
+//                listener?.onFragmentInteraction(age, chosenAnimal.name)
+//            }
+//        }
+
+        return view
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    fun onButtonPressed(uri: Uri) {
-        listener?.onFragmentInteraction(uri)
+
+
+    override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+        age = progress.toDouble()
+    }
+    override fun onStartTrackingTouch(seekBar: SeekBar?) {
+    }
+    override fun onStopTrackingTouch(seekBar: SeekBar?) {
     }
 
     override fun onAttach(context: Context) {
@@ -61,6 +147,10 @@ class FilterFragment : Fragment() {
         super.onDetach()
         listener = null
     }
+    fun setOnHeadlineSelectedListener(listener: OnFragmentInteractionListener) {
+        this.listener = listener
+    }
+
 
     /**
      * This interface must be implemented by activities that contain this
@@ -74,8 +164,7 @@ class FilterFragment : Fragment() {
      * for more information.
      */
     interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        fun onFragmentInteraction(uri: Uri)
+        fun onFragmentInteraction(age: Double, animal: String)
     }
 
     companion object {
@@ -98,3 +187,8 @@ class FilterFragment : Fragment() {
             }
     }
 }
+
+enum class ChosenAnimal{
+    DOG, CAT, ALL
+}
+

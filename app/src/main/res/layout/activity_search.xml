@@ -23,13 +23,15 @@
         android:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
     </androidx.recyclerview.widget.RecyclerView>
 
-    <fragment
+    <FrameLayout
         android:id="@+id/activity_search_fragment_filter"
-        android:name="com.afokeeva.findfriend.FilterFragment"
         android:layout_width="250dp"
         android:layout_height="400dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginLeft="60dp"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="10dp"
+        class="com.afokeeva.findfriend.FilterFragment"
+        tools:layout="@layout/fragment_filter"
+       />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

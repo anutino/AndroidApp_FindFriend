@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
-import androidx.appcompat.app.AppCompatActivity
 import com.afokeeva.findfriend.infoFromServer.Tables.Animal
 import com.bumptech.glide.Glide
 import android.widget.TextView
@@ -22,7 +21,7 @@ import android.os.Handler
 import android.util.Log
 import android.view.View
 import android.widget.Button
-import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentActivity
 import java.util.concurrent.Executor
 import androidx.lifecycle.LiveData
 import androidx.paging.PageKeyedDataSource
@@ -32,7 +31,24 @@ import com.afokeeva.findfriend.SearchActivity.arrayObj.listTest
 import com.bumptech.glide.annotation.GlideModule
 import java.util.concurrent.Executors
 
-class SearchActivity : AppCompatActivity() {
+class SearchActivity : FragmentActivity(), FilterFragment.OnFragmentInteractionListener{
+
+    var TAG = "SearchActivity"
+   // override fun onFragmentInteraction(uri: Uri) {
+    override fun onFragmentInteraction(age: Double, animal: String) {
+        Log.d(TAG, "on Fragment in Act $age + &animal" )
+
+     }
+
+    override fun onAttachFragment(fragment: androidx.fragment.app.Fragment) {
+        super.onAttachFragment(fragment)
+        if (fragment is FilterFragment) {
+            fragment.setOnHeadlineSelectedListener(this)
+        }
+
+    }
+
+
     /*TODO 1.change ItemClickListener()
          2. maybe AnimalViewHolders remove to TestAdapter
      //https://codelabs.developers.google.com/codelabs/android-paging/index.html?index=..%2F..%2Findex#9
@@ -64,40 +80,61 @@ class SearchActivity : AppCompatActivity() {
         setContentView(R.layout.activity_search)
         val rv = findViewById<RecyclerView>(R.id.activity_search_rvAnimalImages)
         intent = Intent(this@SearchActivity, Animal_InfoActivity::class.java)
-        rv.adapter = TestAdapter(  intent, this)
+        rv.adapter = TestAdapter(intent, this)
         //rv.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
-        rv.layoutManager = GridLayoutManager(this,2)
-        rv.addItemDecoration(GridItemDecoration(10,2))
+        rv.layoutManager = GridLayoutManager(this, 2)
+        rv.addItemDecoration(GridItemDecoration(10, 2))
         //var spacingInPixels = getResources().getDimensionPixelSize(R.dimen.);
-       // rv.addItemDecoration(new SpacesItemDecoration(spacingInPixels));
+        // rv.addItemDecoration(new SpacesItemDecoration(spacingInPixels));
         var testFactory = AnimalDataSourceFactory()
         val config = PagedList.Config.Builder()
             .setEnablePlaceholders(false)
             .setPageSize(10)
             .build()
 
-        var executor : MainThreadExecutor = MainThreadExecutor()
-        val pagedList = PagedList.Builder<Integer, Animal>(AnimalDataSourceFactory().create(), config)
-            .setFetchExecutor(Executors.newSingleThreadExecutor())
-            .setNotifyExecutor(Executors.newSingleThreadExecutor())
-            .build()
+        var executor: MainThreadExecutor = MainThreadExecutor()
+        val pagedList =
+            PagedList.Builder<Integer, Animal>(AnimalDataSourceFactory().create(), config)
+                .setFetchExecutor(Executors.newSingleThreadExecutor())
+                .setNotifyExecutor(Executors.newSingleThreadExecutor())
+                .build()
 
         (rv.adapter as TestAdapter).submitList(pagedList)
-        var itemPagedList : LiveData<PagedList<Animal>>
-            itemPagedList = (LivePagedListBuilder(AnimalDataSourceFactory(), config))
-                .build();
-         rv.setHasFixedSize(true)
-
-        var btnFilter = findViewById<Button>(R.id.btnFilter)
- //        btnFilter?.setOnClickListener {
-//             supportFragmentManager.beginTransaction()
-//             .add(R.id.activity_search_fragment_filter, FilterFragment())
-//             .addToBackStack(null)
-//             .commit()
-//        }
+        var itemPagedList: LiveData<PagedList<Animal>>
+        itemPagedList = (LivePagedListBuilder(AnimalDataSourceFactory(), config))
+            .build();
+        rv.setHasFixedSize(true)
     }
 
-    class GridItemDecoration(gridSpacingPx: Int, gridSize: Int) : RecyclerView.ItemDecoration() { //TODO improve understanding
+    override fun onResume(){
+        super.onResume()
+        var filterFragment = FilterFragment()
+
+        Log.d(TAG, "0 ")
+        var btnFilter = findViewById<Button>(R.id.btnFilter)
+        btnFilter?.setOnClickListener {
+            if(filterFragment.isAdded && filterFragment.isHidden){
+                Log.d(TAG, "1 ")
+                supportFragmentManager.beginTransaction()
+                .setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
+                .show(filterFragment)
+                .commit()
+            }
+            else if(!filterFragment.isAdded){
+                supportFragmentManager.beginTransaction()
+                .add(R.id.activity_search_fragment_filter, filterFragment).show(filterFragment)
+                .commit()
+            }else {
+                Log.d(TAG, "2 ")
+                supportFragmentManager.beginTransaction()
+                .hide(filterFragment)
+                .commit()
+            }
+        }
+    }
+
+
+    class GridItemDecoration(gridSpacingPx: Int, gridSize: Int) : RecyclerView.ItemDecoration() {
         private var mSizeGridSpacingPx: Int = gridSpacingPx
         private var mGridSize: Int = gridSize
 
