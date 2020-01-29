@@ -27,51 +27,39 @@ import androidx.lifecycle.LiveData
 import androidx.paging.PageKeyedDataSource
 import androidx.recyclerview.widget.GridLayoutManager
 import com.afokeeva.findfriend.SearchActivity.arrayObj.TAG
-import com.afokeeva.findfriend.SearchActivity.arrayObj.listTest
+import com.afokeeva.findfriend.SearchActivity.arrayObj.listAnimal
 import com.bumptech.glide.annotation.GlideModule
 import java.util.concurrent.Executors
 
 class SearchActivity : FragmentActivity(), FilterFragment.OnFragmentInteractionListener{
-
     var TAG = "SearchActivity"
-   // override fun onFragmentInteraction(uri: Uri) {
-    override fun onFragmentInteraction(age: Double, animal: String) {
-        Log.d(TAG, "on Fragment in Act $age + &animal" )
-
-     }
-
-    override fun onAttachFragment(fragment: androidx.fragment.app.Fragment) {
-        super.onAttachFragment(fragment)
-        if (fragment is FilterFragment) {
-            fragment.setOnHeadlineSelectedListener(this)
-        }
-
-    }
-
 
     /*TODO 1.change ItemClickListener()
-         2. maybe AnimalViewHolders remove to TestAdapter
-     //https://codelabs.developers.google.com/codelabs/android-paging/index.html?index=..%2F..%2Findex#9
-     //https://www.simplifiedcoding.net/android-paging-library-tutorial/#Android-Paging-Library-Tutorial-Source-Code
-     //https://bloggie.io/@_junrong/part-1-understanding-the-paging-library-pagedlist
-      listAnimals = listOf<Animal>(
-            Animal(5, 3.5, "dog1", "", 1, "https://i.ytimg.com/vi/-PB8fVx4axw/hqdefault.jpg"),
-            Animal(6, 3.5, "dog1", "", 1, "https://i.ytimg.com/vi/-PB8fVx4axw/hqdefault.jpg"),
-            Animal(1, 1.0, "dog1", "", 1, "https://i.ytimg.com/vi/-PB8fVx4axw/hqdefault.jpg"),
-            Animal(1, 1.0, "dog1", "", 1, "https://i.ytimg.com/vi/-PB8fVx4axw/hqdefault.jpg"),
-            Animal(1, 1.0, "dog1", "", 1, "https://i.ytimg.com/vi/-PB8fVx4axw/hqdefault.jpg"),
-            Animal(1, 1.0, "dog1", "", 1, "https://i.ytimg.com/vi/-PB8fVx4axw/hqdefault.jpg"),
-            Animal(1, 1.0, "dog1", "", 1, "https://i.ytimg.com/vi/-PB8fVx4axw/hqdefault.jpg")
-        ).toMutableList()
-     */
-
-     companion object arrayObj {
-        val TAG = "TestActivity"
-        var listTests = mutableListOf<Animal>()//: ArrayList<Animal> = ArrayList()
-        var listTest = listOf<Animal>(
-        Animal(1,  1.2, "dog1",  "",1, "https://i.ytimg.com/vi/-PB8fVx4axw/hqdefault.jpg"),
-        Animal(2,  1.2,"dog1",  "", 1, "https://i.ytimg.com/vi/-PB8fVx4axw/hqdefault.jpg"),
-        Animal(3,  1.2,"dog1",  "", 1, "https://i.ytimg.com/vi/-PB8fVx4axw/hqdefault.jpg")).toMutableList()
+      2. maybe AnimalViewHolders remove to AnimalAdapter
+  //https://codelabs.developers.google.com/codelabs/android-paging/index.html?index=..%2F..%2Findex#9
+  //https://www.simplifiedcoding.net/android-paging-library-tutorial/#Android-Paging-Library-Tutorial-Source-Code
+  //https://bloggie.io/@_junrong/part-1-understanding-the-paging-library-pagedlist
+   listAnimals = listOf<Animal>(
+         Animal(5, 3.5, "dog1", "", 1, "https://i.ytimg.com/vi/-PB8fVx4axw/hqdefault.jpg"),
+         Animal(6, 3.5, "dog1", "", 1, "https://i.ytimg.com/vi/-PB8fVx4axw/hqdefault.jpg"),
+         Animal(1, 1.0, "dog1", "", 1, "https://i.ytimg.com/vi/-PB8fVx4axw/hqdefault.jpg"),
+         Animal(1, 1.0, "dog1", "", 1, "https://i.ytimg.com/vi/-PB8fVx4axw/hqdefault.jpg"),
+         Animal(1, 1.0, "dog1", "", 1, "https://i.ytimg.com/vi/-PB8fVx4axw/hqdefault.jpg"),
+         Animal(1, 1.0, "dog1", "", 1, "https://i.ytimg.com/vi/-PB8fVx4axw/hqdefault.jpg"),
+         Animal(1, 1.0, "dog1", "", 1, "https://i.ytimg.com/vi/-PB8fVx4axw/hqdefault.jpg")
+     ).toMutableList()
+  */
+    companion object arrayObj {
+        val TAG = "AnimalActivity"
+        var listAnimals = mutableListOf<Animal>()//: ArrayList<Animal> = ArrayList()
+        var listAnimal = listOf<Animal>(
+            Animal(1,  1.2, "dog1",  "",1, "https://i.ytimg.com/vi/-PB8fVx4axw/hqdefault.jpg"),
+            Animal(2,  1.2,"dog1",  "", 1, "https://i.ytimg.com/vi/-PB8fVx4axw/hqdefault.jpg"),
+            Animal(3,  1.2,"dog1",  "", 1, "https://i.ytimg.com/vi/-PB8fVx4axw/hqdefault.jpg")).toMutableList()
+        var listAnimalUPDATE = listOf<Animal>(
+            Animal(1,  1.2, "cat",  "",1, "https://i.ytimg.com/vi/-PB8fVx4axw/hqdefault.jpg"),
+            Animal(2,  1.2,"cat",  "", 1, "https://i.ytimg.com/vi/-PB8fVx4axw/hqdefault.jpg"),
+            Animal(3,  1.2,"cat",  "", 1, "https://i.ytimg.com/vi/-PB8fVx4axw/hqdefault.jpg")).toMutableList()
     }
 
     @SuppressLint("WrongThread")
@@ -80,13 +68,13 @@ class SearchActivity : FragmentActivity(), FilterFragment.OnFragmentInteractionL
         setContentView(R.layout.activity_search)
         val rv = findViewById<RecyclerView>(R.id.activity_search_rvAnimalImages)
         intent = Intent(this@SearchActivity, Animal_InfoActivity::class.java)
-        rv.adapter = TestAdapter(intent, this)
+        rv.adapter = AnimalAdapter(intent, this)
         //rv.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         rv.layoutManager = GridLayoutManager(this, 2)
         rv.addItemDecoration(GridItemDecoration(10, 2))
         //var spacingInPixels = getResources().getDimensionPixelSize(R.dimen.);
         // rv.addItemDecoration(new SpacesItemDecoration(spacingInPixels));
-        var testFactory = AnimalDataSourceFactory()
+        var AnimalFactory = AnimalDataSourceFactory()
         val config = PagedList.Config.Builder()
             .setEnablePlaceholders(false)
             .setPageSize(10)
@@ -99,11 +87,19 @@ class SearchActivity : FragmentActivity(), FilterFragment.OnFragmentInteractionL
                 .setNotifyExecutor(Executors.newSingleThreadExecutor())
                 .build()
 
-        (rv.adapter as TestAdapter).submitList(pagedList)
+        (rv.adapter as AnimalAdapter).submitList(pagedList)
         var itemPagedList: LiveData<PagedList<Animal>>
         itemPagedList = (LivePagedListBuilder(AnimalDataSourceFactory(), config))
             .build();
         rv.setHasFixedSize(true)
+        (rv.adapter as AnimalAdapter).notifyDataSetChanged()
+
+         pagedList.dataSource
+
+    }
+
+    @SuppressLint("WrongThread")
+    fun updateAnimalList(){
     }
 
     override fun onResume(){
@@ -132,68 +128,33 @@ class SearchActivity : FragmentActivity(), FilterFragment.OnFragmentInteractionL
             }
         }
     }
-
-
-    class GridItemDecoration(gridSpacingPx: Int, gridSize: Int) : RecyclerView.ItemDecoration() {
-        private var mSizeGridSpacingPx: Int = gridSpacingPx
-        private var mGridSize: Int = gridSize
-
-        private var mNeedLeftSpacing = false
-
-        override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
-            val frameWidth = ((parent.width - mSizeGridSpacingPx.toFloat() * (mGridSize - 1)) / mGridSize).toInt()
-            val padding = parent.width / mGridSize - frameWidth
-            val itemPosition = (view.getLayoutParams() as RecyclerView.LayoutParams).viewAdapterPosition//guarantees receipt of a specific list index
-            if (itemPosition < mGridSize) {
-                outRect.top = 0
-            } else {
-                outRect.top = mSizeGridSpacingPx
-            }
-            if (itemPosition % mGridSize == 0) {
-                outRect.left = 0
-                outRect.right = padding
-                mNeedLeftSpacing = true
-            } else if ((itemPosition + 1) % mGridSize == 0) {
-                mNeedLeftSpacing = false
-                outRect.right = 0
-                outRect.left = padding
-            } else if (mNeedLeftSpacing) {
-                mNeedLeftSpacing = false
-                outRect.left = mSizeGridSpacingPx - padding
-                if ((itemPosition + 2) % mGridSize == 0) {
-                    outRect.right = mSizeGridSpacingPx - padding
-                } else {
-                    outRect.right = mSizeGridSpacingPx / 2
-                }
-            } else if ((itemPosition + 2) % mGridSize == 0) {
-                mNeedLeftSpacing = false
-                outRect.left = mSizeGridSpacingPx / 2
-                outRect.right = mSizeGridSpacingPx - padding
-            } else {
-                mNeedLeftSpacing = false
-                outRect.left = mSizeGridSpacingPx / 2
-                outRect.right = mSizeGridSpacingPx / 2
-            }
-            outRect.bottom = 0
-        }
-    }
-
-
+ 
      class MainThreadExecutor : Executor {
          private val mHandler = Handler(Looper.getMainLooper())
          override fun execute(command: Runnable){
              mHandler.post(command)
          }
      }
+    override fun onFragmentInteraction(age: Double, animal: String) {
+        Log.d(TAG, "on Fragment in Act $age  $animal" )
+        updateAnimalList()
+    }
+
+    override fun onAttachFragment(fragment: androidx.fragment.app.Fragment) {
+        super.onAttachFragment(fragment)
+        if (fragment is FilterFragment) {
+            fragment.setOnHeadlineSelectedListener(this)
+        }
+    }
 }
 
       class AnimalDataSourceFactory : DataSource.Factory<Integer, Animal>() {
         private val liveDataSource = MutableLiveData<PageKeyedDataSource<Integer, Animal>>()
+          var itemDataSource = AnimalDataSource()
 
-        override fun create(): DataSource<Integer, Animal> {
-             var itemDataSource = AnimalDataSource()
+          override fun create(): DataSource<Integer, Animal> {
              liveDataSource.postValue(itemDataSource)
-         return itemDataSource
+           return itemDataSource
         }
 
           fun getItemLiveDataSource(): MutableLiveData<PageKeyedDataSource<Integer, Animal>> {
@@ -213,16 +174,16 @@ class SearchActivity : FragmentActivity(), FilterFragment.OnFragmentInteractionL
             val i = 1
             // callback.onResult(ServerRequest.Animal(i, params.requestedLoadSize), 0, 0 ,0)
             // callback.onResult(ServerRequest.Animal(), 1, 10 ,Integer(1), null)
-            callback.onResult(listTest, 1, 4 ,Integer(1), null)
-           // callback.onResult(listTest, Integer(0), Integer(FIRST_PAGE+1))
-            Log.d(TAG, "loadInitial  " + listTest.size)
+            callback.onResult(listAnimal, 1, 4 ,Integer(1), null)
+           // callback.onResult(listAnimal, Integer(0), Integer(FIRST_PAGE+1))
+            Log.d(TAG, "loadInitial  " + listAnimal.size)
         }
 
         override fun loadAfter(
             params: LoadParams<Integer>,
             callback: LoadCallback<Integer, Animal>
         ) {
-           //  callback.onResult(listTest, params.key )
+           //  callback.onResult(listAnimal, params.key )
             Log.d(TAG, "loadAfter " )
         }
 
@@ -230,13 +191,12 @@ class SearchActivity : FragmentActivity(), FilterFragment.OnFragmentInteractionL
             params: LoadParams<Integer>,
             callback: LoadCallback<Integer, Animal>
         ) {
-           //callback.onResult(listTest, params.key)
+           //callback.onResult(listAnimal, params.key)
             Log.d(TAG, "loadBefore " )
         }
     }
 
-    class TestAdapter(intent: Intent, context : Context) : PagedListAdapter<Animal, AnimalViewHolders>(DIFF_CALLBACK){
-
+    class AnimalAdapter(intent: Intent, context : Context) : PagedListAdapter<Animal, AnimalViewHolders>(DIFF_CALLBACK){
         val intent = intent
         val context = context
         companion object {
@@ -277,7 +237,7 @@ class SearchActivity : FragmentActivity(), FilterFragment.OnFragmentInteractionL
         }
 
         fun bind(Animal: Animal?) {
-            Log.d(TAG,"bind " + listTest.size)
+            Log.d(TAG,"bind " + listAnimal.size)
             if (Animal != null) {
                 Glide
                     .with(itemView)
@@ -295,6 +255,49 @@ class SearchActivity : FragmentActivity(), FilterFragment.OnFragmentInteractionL
             })
         }
     }
+class GridItemDecoration(gridSpacingPx: Int, gridSize: Int) : RecyclerView.ItemDecoration() {
+    private var mSizeGridSpacingPx: Int = gridSpacingPx
+    private var mGridSize: Int = gridSize
+
+    private var mNeedLeftSpacing = false
+
+    override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
+        val frameWidth = ((parent.width - mSizeGridSpacingPx.toFloat() * (mGridSize - 1)) / mGridSize).toInt()
+        val padding = parent.width / mGridSize - frameWidth
+        val itemPosition = (view.getLayoutParams() as RecyclerView.LayoutParams).viewAdapterPosition//guarantees receipt of a specific list index
+        if (itemPosition < mGridSize) {
+            outRect.top = 0
+        } else {
+            outRect.top = mSizeGridSpacingPx
+        }
+        if (itemPosition % mGridSize == 0) {
+            outRect.left = 0
+            outRect.right = padding
+            mNeedLeftSpacing = true
+        } else if ((itemPosition + 1) % mGridSize == 0) {
+            mNeedLeftSpacing = false
+            outRect.right = 0
+            outRect.left = padding
+        } else if (mNeedLeftSpacing) {
+            mNeedLeftSpacing = false
+            outRect.left = mSizeGridSpacingPx - padding
+            if ((itemPosition + 2) % mGridSize == 0) {
+                outRect.right = mSizeGridSpacingPx - padding
+            } else {
+                outRect.right = mSizeGridSpacingPx / 2
+            }
+        } else if ((itemPosition + 2) % mGridSize == 0) {
+            mNeedLeftSpacing = false
+            outRect.left = mSizeGridSpacingPx / 2
+            outRect.right = mSizeGridSpacingPx - padding
+        } else {
+            mNeedLeftSpacing = false
+            outRect.left = mSizeGridSpacingPx / 2
+            outRect.right = mSizeGridSpacingPx / 2
+        }
+        outRect.bottom = 0
+    }
+}
 
 
 
