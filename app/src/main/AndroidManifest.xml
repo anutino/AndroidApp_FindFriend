@@ -13,14 +13,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Animal_InfoActivity"
+            android:name=".ui.activities.Animal_InfoActivity"
             android:label="@string/title_activity_animal__info"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".SearchActivity"
+            android:name=".ui.fragments.activities.SearchActivity"
             android:label="@string/title_activity_search"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".ui.activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

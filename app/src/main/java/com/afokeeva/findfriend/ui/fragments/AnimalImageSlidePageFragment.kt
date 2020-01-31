@@ -1,4 +1,4 @@
-package com.afokeeva.findfriend
+package com.afokeeva.findfriend.ui.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater

@@ -6,7 +6,7 @@
     android:layout_marginLeft="60dp"
     android:layout_marginTop="10dp"
     android:background="@color/design_default_color_background"
-    tools:context=".FilterFragment">
+    tools:context=".ui.fragments.FilterFragment">
 
     <TextView
         android:id="@+id/fragment_filter_age_id"

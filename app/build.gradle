@@ -49,4 +49,15 @@ dependencies {
     implementation 'com.google.android.material:material:1.2.0-alpha03'
     implementation "androidx.viewpager2:viewpager2:1.0.0"
     implementation 'androidx.ui:ui-foundation:0.1.0-dev03'
+    implementation 'android.arch.navigation:navigation-fragment-ktx:1.0.0-alpha01'
+    implementation 'android.arch.navigation:navigation-ui-ktx:1.0.0-alpha01'
+
+    def lifecycle_version = "2.2.0"
+    def savedstate_version = "1.0.0"
+    def arch_version = "2.1.0"
+
+    // ViewModel
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    // LiveData
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
 }

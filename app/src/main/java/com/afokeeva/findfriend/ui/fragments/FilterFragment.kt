@@ -1,6 +1,5 @@
-package com.afokeeva.findfriend
+package com.afokeeva.findfriend.ui.fragments
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.SeekBar
+import com.afokeeva.findfriend.R
 
 enum class ChosenAnimal{
     DOG, CAT, ALL
@@ -59,8 +59,10 @@ class FilterFragment : Fragment(), SeekBar.OnSeekBarChangeListener, View.OnClick
         btnCat.setOnClickListener(this)
         btnApply.setOnClickListener {
             if(isPressedDog)  chosenAnimal = ChosenAnimal.DOG
-            else if(isPressedCat) chosenAnimal = ChosenAnimal.CAT
-            else if (isPressedDog && isPressedCat) chosenAnimal = ChosenAnimal.ALL
+            else if(isPressedCat) chosenAnimal =
+                ChosenAnimal.CAT
+            else if (isPressedDog && isPressedCat) chosenAnimal =
+                ChosenAnimal.ALL
             listener?.onFragmentInteraction(age,chosenAnimal.name)
         }
         return view

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SearchActivity">
+    tools:context=".ui.fragments.activities.SearchActivity">
 
     <Button
         android:id="@+id/btnFilter"
@@ -30,7 +30,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginLeft="60dp"
         android:layout_marginTop="10dp"
-        class="com.afokeeva.findfriend.FilterFragment"
+        class="com.afokeeva.findfriend.ui.fragments.FilterFragment"
         tools:layout="@layout/fragment_filter"
        />
 

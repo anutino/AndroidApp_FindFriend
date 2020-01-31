@@ -1,14 +1,11 @@
-package com.afokeeva.findfriend.infoFromServer
+package com.afokeeva.findfriend.network
 
-import com.afokeeva.findfriend.infoFromServer.Tables.Animal
-import com.afokeeva.findfriend.infoFromServer.Tables.Image
-import com.afokeeva.findfriend.infoFromServer.Tables.Test
+import com.afokeeva.findfriend.data.Animal
+import com.afokeeva.findfriend.data.Image
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.GET
-import retrofit2.http.Path
 import retrofit2.http.Query
-import java.util.*
 
 interface JSONPlaceHolderApi {
     /**

@@ -1,8 +1,8 @@
-package com.afokeeva.findfriend.infoFromServer
+package com.afokeeva.findfriend.network
 
-import com.afokeeva.findfriend.infoFromServer.Tables.Animal
-import com.afokeeva.findfriend.infoFromServer.Tables.Image
-import com.afokeeva.findfriend.infoFromServer.Tables.Test
+import com.afokeeva.findfriend.data.Animal
+import com.afokeeva.findfriend.data.Image
+import com.afokeeva.findfriend.data.Test
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
@@ -14,9 +14,9 @@ import com.google.gson.JsonObject
  class ServerRequest {
      companion object Requests {
 
-         fun test() : MutableList<Test>  { //https://medium.com/@antobeslie25/android-recyclerview-pagination-with-paging-library-positionaldatasource-using-retrofit-mvvm-de811ef56b07
+         fun getImagesForSelectCategory() : MutableList<Test>  {
              var tList = mutableListOf<Test>()
-             NetworkService.companionFun()
+             NetworkService
                  .instance
                  .getJSONApi()
                  .test("Beyonce")
@@ -26,7 +26,43 @@ import com.google.gson.JsonObject
                          if (response.isSuccessful) {
                              print("success")
                              val post = JsonObject().get(response.body().toString()).asJsonObject
-                             var t = Test(post.get("trackId").asInt, post.get("artistName").asString, post.get("artworkUrl30").asString)
+                             var t = Test(
+                                 post.get("trackId").asInt,
+                                 post.get("artistName").asString,
+                                 post.get("artworkUrl30").asString
+                             )
+                             tList.add(t)
+                         } else {
+                             print("not success")
+                         }
+                     }
+
+                     override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                         print("onFailure")
+                     }
+                 })
+
+             print("_____________ " + tList.size)
+             return tList
+         }
+
+         fun test() : MutableList<Test>  { //https://medium.com/@antobeslie25/android-recyclerview-pagination-with-paging-library-positionaldatasource-using-retrofit-mvvm-de811ef56b07
+             var tList = mutableListOf<Test>()
+             NetworkService
+                 .instance
+                 .getJSONApi()
+                 .test("Beyonce")
+                 .enqueue(object : Callback<ResponseBody>{
+                     override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>
+                     ) {
+                         if (response.isSuccessful) {
+                             print("success")
+                             val post = JsonObject().get(response.body().toString()).asJsonObject
+                             var t = Test(
+                                 post.get("trackId").asInt,
+                                 post.get("artistName").asString,
+                                 post.get("artworkUrl30").asString
+                             )
                              tList.add(t)
                           } else {
                              print("not success")
@@ -43,7 +79,7 @@ import com.google.gson.JsonObject
          }
 
          fun findAllAnimals() {
-             NetworkService.companionFun()
+             NetworkService
                  .instance
                  .getJSONApi()
                  .findAllAnimals()
@@ -66,7 +102,7 @@ import com.google.gson.JsonObject
          }
 
          fun findAllAnimalsByType(id_type : Int) {
-             NetworkService.companionFun()
+             NetworkService
                  .instance
                  .getJSONApi()
                  .findAllAnimalsByType(id_type)
@@ -89,7 +125,7 @@ import com.google.gson.JsonObject
          }
 
          fun getImagesByIdAnimal(id_animal : Int) {
-             NetworkService.companionFun()
+             NetworkService
                  .instance
                  .getJSONApi()
                  .getImagesByIdAnimal(id_animal)

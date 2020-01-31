@@ -1,4 +1,4 @@
-package com.afokeeva.findfriend.infoFromServer.Tables
+package com.afokeeva.findfriend.data
 
 data class Animal (val id: Int, val age: Double, val name: String, val description: String, val type: Int, val img_url: String)
 data class Image (val id: Int, val img_url: String, val id_animal: Int)
@@ -9,3 +9,5 @@ data class Favorites (val id_fav: Int, val id_animal: Int, val id_user: Int)
 data class Test(var trackId: Int, var artistName: String, var artworkUrl30: String)
 
 data class ListAnimals(val results: List<Animal>)
+
+data class Category (val id: Int, val name : String, val img : String)
