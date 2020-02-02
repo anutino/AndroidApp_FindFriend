@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
-import com.afokeeva.findfriend.infoFromServer.Tables.Animal
 import com.bumptech.glide.Glide
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -28,6 +27,9 @@ import androidx.paging.PageKeyedDataSource
 import androidx.recyclerview.widget.GridLayoutManager
 import com.afokeeva.findfriend.SearchActivity.arrayObj.TAG
 import com.afokeeva.findfriend.SearchActivity.arrayObj.listAnimal
+import com.afokeeva.findfriend.data.Animal
+import com.afokeeva.findfriend.ui.activities.Animal_InfoActivity
+import com.afokeeva.findfriend.ui.fragments.FilterFragment
 import com.bumptech.glide.annotation.GlideModule
 import java.util.concurrent.Executors
 

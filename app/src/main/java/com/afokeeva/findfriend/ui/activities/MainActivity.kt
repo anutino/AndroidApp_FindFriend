@@ -5,12 +5,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.navigation.Navigation
- import com.afokeeva.findfriend.ui.fragments.activities.SearchActivity
-import androidx.core.app.ComponentActivity.ExtraData
+ import androidx.core.app.ComponentActivity.ExtraData
 import androidx.core.content.ContextCompat.getSystemService
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import android.R
-
+import com.afokeeva.findfriend.viewmodels.SelectCategoryViewModel
 
 
 class MainActivity : AppCompatActivity(){
@@ -32,8 +31,15 @@ class MainActivity : AppCompatActivity(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        var listImg = SelectCategoryViewModel().categoryListLiveData
+        print("result_ $listImg ")
         setContentView(com.afokeeva.findfriend.R.layout.activity_main)
-        var navController = Navigation.findNavController(this, com.afokeeva.findfriend.R.id.my_nav_host_fragment)
+
+
+
+
+
+       // var navController = Navigation.findNavController(this, com.afokeeva.findfriend.R.id.my_nav_host_fragment)
         //https@ //developer.android.com/jetpack/androidx/releases/lifecycle
     }
 

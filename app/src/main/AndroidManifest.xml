@@ -11,15 +11,16 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme">
         <activity
             android:name=".ui.activities.Animal_InfoActivity"
             android:label="@string/title_activity_animal__info"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".ui.fragments.activities.SearchActivity"
-            android:label="@string/title_activity_search"
-            android:theme="@style/AppTheme.NoActionBar" />
+<!--        <activity-->
+<!--            android:name=".ui.fragments.activities.SearchActivity"-->
+<!--            android:label="@string/title_activity_search"-->
+<!--            android:theme="@style/AppTheme.NoActionBar" />-->
         <activity android:name=".ui.activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
