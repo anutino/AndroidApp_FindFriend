@@ -1,10 +1,10 @@
 package com.afokeeva.findfriend.network
 
+import android.util.Log
 import com.afokeeva.findfriend.data.Category
-import com.google.gson.JsonArray
-import com.google.gson.JsonObject
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
 import retrofit2.Call
@@ -44,7 +44,8 @@ open class NetworkService {
             .retrofit.create(JSONPlaceHolderApi::class.java)
     }
 
-    suspend fun getCategories() : List<Category> {
+    //findMainImages {"result":"3","categoryList":[{"id":"0","name":"dog","img_url":"http"},{"id":"1","name":"cat","img_url":"http"},{"id":"2","name":"dog_cat","img_url":"http"}]}
+    suspend fun getCategories() : List<Category> { //TODO enqueue !
         var list = mutableListOf<Category>()
          instance
                 .getJSONApi()
@@ -54,18 +55,29 @@ open class NetworkService {
                         call: Call<List<Category>>,
                         response: Response<List<Category>>
                     ) {
-                        if (response.isSuccessful) {
+                         if (response.isSuccessful) {
+                            print("Request Successful")
                             if (response.body() != null){
                                     try {
-                                        //var jsonArray = JsonArray getJSONArray
                                         var json = JSONObject(response.body().toString())
-                                        println("Request Successful")
-                                        var t = Category(
-                                            json.getInt("id"),
-                                            json.getString("name"),
-                                            json.getString("img_url")
-                                        )
-                                        list.add(t)
+                                        json.getJSONArray("categoryList")
+                                        val jsonArray = JSONArray(json)
+                                        print("res " + jsonArray)
+                                        for (i in 0 until jsonArray.length()) {
+                                            val tt: JSONObject = jsonArray.getJSONObject(i)
+                                            var t = Category(
+                                                tt.getInt("id"),
+                                                tt.getString("name"),
+                                                tt.getString("img_url")
+                                            )
+                                        }
+                                      // for(i in jsonArray.get(1))
+//                                         var t = Category(
+//                                            json.getInt("id"),
+//                                            json.getString("name"),
+//                                            json.getString("img_url")
+//                                        )
+                                       // list.add(t)
                                     } catch (e: JSONException) {
                                         e.printStackTrace()
                                     }

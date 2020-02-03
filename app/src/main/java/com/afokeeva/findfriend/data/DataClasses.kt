@@ -13,11 +13,4 @@ data class Test(var trackId: Int, var artistName: String, var artworkUrl30: Stri
 
 data class ListAnimals(val results: List<Animal>)
 
-data class Category (
-    val id: Int,
-
-
-    val name : String,
-
-
-    val img_url : String)
+data class Category (val id: Int, val name : String, val img_url : String)

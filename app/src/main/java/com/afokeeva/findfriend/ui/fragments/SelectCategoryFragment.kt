@@ -40,6 +40,8 @@ class SelectCategoryFragment : Fragment(), View.OnClickListener  {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        var listImg = SelectCategoryViewModel().categoryListLiveData
+        // print("result_ $listImg ")
         return inflater.inflate(R.layout.fragment_select_category, container, false)
     }
 
@@ -50,6 +52,9 @@ class SelectCategoryFragment : Fragment(), View.OnClickListener  {
     private fun initViews(view : View) {
 
         //TODO init views!
+
+    }
+    fun getPhoto(){// TODO RecycleView and Glide
 
     }
 
