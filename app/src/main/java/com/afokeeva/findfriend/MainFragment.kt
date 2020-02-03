@@ -1,12 +1,16 @@
 package com.afokeeva.findfriend
 
 import android.content.Context
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import com.afokeeva.findfriend.ui.fragments.SelectCategoryFragment
+import com.afokeeva.findfriend.viewmodels.SelectCategoryViewModel
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -21,7 +25,9 @@ private const val ARG_PARAM2 = "param2"
  * Use the [MainFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class MainFragment : Fragment() {
+class MainFragment : Fragment(), View.OnClickListener  {
+    private var btnLogon : Button? = null
+    private var btnSearch : Button? = null
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -39,9 +45,12 @@ class MainFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_main, container, false)
+        var view = inflater.inflate(R.layout.fragment_main, container, false)
+
+        return view
     }
+
+
 
     // TODO: Rename method, update argument and hook method into UI event
     fun onButtonPressed(uri: Uri) {
@@ -96,5 +105,12 @@ class MainFragment : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+    }
+
+    override fun onClick(v: View?) {
+        when(v){
+            //btnSearch ->  startActivity(Intent(this@MainActivity, SelectCategoryFragment::class.java))}
+        }
+
     }
 }

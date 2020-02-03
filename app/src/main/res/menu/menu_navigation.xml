@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/destination_favorite"
+        android:icon="@drawable/abc_vector_test"
+        android:title="Favorite" />
+    <item
+        android:id="@+id/destination_search"
+        android:icon="@drawable/abc_vector_test"
+        android:title="Search" />
+    <item
+        android:id="@+id/destination_profile"
+        android:icon="@drawable/abc_vector_test"
+        android:title="Profile" />
+
+</menu>
