@@ -42,9 +42,18 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 
 
     override fun onNavigationItemSelected(p0: MenuItem): Boolean {
-//        when(p0){
-//            R.id.destination_favorite ->
-//        }
+        when(p0.itemId){
+            R.id.nav_favorite -> {
+                return true
+            }
+            R.id.nav_search -> {
+                return true
+            }
+            R.id.nav_profile-> {
+                return true
+            }
+        }
+        return false
     }
 
     override fun onFragmentInteraction(uri: Uri) {

@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/destination_favorite"
+        android:id="@+id/nav_favorite"
         android:icon="@drawable/abc_vector_test"
         android:title="Favorite"
         android:enabled="true"/>
     <item
-        android:id="@+id/destination_search"
+        android:id="@+id/nav_search"
         android:icon="@drawable/abc_vector_test"
         android:title="Search"
         android:enabled="true"/>
     <item
-        android:id="@+id/destination_profile"
+        android:id="@+id/nav_profile"
         android:icon="@drawable/abc_vector_test"
         android:title="Profile"
         android:enabled="true"/>
