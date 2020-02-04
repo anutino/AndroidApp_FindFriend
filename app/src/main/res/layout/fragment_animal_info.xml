@@ -1,14 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragments.AnimalInfoFragment">
+    tools:context=".ui.fragment.AnimalInfoFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+     <androidx.constraintlayout.widget.ConstraintLayout
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+         tools:context=".ui.activity.Animal_InfoActivity">
+
+         <androidx.viewpager2.widget.ViewPager2
+             android:id="@+id/viewPager2Images"
+             android:layout_width="404dp"
+             android:layout_height="444dp"
+             android:layout_marginTop="1dp"
+             app:layout_constraintBottom_toTopOf="@+id/animalInfo_name_age_id"
+             app:layout_constraintStart_toStartOf="parent"
+             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/animalInfo_name_age_id"
+            android:layout_width="309dp"
+            android:layout_height="58dp"
+            android:layout_marginBottom="305dp"
+            android:text="@string/animalInfo_name_age"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/viewPager2Images" />
+
+        <TextView
+            android:id="@+id/animalInfo_description"
+            android:layout_width="323dp"
+            android:layout_height="130dp"
+            android:layout_marginTop="48dp"
+            android:text="@string/animalInfo_description"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/animalInfo_name_age_id" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

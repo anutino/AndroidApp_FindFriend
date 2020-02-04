@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">FindFriend</string>
     <!-- activity main -->
-    <string name="appNameRus">Найти Друга</string>
+    <string name="appNameRus">Кого искать?</string>
 
     <!--activity_animal_info -->
     <string name="animalInfo_name_age">Loading...</string>

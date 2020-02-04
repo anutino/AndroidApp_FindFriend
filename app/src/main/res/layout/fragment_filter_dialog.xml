@@ -3,12 +3,47 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragments.FilterDialogFragment">
-
-    <!-- TODO: Update blank fragment layout -->
+    tools:context=".ui.fragment.FilterDialogFragment">
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/fragment_filter_age_id"
+        android:text="@string/fragment_filter_age"
+        android:gravity="center"
+        android:layout_width="147dp"
+        android:layout_height="54dp"
+        android:layout_marginLeft="65dp"
+        android:layout_marginTop="10dp" />
+
+    <SeekBar
+        android:id="@+id/seekBarAge"
+        android:layout_width="250dp"
+        android:layout_height="78dp"
+        android:layout_marginTop="65dp"
+        android:max="20"
+        android:progress="5" />
+
+    <Button
+        android:id="@+id/choose_dog_id"
+        android:layout_width="105dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="155dp"
+        android:background="@color/cardview_light_background"
+        android:text="Dog" />
+
+    <Button
+        android:id="@+id/choose_cat_id"
+        android:layout_width="105dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="140dp"
+        android:layout_marginTop="155dp"
+        android:text="Cat"
+        android:background="@color/cardview_light_background"/>
+
+    <Button
+        android:id="@+id/fragment_filter_apply"
+        android:text="@string/fragment_filter_apply_ok"
+        android:gravity="center"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="275dp" />
 
 </FrameLayout>

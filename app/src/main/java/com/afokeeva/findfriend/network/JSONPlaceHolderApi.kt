@@ -1,6 +1,7 @@
 package com.afokeeva.findfriend.network
 
 import com.afokeeva.findfriend.data.Animal
+import com.afokeeva.findfriend.data.Category
 import com.afokeeva.findfriend.data.Image
 import okhttp3.ResponseBody
 import retrofit2.Call
@@ -55,6 +56,9 @@ interface JSONPlaceHolderApi {
 
     @GET("/getImagesByIdAnimal")
     fun getImagesByIdAnimal(@Query("id") id_animal : Int) : Call<List<Image>>
+
+    @GET("/findMainImages")
+    fun findMainImages() : Call<List<Category>>
 
 
 }

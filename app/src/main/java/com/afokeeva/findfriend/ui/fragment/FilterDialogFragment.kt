@@ -1,72 +1,44 @@
-package com.afokeeva.findfriend.ui.fragments
-
-import android.content.Context
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
+package com.afokeeva.findfriend.ui.fragment
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Button
 import android.widget.SeekBar
+import androidx.fragment.app.DialogFragment
 import com.afokeeva.findfriend.R
 
-enum class ChosenAnimal{
-    DOG, CAT, ALL
-}
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Activities that contain this fragment must implement the
- * [FilterFragment.OnFragmentInteractionListener] interface
- * to handle interaction events.
- * Use the [FilterFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class FilterFragment : Fragment(), SeekBar.OnSeekBarChangeListener, View.OnClickListener {
+class FilterDialogFragment : DialogFragment(), SeekBar.OnSeekBarChangeListener, View.OnClickListener {
+
+    // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    private var listener: OnFragmentInteractionListener? = null
-    private var age = 5.0
-    private var TAG = "FilterFragment"
+    private var listener: SearchFragment.OnFragmentInteractionListener? = null
     private var isPressedDog = false
     private var isPressedCat = false
-    private var chosenAnimal = ChosenAnimal.ALL
-    lateinit var btnDog : Button
-    lateinit var btnCat: Button
-    lateinit var btnApply: Button
+    private var age = 5.0
+    private var TAG = "FilterDialogFragment"
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        var view = inflater.inflate(R.layout.fragment_filter, container, false)
-        btnDog = view.findViewById<Button>(R.id.choose_dog_id)
-        btnCat = view.findViewById<Button>(R.id.choose_cat_id)
-        btnApply = view.findViewById<Button>(R.id.fragment_filter_apply)
-        var seekBarAge = view.findViewById<SeekBar>(R.id.seekBarAge)
-        seekBarAge.setOnSeekBarChangeListener(this)
-        btnDog.setOnClickListener(this)
-        btnCat.setOnClickListener(this)
-        btnApply.setOnClickListener {
-            if(isPressedDog)  chosenAnimal = ChosenAnimal.DOG
-            else if(isPressedCat) chosenAnimal =
-                ChosenAnimal.CAT
-            else if (isPressedDog && isPressedCat) chosenAnimal =
-                ChosenAnimal.ALL
-            listener?.onFragmentInteraction(age,chosenAnimal.name)
-        }
-        return view
-    }
+
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//        super.onCreate(savedInstanceState)
+//        arguments?.let {
+//            param1 = it.getString(ARG_PARAM1)
+//            param2 = it.getString(ARG_PARAM2)
+//        }
+//        seekBarAge.setOnSeekBarChangeListener(this)
+//        btnDog.setOnClickListener(this)
+//        btnCat.setOnClickListener(this)
+//        btnApply.setOnClickListener {
+////            if(isPressedDog)  chosenAnimal = ChosenAnimal.DOG
+////            else if(isPressedCat) chosenAnimal =
+////                ChosenAnimal.CAT
+////            else if (isPressedDog && isPressedCat) chosenAnimal =
+////                ChosenAnimal.ALL
+////            listener?.onFragmentInteraction(age,chosenAnimal.name)
+//    }}
+
 
     override fun onClick(v: View?) {
         when(v?.id){
@@ -95,6 +67,44 @@ class FilterFragment : Fragment(), SeekBar.OnSeekBarChangeListener, View.OnClick
         }
     }
 
+
+    override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
+        age = p1.toDouble()
+    }
+
+    override fun onStartTrackingTouch(p0: SeekBar?) {
+    }
+
+    override fun onStopTrackingTouch(p0: SeekBar?) {
+    }
+    /*
+      fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_filter_dialog, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initViews(view)
+    }
+
+    private fun initViews(view : View) {
+        btnDog = view.findViewById<Button>(R.id.choose_dog_id)
+        btnCat = view.findViewById<Button>(R.id.choose_cat_id)
+        btnApply = view.findViewById<Button>(R.id.fragment_filter_apply)
+        seekBarAge = view.findViewById<SeekBar>(R.id.seekBarAge)
+
+    }
+
+
+    // TODO: Rename method, update argument and hook method into UI event
+    fun onButtonPressed(uri: Uri) {
+        listener?.onFragmentInteraction(uri)
+    }
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
         if (context is OnFragmentInteractionListener) {
@@ -107,9 +117,6 @@ class FilterFragment : Fragment(), SeekBar.OnSeekBarChangeListener, View.OnClick
     override fun onDetach() {
         super.onDetach()
         listener = null
-    }
-    fun setOnHeadlineSelectedListener(listener: OnFragmentInteractionListener) {
-        this.listener = listener
     }
 
     /**
@@ -124,15 +131,10 @@ class FilterFragment : Fragment(), SeekBar.OnSeekBarChangeListener, View.OnClick
      * for more information.
      */
     interface OnFragmentInteractionListener {
-        fun onFragmentInteraction(age: Double, animal: String)
+        // TODO: Update argument type and name
+        fun onFragmentInteraction(uri: Uri)
     }
-    override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-        age = progress.toDouble()
-    }
-    override fun onStartTrackingTouch(seekBar: SeekBar?) {
-    }
-    override fun onStopTrackingTouch(seekBar: SeekBar?) {
-    }
+
     companion object {
         /**
          * Use this factory method to create a new instance of
@@ -140,18 +142,16 @@ class FilterFragment : Fragment(), SeekBar.OnSeekBarChangeListener, View.OnClick
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment FilterFragment.
+         * @return A new instance of fragment FilterDialogFragment.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            FilterFragment().apply {
+            FilterDialogFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)
                 }
             }
-    }
+    }*/
 }
-
-

@@ -1,4 +1,4 @@
-package com.afokeeva.findfriend.viewmodels
+package com.afokeeva.findfriend.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

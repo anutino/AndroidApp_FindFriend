@@ -2,33 +2,35 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+
     android:id="@+id/nav_graph.xml"
     app:startDestination="@id/fragment_select_category_id">
 
     <fragment
         android:id="@+id/fragment_select_category_id"
-        android:name="com.afokeeva.findfriend.ui.fragments.SelectCategoryFragment"
-        android:label="fragment_first"
+        android:name="com.afokeeva.findfriend.ui.fragment.SelectCategoryFragment"
+        android:label="Select_category"
         tools:layout="@layout/fragment_select_category" >
         <action
-            android:id="@+id/action_fragment_select_category_id_to_fragment_search_id"
+            android:id="@+id/next_action"
             app:destination="@id/fragment_search_id" />
     </fragment>
 
     <fragment
         android:id="@+id/fragment_search_id"
-        android:name="com.afokeeva.findfriend.ui.fragments.SearchFragment"
-        android:label="fragment_first"
+        android:name="com.afokeeva.findfriend.ui.fragment.SearchFragment"
+        android:label="Search"
         tools:layout="@layout/fragment_search" >
         <action
-            android:id="@+id/action_fragment_search_id_to_fragment_animal_info_id"
+            android:id="@+id/next_action"
             app:destination="@id/fragment_animal_info_id" />
     </fragment>
 
     <fragment
         android:id="@+id/fragment_animal_info_id"
-        android:name="com.afokeeva.findfriend.ui.fragments.AnimalInfoFragment"
-        android:label="fragment_first"
+        android:name="com.afokeeva.findfriend.ui.fragment.AnimalInfoFragment"
+        android:label="AnimalInfo"
         tools:layout="@layout/fragment_animal_info" >
     </fragment>
+
 </navigation>

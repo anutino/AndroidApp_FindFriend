@@ -1,41 +1,11 @@
-package com.afokeeva.findfriend.ui.fragments.activities
+package com.afokeeva.findfriend
 
-import android.annotation.SuppressLint
-import android.content.Context
-import android.content.Intent
-import android.graphics.Rect
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.ViewGroup
-import android.widget.ImageView
-import com.afokeeva.findfriend.data.Animal
-import com.bumptech.glide.Glide
-import android.widget.TextView
-import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.DiffUtil
-import androidx.lifecycle.MutableLiveData
-import androidx.paging.*
-import androidx.paging.PagedList
-import android.os.Looper
-import android.os.Handler
-import android.util.Log
-import android.view.View
-import android.widget.Button
-import androidx.fragment.app.FragmentActivity
-import java.util.concurrent.Executor
-import androidx.lifecycle.LiveData
-import androidx.paging.PageKeyedDataSource
-import androidx.recyclerview.widget.GridLayoutManager
-import com.afokeeva.findfriend.ui.activities.Animal_InfoActivity
-import com.afokeeva.findfriend.ui.fragments.FilterFragment
-import com.afokeeva.findfriend.R
-import com.afokeeva.findfriend.ui.fragments.activities.SearchActivity.arrayObj.TAG
-import com.afokeeva.findfriend.ui.fragments.activities.SearchActivity.arrayObj.listAnimal
-import com.bumptech.glide.annotation.GlideModule
-import java.util.concurrent.Executors
+class SearchActivity {
 
-class SearchActivity : FragmentActivity(),
-    FilterFragment.OnFragmentInteractionListener {
+}
+/*
+: FragmentActivity(), FilterFragment.OnFragmentInteractionListener{
+ /*
     var TAG = "SearchActivity"
 
     /*TODO 1.change ItemClickListener()
@@ -57,57 +27,13 @@ class SearchActivity : FragmentActivity(),
         val TAG = "AnimalActivity"
         var listAnimals = mutableListOf<Animal>()//: ArrayList<Animal> = ArrayList()
         var listAnimal = listOf<Animal>(
-            Animal(
-                1,
-                1.2,
-                "dog1",
-                "",
-                1,
-                "https://i.ytimg.com/vi/-PB8fVx4axw/hqdefault.jpg"
-            ),
-            Animal(
-                2,
-                1.2,
-                "dog1",
-                "",
-                1,
-                "https://i.ytimg.com/vi/-PB8fVx4axw/hqdefault.jpg"
-            ),
-            Animal(
-                3,
-                1.2,
-                "dog1",
-                "",
-                1,
-                "https://i.ytimg.com/vi/-PB8fVx4axw/hqdefault.jpg"
-            )
-        ).toMutableList()
+            Animal(1,  1.2, "dog1",  "",1, "https://i.ytimg.com/vi/-PB8fVx4axw/hqdefault.jpg"),
+            Animal(2,  1.2,"dog1",  "", 1, "https://i.ytimg.com/vi/-PB8fVx4axw/hqdefault.jpg"),
+            Animal(3,  1.2,"dog1",  "", 1, "https://i.ytimg.com/vi/-PB8fVx4axw/hqdefault.jpg")).toMutableList()
         var listAnimalUPDATE = listOf<Animal>(
-            Animal(
-                1,
-                1.2,
-                "cat",
-                "",
-                1,
-                "https://i.ytimg.com/vi/-PB8fVx4axw/hqdefault.jpg"
-            ),
-            Animal(
-                2,
-                1.2,
-                "cat",
-                "",
-                1,
-                "https://i.ytimg.com/vi/-PB8fVx4axw/hqdefault.jpg"
-            ),
-            Animal(
-                3,
-                1.2,
-                "cat",
-                "",
-                1,
-                "https://i.ytimg.com/vi/-PB8fVx4axw/hqdefault.jpg"
-            )
-        ).toMutableList()
+            Animal(1,  1.2, "cat",  "",1, "https://i.ytimg.com/vi/-PB8fVx4axw/hqdefault.jpg"),
+            Animal(2,  1.2,"cat",  "", 1, "https://i.ytimg.com/vi/-PB8fVx4axw/hqdefault.jpg"),
+            Animal(3,  1.2,"cat",  "", 1, "https://i.ytimg.com/vi/-PB8fVx4axw/hqdefault.jpg")).toMutableList()
     }
 
     @SuppressLint("WrongThread")
@@ -119,31 +45,21 @@ class SearchActivity : FragmentActivity(),
         rv.adapter = AnimalAdapter(intent, this)
         //rv.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         rv.layoutManager = GridLayoutManager(this, 2)
-        rv.addItemDecoration(
-            GridItemDecoration(
-                10,
-                2
-            )
-        )
+        rv.addItemDecoration(GridItemDecoration(10, 2))
         //var spacingInPixels = getResources().getDimensionPixelSize(R.dimen.);
         // rv.addItemDecoration(new SpacesItemDecoration(spacingInPixels));
-        var AnimalFactory =
-            AnimalDataSourceFactory()
+        var AnimalFactory = AnimalDataSourceFactory()
         val config = PagedList.Config.Builder()
             .setEnablePlaceholders(false)
             .setPageSize(10)
             .build()
 
-        var executor: MainThreadExecutor =
-            MainThreadExecutor()
+        var executor: MainThreadExecutor = MainThreadExecutor()
         val pagedList =
             PagedList.Builder<Integer, Animal>(AnimalDataSourceFactory().create(), config)
                 .setFetchExecutor(Executors.newSingleThreadExecutor())
                 .setNotifyExecutor(Executors.newSingleThreadExecutor())
                 .build()
-
-        //(rv.adapter as AnimalAdapter).currentList.replaceAll(Animal())
-
 
         (rv.adapter as AnimalAdapter).submitList(pagedList)
         var itemPagedList: LiveData<PagedList<Animal>>
@@ -151,9 +67,8 @@ class SearchActivity : FragmentActivity(),
             .build();
         rv.setHasFixedSize(true)
         (rv.adapter as AnimalAdapter).notifyDataSetChanged()
-        (rv.adapter as AnimalAdapter).submitList(pagedList)// TODO oher
 
-
+         pagedList.dataSource
 
     }
 
@@ -187,7 +102,7 @@ class SearchActivity : FragmentActivity(),
             }
         }
     }
- 
+
      class MainThreadExecutor : Executor {
          private val mHandler = Handler(Looper.getMainLooper())
          override fun execute(command: Runnable){
@@ -255,32 +170,23 @@ class SearchActivity : FragmentActivity(),
         }
     }
 
-    class AnimalAdapter(intent: Intent, context : Context) : PagedListAdapter<Animal, AnimalViewHolders>(
-        DIFF_CALLBACK
-    ){
+    class AnimalAdapter(intent: Intent, context : Context) : PagedListAdapter<Animal, AnimalViewHolders>(DIFF_CALLBACK){
         val intent = intent
         val context = context
         companion object {
             private val DIFF_CALLBACK = object :
                 DiffUtil.ItemCallback<Animal>() {
                 override fun areItemsTheSame(oldConcert: Animal,
-                                             newConcert: Animal
-                ) = oldConcert.id == newConcert.id
+                                             newConcert: Animal) = oldConcert.id == newConcert.id
 
                 override fun areContentsTheSame(oldConcert: Animal,
-                                                newConcert: Animal
-                ) = oldConcert == newConcert
+                                              newConcert: Animal) = oldConcert == newConcert
             }}
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AnimalViewHolders {
                 val inflater = LayoutInflater.from(parent.context)
                 Log.d(TAG, "onCreateViewHolder ")
-                return AnimalViewHolders(
-                    inflater,
-                    parent,
-                    intent,
-                    context
-                )
+                return AnimalViewHolders(inflater, parent, intent, context)
         }
 
         override fun onBindViewHolder(holder: AnimalViewHolders, position: Int) {
@@ -293,15 +199,15 @@ class SearchActivity : FragmentActivity(),
 
     @GlideModule
     class AnimalViewHolders(inflater: LayoutInflater, parent: ViewGroup, intent: Intent, context : Context) : RecyclerView.ViewHolder(inflater.inflate(
-        R.layout.item_image_animal_with_name, parent, false)) {
+        com.afokeeva.findfriend.R.layout.item_image_animal_with_name, parent, false)) {
         var iv: ImageView? = null
         var names: TextView? = null
         var intent = intent
         val context = context
 
         init {
-            iv = itemView.findViewById(R.id.item_imageView_Animal)
-            names = itemView.findViewById(R.id.item_name_age)
+            iv = itemView.findViewById(com.afokeeva.findfriend.R.id.item_imageView_Animal)
+            names = itemView.findViewById(com.afokeeva.findfriend.R.id.item_name_age )
         }
 
         fun bind(Animal: Animal?) {
@@ -373,3 +279,4 @@ class GridItemDecoration(gridSpacingPx: Int, gridSize: Int) : RecyclerView.ItemD
 
 
 
+*/
