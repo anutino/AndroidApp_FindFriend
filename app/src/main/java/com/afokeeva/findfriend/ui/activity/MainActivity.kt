@@ -7,13 +7,19 @@ import android.net.Uri
 import android.view.MenuItem
 import androidx.navigation.NavController
 import androidx.navigation.ui.NavigationUI
-import com.afokeeva.findfriend.R
 import com.afokeeva.findfriend.ui.fragment.AnimalInfoFragment
 import com.afokeeva.findfriend.ui.fragment.SearchFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
+import androidx.fragment.app.Fragment
+import com.afokeeva.findfriend.ui.fragment.SelectCategoryFragment
+
 
 //https://github.com/ResoCoder/navigation-component-tutorial/blob/master/app/src/main/java/com/resocoder/navigationtut/MainActivity.kt
+    // https://www.raywenderlich.com/6014-the-navigation-architecture-component-tutorial-getting-started
+
+//https://inkscape.org/release/inkscape-0.92.4/ drawable
+
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener,  SearchFragment.OnFragmentInteractionListener, AnimalInfoFragment.OnFragmentInteractionListener{
        override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,11 +33,10 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         bttm_nav?.let {
             NavigationUI.setupWithNavController(it, navController)
         }
+        bttm_nav.setOnNavigationItemSelectedListener(this)
 
-        bttm_nav.setOnClickListener{
-
-        }
-
+        //navController.navigateUp()
+       // navController.popBackStack()
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
@@ -42,21 +47,43 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 
 
     override fun onNavigationItemSelected(p0: MenuItem): Boolean {
-        when(p0.itemId){
-            R.id.nav_favorite -> {
-                return true
+        var fragment : Fragment
+        when(p0.itemId){ //TODO change Fragments!
+            com.afokeeva.findfriend.R.id.nav_favorite -> {
+                fragment = SearchFragment()
+                return loadFragment(fragment)
             }
-            R.id.nav_search -> {
-                return true
+            com.afokeeva.findfriend.R.id.nav_search -> {
+                fragment = SelectCategoryFragment()
+                return loadFragment(fragment)
             }
-            R.id.nav_profile-> {
-                return true
+            com.afokeeva.findfriend.R.id.nav_profile-> {
+                fragment = SearchFragment()
+                return loadFragment(fragment)
             }
         }
         return false
     }
 
+    private fun loadFragment(fragment: Fragment?): Boolean {
+        if (fragment != null) {
+            supportFragmentManager
+                .beginTransaction()
+                .replace(com.afokeeva.findfriend.R.id.nav_host_fragment, fragment!!)
+                .commit()
+            return true
+        }
+        return false
+    }
+
     override fun onFragmentInteraction(uri: Uri) {
+    }
+
+    override fun onBackPressed() {
+//        val fragment = supportFragmentManager.findFragmentById(R.id.fl_home_fragment)
+//        if (fragment !is IOnBackPressed || !(fragment as IOnBackPressed).onBackPressed()) {
+//            super.onBackPressed()
+//        }
     }
 
  }

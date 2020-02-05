@@ -5,6 +5,7 @@
     android:id="@+id/fragment_select_category"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#0000ff"
     tools:context=".ui.fragment.SelectCategoryFragment">
 
         <TextView
