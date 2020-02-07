@@ -8,6 +8,7 @@ import androidx.constraintlayout.widget.Constraints.TAG
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import com.afokeeva.findfriend.data.Animal
+import com.afokeeva.findfriend.listeners.EditItemTouchHelper
 import com.afokeeva.findfriend.ui.viewholder.AnimalViewHolder
 
 class AnimalAdapter(context : Context) : PagedListAdapter<Animal, AnimalViewHolder>(DIFF_CALLBACK){
@@ -34,4 +35,7 @@ class AnimalAdapter(context : Context) : PagedListAdapter<Animal, AnimalViewHold
         holder.bind(animal)
         //holder.bind(getItem(position))
     }
+
+
+
 }
