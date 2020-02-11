@@ -2,13 +2,17 @@ package com.afokeeva.findfriend.ui.fragment
 
 import android.os.Bundle
 import android.util.Log
+import android.view.DragEvent
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.ViewGroup
+import android.widget.Button
+import androidx.compose.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
+import com.afokeeva.findfriend.R
 import com.afokeeva.findfriend.viewmodel.SelectCategoryViewModel
 import kotlinx.android.synthetic.main.fragment_select_category.*
 import android.view.View as View1
@@ -17,7 +21,7 @@ import android.view.View as View1
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-class SelectCategoryFragment : Fragment(), android.view.View.OnHoverListener {
+class SelectCategoryFragment : Fragment(), android.view.View.OnHoverListener{
     private var param1: String? = null
     private var param2: String? = null
    // private var listener: OnFragmentInteractionListener? = null
@@ -39,7 +43,7 @@ class SelectCategoryFragment : Fragment(), android.view.View.OnHoverListener {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View1? {
+    ): View? {
       //  var listImg = SelectCategoryViewModel().categoryListLiveData //TODO RECYCLE VIEW,  UNCOMMENT
         var view = inflater.inflate(com.afokeeva.findfriend.R.layout.fragment_select_category, container, false)
         return  view
@@ -56,14 +60,11 @@ class SelectCategoryFragment : Fragment(), android.view.View.OnHoverListener {
         imageButtonDogAndCat.setOnClickListener {
             Navigation.findNavController(it).navigate(com.afokeeva.findfriend.R.id.next_action)
         }
-
     }
+
 
     override fun onResume() {
         super.onResume()
-        print("_____________")
-        add_button.isEnabled = false
-
         add_button.setOnHoverListener(View1.OnHoverListener { view, motionEvent ->
             //print("__ ACTION ?? " + motionEvent.action.toString())
             when(motionEvent.action){

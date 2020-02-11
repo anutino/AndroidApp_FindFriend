@@ -54,15 +54,16 @@
 
     <LinearLayout
         android:layout_width="75dp"
-         android:layout_height="177dp"
+        android:layout_height="177dp"
         android:layout_marginLeft="250dp"
         android:background="#8888ff"
         android:layout_marginTop="50dp"
         android:orientation="vertical">
 
+        <!--    android:background="@drawable/button_selector" -->
         <Button
             android:id="@+id/add_button"
-            android:background="@drawable/button_selector"
+            android:background="@drawable/selector"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -71,11 +72,12 @@
 
         <Button
             android:id="@+id/delete_button"
-            android:layout_width="58dp"
+            android:layout_width="54dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="50dp"
-            tools:text="del" />
+            android:background="@drawable/selector"
+            tools:text="DEL" />
     </LinearLayout>
 
 
