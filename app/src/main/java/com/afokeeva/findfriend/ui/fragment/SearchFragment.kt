@@ -7,7 +7,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.LiveData
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import androidx.recyclerview.widget.GridLayoutManager
@@ -20,6 +19,14 @@ import androidx.compose.Looper
 import com.afokeeva.findfriend.data.AnimalDataSourceFactory
 import com.afokeeva.findfriend.ui.adapter.AnimalAdapter
 import java.util.concurrent.Executor
+import android.R
+import android.R.attr.colorPrimaryDark
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.*
+import androidx.recyclerview.widget.ItemTouchHelper
+import com.afokeeva.findfriend.listeners.EditItemTouchHelper
+import com.afokeeva.findfriend.viewmodel.AnimalsListViewModel
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -42,12 +49,34 @@ class SearchFragment : Fragment() {
             Animal(3, 1.2, "cat", "", 1, "https://i.ytimg.com/vi/-PB8fVx4axw/hqdefault.jpg")
         ).toMutableList()
     }
+//    private val model: AnimalsListViewModel by viewModels {
+//        object : AbstractSavedStateViewModelFactory(this, null) {
+//            override fun <T : ViewModel?> create(
+//                key: String,
+//                modelClass: Class<T>,
+//                handle: SavedStateHandle
+//            ): T {
+//                val repoTypeParam = intent.getIntExtra(KEY_REPOSITORY_TYPE, 0)
+//                val repoType = RedditPostRepository.Type.values()[repoTypeParam]
+//                val repo = ServiceLocator.instance(this@RedditActivity)
+//                    .getRepository(repoType)
+//                @Suppress("UNCHECKED_CAST")
+//                return SubRedditViewModel(repo, handle) as T
+//            }
+//        }
+//    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+
+        val model: AnimalsListViewModel by viewModels()
+        model.getAnimalInfo().observe(this, Observer<List<Animal>>{ it ->
+            // update UI
+        })
+
     }
     @SuppressLint("WrongThread")
     override fun onCreateView(
@@ -55,11 +84,21 @@ class SearchFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        var view = inflater.inflate(com.afokeeva.findfriend.R.layout.fragment_search, container, false)
+
+        //<--- test
+        // work --->
+
+//        var mItems : List<Animal>? = null
+//        var mViewModel = ViewModelProviders.of(this@SearchFragment).get(AnimalsListViewModel::class.java)
+//        mViewModel.animalsListLiveData.observe(this, Observer {
+//            mItems = it // it in Recycle View
+//        })
+
+        /*var view = inflater.inflate(com.afokeeva.findfriend.R.layout.fragment_search, container, false)
         var rv = view.findViewById(com.afokeeva.findfriend.R.id.fragment_search_rvAnimalImages) as RecyclerView
         rv.layoutManager = GridLayoutManager(activity,2)
 
-        rv.adapter = activity?.let { AnimalAdapter(it) }
+        rv.adapter = activity?.let { AnimalAdapter(it, mItems) }
         rv.layoutManager = GridLayoutManager(activity, 2)
        // rv.addItemDecoration(GridItemDecoration(10, 2)) maybe it's unnecessary
         val config = PagedList.Config.Builder()
@@ -81,8 +120,29 @@ class SearchFragment : Fragment() {
         rv.setHasFixedSize(true)
         (rv.adapter as AnimalAdapter).notifyDataSetChanged()
         pagedList.dataSource
+
+
+        val callback = EditItemTouchHelper(rv.adapter as AnimalAdapter)
+        val mItemTouchHelper = ItemTouchHelper(callback)
+        mItemTouchHelper.attachToRecyclerView(rv)
+        rv.addItemDecoration(mItemTouchHelper
+           //object HorizontalDividerItemDecoration.Builder(this)
+             //   .colorResId(R.color.background_dark)
+               // .size(2)
+                //.build()
+        )*/
         return view
     }
+
+    //test for getting info
+//    private val model: AnimalsListViewModel by viewModels()
+//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+//        super.onViewCreated(view, savedInstanceState)
+//        model.getAnimalInfo().observe(this, Observer<List<Animal>>{ it ->
+//            // update UI
+//        })
+//    }
+
     class MainThreadExecutor : Executor {
         private val mHandler = Handler(Looper.getMainLooper())
         override fun execute(command: Runnable){

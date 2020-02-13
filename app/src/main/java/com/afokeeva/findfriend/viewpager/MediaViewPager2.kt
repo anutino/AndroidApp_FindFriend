@@ -8,10 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.afokeeva.findfriend.R
 import com.bumptech.glide.Glide
 
-class MediaViewPager2(imagesList: List<String>) : RecyclerView.Adapter<MediaViewPager2.PagerVH>() {
+class MediaViewPager2(var imagesList: List<String>) : RecyclerView.Adapter<MediaViewPager2.PagerVH>() {
 
-    var imagesList = imagesList
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PagerVH =
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PagerVH =
             PagerVH(
                 LayoutInflater.from(parent.context).inflate(
                     R.layout.animal_image_page,
@@ -23,7 +22,7 @@ class MediaViewPager2(imagesList: List<String>) : RecyclerView.Adapter<MediaView
         override fun getItemCount(): Int = imagesList.size
 
         override fun onBindViewHolder(holder: PagerVH, position: Int) {
-            var iv = holder.itemView.findViewById<ImageView>(R.id.itemImageViewAnimal)
+            val iv = holder.itemView.findViewById<ImageView>(R.id.itemImageViewAnimal)
             Glide.with(holder.itemView).load(imagesList[position]).into(iv)
         }
 

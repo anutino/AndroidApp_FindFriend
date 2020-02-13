@@ -5,8 +5,8 @@
             android:state_enabled="false" />
 
         <item
-            android:drawable="@drawable/selected_state_down"
+            android:drawable="@drawable/selected_state_up"
             android:state_pressed="true" />
         <item
-            android:drawable="@drawable/selected_state_up"  />
+            android:drawable="@drawable/selected_state_down"  />
 </selector>

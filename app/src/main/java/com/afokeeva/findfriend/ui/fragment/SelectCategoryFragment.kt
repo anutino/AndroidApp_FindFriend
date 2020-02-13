@@ -13,6 +13,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import com.afokeeva.findfriend.R
+import com.afokeeva.findfriend.data.Animal
 import com.afokeeva.findfriend.viewmodel.SelectCategoryViewModel
 import kotlinx.android.synthetic.main.fragment_select_category.*
 import android.view.View as View1
@@ -29,8 +30,10 @@ class SelectCategoryFragment : Fragment(), android.view.View.OnHoverListener{
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mViewModel = ViewModelProviders.of(this@SelectCategoryFragment).get(SelectCategoryViewModel::class.java)
-        mViewModel.categoryListLiveData.observe(this, Observer {
+
+
+        mViewModel = ViewModelProviders.of(this@SelectCategoryFragment).get(SelectCategoryViewModel::class.java) //TODO remove this getting data to activity
+        mViewModel.getAnimalInfo().observe(this, Observer {
             it // it in Recycle View
         })
         arguments?.let {
@@ -60,6 +63,7 @@ class SelectCategoryFragment : Fragment(), android.view.View.OnHoverListener{
         imageButtonDogAndCat.setOnClickListener {
             Navigation.findNavController(it).navigate(com.afokeeva.findfriend.R.id.next_action)
         }
+
     }
 
 

@@ -8,10 +8,15 @@ import androidx.constraintlayout.widget.Constraints.TAG
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import com.afokeeva.findfriend.data.Animal
+import com.afokeeva.findfriend.listeners.ItemTouchHelperAdapter
 import com.afokeeva.findfriend.ui.viewholder.AnimalViewHolder
+import com.afokeeva.findfriend.viewmodel.AnimalsListViewModel
+import java.util.*
 
-class AnimalAdapter(context : Context) : PagedListAdapter<Animal, AnimalViewHolder>(DIFF_CALLBACK){
-    val context = context
+class AnimalAdapter(val context: Context, var mItems : List<Animal>) : PagedListAdapter<Animal, AnimalViewHolder>(DIFF_CALLBACK),
+    ItemTouchHelperAdapter {
+    //TODO test CGET INFO !!! https://www.codeproject.com/Articles/1041390/Remember-Drag-and-Drop-Position-with-RecyclerView
+
     companion object {
         private val DIFF_CALLBACK = object :
             DiffUtil.ItemCallback<Animal>() {
@@ -29,12 +34,20 @@ class AnimalAdapter(context : Context) : PagedListAdapter<Animal, AnimalViewHold
     }
 
     override fun onBindViewHolder(holder: AnimalViewHolder, position: Int) {
-        val animal: Animal? = getItem(position)
+//        val animal: Animal? = getItem(position)
+        val selectedAnimal : Animal = mItems[position]
         Log.d(TAG, "onBindViewHolder  " + getItem(position))
-        holder.bind(animal)
+        holder.bind(selectedAnimal)
         //holder.bind(getItem(position))
     }
 
+    override fun onItemMove(fromPosition: Int, toPosition: Int) : Boolean {
+        Collections.swap(mItems, fromPosition, toPosition);
+        notifyItemMoved(fromPosition, toPosition);
+        return true;
+    }
 
+    override fun onItemDismiss(position: Int) {
 
+    }
 }
