@@ -7,7 +7,7 @@
 
 
     <ImageView
-        android:id="@+id/itemImageViewAnimal"
+        android:id="@+id/item_image_view_animal"
         android:layout_width="324dp"
         android:layout_height="192dp"
         android:layout_marginStart="52dp"

@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".ui.activities.MainActivity">
+    tools:context=".ui.activity.MainActivity">
 
     <ImageView
-        android:id="@+id/item_imageView_Animal"
+        android:id="@+id/item_image_view_animal"
         android:layout_width="134dp"
         android:layout_height="102dp"
         android:layout_marginStart="8dp"
@@ -27,7 +27,7 @@
         android:layout_marginStart="8dp"
         android:text="@string/block_name_age"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/item_imageView_Animal"
+        app:layout_constraintTop_toBottomOf="@+id/item_image_view_animal"
         tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

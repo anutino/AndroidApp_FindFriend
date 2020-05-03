@@ -2,15 +2,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/destination_favorite"
-        android:icon="@drawable/abc_vector_test"
-        android:title="Favorite" />
+        android:icon="@drawable/ic_favorite"
+        android:title="Favorite"
+        android:enabled="true"/>
     <item
         android:id="@+id/destination_search"
-        android:icon="@drawable/abc_vector_test"
-        android:title="Search" />
+        android:icon="@drawable/ic_search"
+        android:title="Search"
+        android:enabled="true"/>
     <item
         android:id="@+id/destination_profile"
-        android:icon="@drawable/abc_vector_test"
-        android:title="Profile" />
+        android:icon="@drawable/ic_profile"
+        android:title="Profile"
+        android:enabled="true"/>
 
 </menu>

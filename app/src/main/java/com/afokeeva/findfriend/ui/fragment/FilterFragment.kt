@@ -1,4 +1,4 @@
-package com.afokeeva.findfriend.ui.fragments
+package com.afokeeva.findfriend.ui.fragment
 
 import android.content.Context
 import android.os.Bundle
@@ -49,11 +49,11 @@ class FilterFragment : Fragment(), SeekBar.OnSeekBarChangeListener, View.OnClick
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        var view = inflater.inflate(R.layout.fragment_filter, container, false)
+        var view = inflater.inflate(R.layout.fragment_filter_dialog, container, false)
         btnDog = view.findViewById<Button>(R.id.choose_dog_id)
         btnCat = view.findViewById<Button>(R.id.choose_cat_id)
         btnApply = view.findViewById<Button>(R.id.fragment_filter_apply)
-        var seekBarAge = view.findViewById<SeekBar>(R.id.seekBarAge)
+        var seekBarAge = view.findViewById<SeekBar>(R.id.seek_bar_age)
         seekBarAge.setOnSeekBarChangeListener(this)
         btnDog.setOnClickListener(this)
         btnCat.setOnClickListener(this)

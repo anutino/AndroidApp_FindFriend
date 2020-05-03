@@ -1,4 +1,4 @@
-package com.afokeeva.findfriend.ui.fragments
+package com.afokeeva.findfriend.ui.fragment
 
 import android.content.Context
 import android.net.Uri

@@ -1,14 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragments.AnimalInfoFragment">
+    android:layout_gravity="center_horizontal"
+    android:layout_marginTop="@dimen/animal_info_margin_top"
+    android:background="@color/background_color_primary"
+    android:orientation="vertical"
+    tools:context=".ui.fragment.AnimalInfoFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager2_media"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="250dp"
+        android:layout_marginTop="1dp"
+        app:layout_constraintBottom_toTopOf="@+id/animal_info_name_age_id"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/animal_info_name_age_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/animal_info_margin_top"
+        android:text="@string/animalInfo_name_age" />
+
+    <TextView
+        android:id="@+id/animal_info_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/animal_info_margin_top"
+        android:layout_weight="10"
+        android:maxHeight="350dp"
+        android:text="@string/animalInfo_description" />
+
+    <ImageButton
+        android:id="@+id/button_favorite"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_gravity="end"
+        android:layout_marginTop="@dimen/animal_info_margin_top"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="@dimen/animal_info_margin_top"
+        android:layout_weight="0.5"
+        android:contentDescription="@null"
+        android:maxHeight="10dp">
+    </ImageButton>
+
+</LinearLayout>

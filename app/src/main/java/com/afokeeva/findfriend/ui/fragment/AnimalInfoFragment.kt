@@ -1,4 +1,4 @@
-package com.afokeeva.findfriend.ui.fragments
+package com.afokeeva.findfriend.ui.fragment
 
 import android.content.Context
 import android.net.Uri
@@ -17,12 +17,12 @@ private const val ARG_PARAM2 = "param2"
 /**
  * A simple [Fragment] subclass.
  * Activities that contain this fragment must implement the
- * [SearchFragment.OnFragmentInteractionListener] interface
+ * [AnimalInfoFragment.OnFragmentInteractionListener] interface
  * to handle interaction events.
- * Use the [SearchFragment.newInstance] factory method to
+ * Use the [AnimalInfoFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class SearchFragment : Fragment() {
+class AnimalInfoFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -41,7 +41,7 @@ class SearchFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_search, container, false)
+        return inflater.inflate(R.layout.fragment_animal_info, container, false)
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -86,12 +86,12 @@ class SearchFragment : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment SearchFragment.
+         * @return A new instance of fragment AnimalInfoFragment.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            SearchFragment().apply {
+            AnimalInfoFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

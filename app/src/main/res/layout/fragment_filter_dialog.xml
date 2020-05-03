@@ -1,14 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.fragments.FilterDialogFragment">
+    android:layout_width="@dimen/filter_dialog_width"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:background="@color/background_color_secondary"
+    android:orientation="vertical"
+    tools:context=".ui.fragment.FilterDialogFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        style="@style/TextPrimary"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="54dp"
+        android:gravity="center"
+        android:text="@string/fragment_filter_title" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/fragment_filter_age_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/fragment_filter_age" />
+
+    <SeekBar
+        android:id="@+id/seek_bar_age"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:max="20"
+        android:progress="5" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/choose_dog_id"
+            android:layout_width="105dp"
+            android:layout_height="100dp"
+            android:layout_weight="1"
+            android:background="@color/cardview_light_background"
+            android:text="Dog" />
+
+        <Button
+            android:id="@+id/choose_cat_id"
+            android:layout_width="105dp"
+            android:layout_height="100dp"
+            android:layout_weight="1"
+            android:background="@color/cardview_light_background"
+            android:text="Cat" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/fragment_filter_apply"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/fragment_filter_apply" />
+
+        <Button
+            android:id="@+id/fragment_filter_cancel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/fragment_filter_cancel" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,11 +1,4 @@
-package com.afokeeva.findfriend.ui.fragments
-
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
-import androidx.fragment.app.Fragment
+package com.afokeeva.findfriend.ui.fragment
 
 /*class AnimalImageSlidePageFragment : Fragment() {
     private var mUserView: TextView? = null
