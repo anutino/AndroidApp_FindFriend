@@ -11,7 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import com.afokeeva.findfriend.R
-import com.afokeeva.findfriend.viewmodels.SelectCategoryViewModel
+import com.afokeeva.findfriend.viewmodel.SelectCategoryViewModel
 import kotlinx.android.synthetic.main.fragment_select_category.*
 
 private const val ARG_PARAM1 = "param1"

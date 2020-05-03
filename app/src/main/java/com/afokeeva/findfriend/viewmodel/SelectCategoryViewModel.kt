@@ -20,7 +20,7 @@ class SelectCategoryViewModel : ViewModel(){
 //        }
 //    }
 
-    private val categoryListLiveData: MutableLiveData<List<Category>> by lazy {
+    val categoryListLiveData: MutableLiveData<List<Category>> by lazy {
         MutableLiveData<List<Category>>().also {
             loadUsers()
         }
