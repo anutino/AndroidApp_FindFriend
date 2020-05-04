@@ -18,7 +18,7 @@ package com.afokeeva.findfriend.ui.fragment
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View = inflater.inflate(R.layout.animal_image_page, container, false)
+    ): View = inflater.inflate(R.layout.media_content, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

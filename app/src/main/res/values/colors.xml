@@ -8,7 +8,7 @@
     <color name="blue_light">#33ccff</color>
     <color name="red_light">#ff3333</color>
 
-    <color name="text_color_primary">#ffa343</color>
+    <color name="text_color_primary">#000000</color>
     <color name="text_color_secondary">#ffb833</color>
     <color name="text_content">#000000</color>
 

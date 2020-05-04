@@ -2,7 +2,6 @@ package com.afokeeva.findfriend.listeners
 
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
-import com.afokeeva.findfriend.ui.adapter.AnimalAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.afokeeva.findfriend.data.Animal
 

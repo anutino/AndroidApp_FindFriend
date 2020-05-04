@@ -13,7 +13,7 @@ class MediaViewPager2(var imagesList: List<String>) : RecyclerView.Adapter<Media
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PagerVH =
             PagerVH(
                 LayoutInflater.from(parent.context).inflate(
-                    R.layout.animal_image_page,
+                    R.layout.media_content,
                     parent,
                     false
                 )
@@ -22,7 +22,7 @@ class MediaViewPager2(var imagesList: List<String>) : RecyclerView.Adapter<Media
         override fun getItemCount(): Int = imagesList.size
 
         override fun onBindViewHolder(holder: PagerVH, position: Int) {
-            val iv = holder.itemView.findViewById<ImageView>(R.id.item_image_view_animal)
+            val iv = holder.itemView.findViewById<ImageView>(R.id.item_media_content)
             Glide.with(holder.itemView).load(imagesList[position]).into(iv)
         }
 
@@ -46,7 +46,7 @@ class MediaViewPager2(var imagesList: List<String>) : RecyclerView.Adapter<Media
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View = inflater.inflate(R.layout.animal_image_page, container, false)
+    ): View = inflater.inflate(R.layout.media_content, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

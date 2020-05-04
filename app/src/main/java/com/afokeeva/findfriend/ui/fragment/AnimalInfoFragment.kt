@@ -42,11 +42,11 @@ class AnimalInfoFragment : Fragment() {
             "https://wallscloud.net/uploads/cache/1266658504/blue-space-planet-krB5-1024x576-MM-90.jpg",
             "https://i.ytimg.com/vi/-PB8fVx4axw/hqdefault.jpg"
         )
-        var view = inflater.inflate(R.layout.fragment_animal_info, container, false)
+        var view = inflater.inflate(R.layout.fragment_animal_full_info, container, false)
         val pager = view.findViewById<ViewPager2>(R.id.viewPager2_media)
         pager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
         pager.adapter = MediaViewPager2(imagesList)
-        var names = view.findViewById<TextView>(R.id.animal_info_name_age_id)
+        var names = view.findViewById<TextView>(R.id.animal_info_name_with_age)
         names.text = "Doggi, 1.2"
         var description = view.findViewById<TextView>(R.id.animal_info_description)
         description.text = "description"

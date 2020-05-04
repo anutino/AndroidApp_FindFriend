@@ -1,5 +1,6 @@
 package com.afokeeva.findfriend.ui.fragment
 
+//import androidx.fragment.app.viewModels
 import android.content.Context
 import android.net.Uri
 import android.os.Bundle
@@ -7,11 +8,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.GridLayoutManager
 import com.afokeeva.findfriend.R
 import com.afokeeva.findfriend.data.Animal
-import com.afokeeva.findfriend.viewmodel.AnimalsListViewModel
-//import androidx.fragment.app.viewModels
-import androidx.lifecycle.*
+import com.afokeeva.findfriend.ui.adapter.AnimalListAdapter
+import com.afokeeva.findfriend.viewmodel.AnimalListViewModel
+import kotlinx.android.synthetic.main.fragment_searching_animal.view.*
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -39,19 +44,31 @@ class SearchFragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
-//        val model: AnimalsListViewModel by viewModels()
-//        model.getAnimalInfo().observe(this, Observer<List<Animal>>{ it ->
-//            // update UI
-//        })
+    }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initViews(view)
+    }
+
+    private fun initViews(view: View) {
+        val mViewModel = ViewModelProviders.of(this@SearchFragment)
+            .get(AnimalListViewModel::class.java)
+        mViewModel.getAnimalInfo().observe(this, Observer {
+        })
+
+        val recyclerView = view.recycle_view_animal_short_info
+        recyclerView.layoutManager = GridLayoutManager(context, 2)
+        recyclerView.adapter
+        //var adapter = AnimalListAdapter(context, mViewModel.getAnimalInfo())
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_search, container, false)
+        return inflater.inflate(R.layout.fragment_searching_animal, container, false)
     }
 
     // TODO: Rename method, update argument and hook method into UI event

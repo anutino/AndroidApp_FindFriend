@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center_horizontal"
-    android:layout_marginTop="@dimen/animal_info_margin_top"
     android:background="@color/background_color_primary"
     android:orientation="vertical"
     tools:context=".ui.fragment.AnimalInfoFragment">
@@ -13,39 +12,39 @@
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager2_media"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="0dp"
         android:layout_marginTop="1dp"
-        app:layout_constraintBottom_toTopOf="@+id/animal_info_name_age_id"
+        android:layout_weight="7"
+        app:layout_constraintBottom_toTopOf="@+id/animal_info_name_with_age"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/animal_info_name_age_id"
+        android:id="@+id/animal_info_name_with_age"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/animal_info_margin_top"
-        android:text="@string/animalInfo_name_age" />
+        android:layout_marginTop="@dimen/marginTop"
+        android:layout_weight="0.2"
+        android:text="@string/loading" />
 
     <TextView
         android:id="@+id/animal_info_description"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/animal_info_margin_top"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/marginTop"
         android:layout_weight="10"
-        android:maxHeight="350dp"
-        android:text="@string/animalInfo_description" />
+        android:text="@string/loading" />
 
     <ImageButton
         android:id="@+id/button_favorite"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_gravity="end"
-        android:layout_marginTop="@dimen/animal_info_margin_top"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="@dimen/animal_info_margin_top"
+        android:layout_marginTop="@dimen/marginTop"
+        android:layout_marginEnd="@dimen/margin"
+        android:layout_marginBottom="@dimen/marginTop"
         android:layout_weight="0.5"
         android:contentDescription="@null"
-        android:maxHeight="10dp">
-    </ImageButton>
+        android:maxHeight="10dp"/>
 
 </LinearLayout>

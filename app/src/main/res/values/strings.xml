@@ -1,33 +1,21 @@
 <resources>
     <string name="app_name">FindFriend</string>
-    <!-- activity main -->
-    <string name="appNameRus">Кого искать?</string>
+    <!-- activity_main.xml -->
+    <string name="select_category_title">Кого искать?</string>
 
-    <!--activity_animal_info -->
-    <string name="animalInfo_name_age">Loading...</string>
-    <string name="animalInfo_description">Loading...</string>
+    <!-- General -->
+    <string name="loading">Loading…</string>
 
-    <!-- Block -->
-    <string name="block_name_age">Loading...</string>
-
-    <string name="title_activity_search">SearchActivity</string>
-    <string name="tVName">TextView</string>
-    <string name="tVAge">TextView</string>
-    <string name="title_activity_animal__info">animal_InfoActivity</string>
-
-    <!-- fragment_filter -->
-    <!--        <string name="hello_blank_fragment">Hello blank fragment</string>-->
+    <!-- fragment_filter_dialog.xml -->
     <string name="fragment_filter_title">Фильтр</string>
-    <string name="fragment_filter_age">возраст</string>
-    <string name="fragment_filter_apply">применить</string>
-    <string name="fragment_filter_cancel">отмена</string>
-    <string name="title_activity_main2">Main2Activity</string>
-    <string name="tab_text_1">Tab 1</string>
-    <string name="tab_text_2">Tab 2</string>
+    <string name="fragment_filter_age_title">Возраст</string>
+    <string name="fragment_filter_apply">Применить</string>
+    <string name="fragment_filter_cancel">Отмена</string>
 
-    <string name="add_page">Add Page</string>
-    <string name="delete">Delete</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- menu_navigation.xml -->
+    <string name="favorite">Favorite</string>
+    <string name="search">Search</string>
+    <string name="profile">Profile</string>
+    <string name="cat">кот</string>
+    <string name="dog">собака</string>
 </resources>

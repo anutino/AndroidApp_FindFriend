@@ -1,6 +1,5 @@
 package com.afokeeva.findfriend.ui.fragment
 
-import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -12,7 +11,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import com.afokeeva.findfriend.R
 import com.afokeeva.findfriend.viewmodel.SelectCategoryViewModel
-import kotlinx.android.synthetic.main.fragment_select_category.*
+import kotlinx.android.synthetic.main.fragment_selector_category.*
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -43,7 +42,7 @@ class SelectCategoryFragment : Fragment() {
     ): View? {
         //var listImg = SelectCategoryViewModel().categoryListLiveData
         // print("result_ $listImg ")
-        return inflater.inflate(R.layout.fragment_select_category, container, false)
+        return inflater.inflate(R.layout.fragment_selector_category, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -52,13 +51,13 @@ class SelectCategoryFragment : Fragment() {
     }
 
     private fun initViews(view: View) {
-        imageButtonDog.setOnClickListener {
+        select_category_dog.setOnClickListener {
             Navigation.findNavController(it).navigate(com.afokeeva.findfriend.R.id.next_action)
         }
-        imageButtonCat.setOnClickListener {
+        select_category_cat.setOnClickListener {
             Navigation.findNavController(it).navigate(com.afokeeva.findfriend.R.id.next_action)
         }
-        imageButtonDogAndCat.setOnClickListener {
+        select_category_dog_and_cat.setOnClickListener {
             Navigation.findNavController(it).navigate(com.afokeeva.findfriend.R.id.next_action)
         }
     }
