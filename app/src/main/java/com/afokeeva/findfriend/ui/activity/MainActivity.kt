@@ -15,7 +15,7 @@ import com.afokeeva.findfriend.ui.fragment.SelectCategoryFragment
 
 
 //https://github.com/ResoCoder/navigation-component-tutorial/blob/master/app/src/main/java/com/resocoder/navigationtut/MainActivity.kt
-    // https://www.raywenderlich.com/6014-the-navigation-architecture-component-tutorial-getting-started
+//https://www.raywenderlich.com/6014-the-navigation-architecture-component-tutorial-getting-started
 
 //https://inkscape.org/release/inkscape-0.92.4/ drawable
 

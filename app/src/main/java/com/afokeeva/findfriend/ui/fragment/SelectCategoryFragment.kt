@@ -52,13 +52,13 @@ class SelectCategoryFragment : Fragment() {
     }
 
     private fun initViews(view: View) {
-        imageButtonDog.setOnClickListener {
+        select_category_dog.setOnClickListener {
             Navigation.findNavController(it).navigate(com.afokeeva.findfriend.R.id.next_action)
         }
-        imageButtonCat.setOnClickListener {
+        select_category_cat.setOnClickListener {
             Navigation.findNavController(it).navigate(com.afokeeva.findfriend.R.id.next_action)
         }
-        imageButtonDogAndCat.setOnClickListener {
+        select_category_dog_and_cat.setOnClickListener {
             Navigation.findNavController(it).navigate(com.afokeeva.findfriend.R.id.next_action)
         }
     }

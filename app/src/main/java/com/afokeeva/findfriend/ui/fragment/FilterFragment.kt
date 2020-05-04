@@ -50,8 +50,8 @@ class FilterFragment : Fragment(), SeekBar.OnSeekBarChangeListener, View.OnClick
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         var view = inflater.inflate(R.layout.fragment_filter_dialog, container, false)
-        btnDog = view.findViewById<Button>(R.id.choose_dog_id)
-        btnCat = view.findViewById<Button>(R.id.choose_cat_id)
+        btnDog = view.findViewById<Button>(R.id.choose_dog)
+        btnCat = view.findViewById<Button>(R.id.choose_cat)
         btnApply = view.findViewById<Button>(R.id.fragment_filter_apply)
         var seekBarAge = view.findViewById<SeekBar>(R.id.seek_bar_age)
         seekBarAge.setOnSeekBarChangeListener(this)
@@ -70,24 +70,24 @@ class FilterFragment : Fragment(), SeekBar.OnSeekBarChangeListener, View.OnClick
 
     override fun onClick(v: View?) {
         when(v?.id){
-            R.id.choose_dog_id ->{
+            R.id.choose_dog ->{
                 if(isPressedDog) {
-                    v.findViewById<Button>(R.id.choose_dog_id)
+                    v.findViewById<Button>(R.id.choose_dog)
                         .setBackgroundColor(getResources().getColor(R.color.blue))
                     isPressedDog = false
                 }else if(!isPressedDog){
-                    v.findViewById<Button>(R.id.choose_dog_id)
+                    v.findViewById<Button>(R.id.choose_dog)
                         .setBackgroundColor(getResources().getColor(R.color.blue_light))
                     isPressedDog=true
                 }
             }
-            R.id.choose_cat_id ->{
+            R.id.choose_cat ->{
                 if(isPressedCat) {
-                    v.findViewById<Button>(R.id.choose_cat_id)
+                    v.findViewById<Button>(R.id.choose_cat)
                         .setBackgroundColor(getResources().getColor(R.color.red))
                     isPressedCat = false
                 }else if(!isPressedCat){
-                    v.findViewById<Button>(R.id.choose_cat_id)
+                    v.findViewById<Button>(R.id.choose_cat)
                         .setBackgroundColor(getResources().getColor(R.color.red_light))
                     isPressedCat=true
                 }

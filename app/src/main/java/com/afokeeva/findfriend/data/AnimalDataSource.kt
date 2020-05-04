@@ -5,14 +5,14 @@ import androidx.constraintlayout.widget.Constraints
 import androidx.paging.PageKeyedDataSource
 import com.afokeeva.findfriend.ui.fragment.SearchFragment
 
-class AnimalDataSource(var useSearchFragment: Boolean) : PageKeyedDataSource<Integer, Animal>() {
+class AnimalDataSource(var useSearchFragment: Boolean) : PageKeyedDataSource<Int, Animal>() {
     val PAGE_SIZE = 50;
     val FIRST_PAGE = 9;
-    var initialParams: LoadInitialParams<Integer>? = null
+    var initialParams: LoadInitialParams<Int>? = null
 
     override fun loadInitial(
-        params: LoadInitialParams<Integer>,
-        callback: LoadInitialCallback<Integer, Animal>
+        params: LoadInitialParams<Int>,
+        callback: LoadInitialCallback<Int, Animal>
     ) {
         val i = 1
         if (useSearchFragment) {
@@ -27,16 +27,16 @@ class AnimalDataSource(var useSearchFragment: Boolean) : PageKeyedDataSource<Int
     }
 
     override fun loadAfter(
-        params: LoadParams<Integer>,
-        callback: LoadCallback<Integer, Animal>
+        params: LoadParams<Int>,
+        callback: LoadCallback<Int, Animal>
     ) {
         //  callback.onResult(listAnimal, params.key )
         Log.d(Constraints.TAG, "loadAfter ")
     }
 
     override fun loadBefore(
-        params: LoadParams<Integer>,
-        callback: LoadCallback<Integer, Animal>
+        params: LoadParams<Int>,
+        callback: LoadCallback<Int, Animal>
     ) {
         //callback.onResult(listAnimal, params.key)
         Log.d(Constraints.TAG, "loadBefore ")
