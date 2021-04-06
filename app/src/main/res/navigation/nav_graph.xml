@@ -4,36 +4,62 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph.xml"
     app:defaultNavHost="true"
-    app:startDestination="@id/fragment_select_category_id">
+    app:startDestination="@id/destination_animal_type_selector">
+
+    <fragment android:id="@+id/main_fragment"
+        android:name="com.findfriend.ui.fragment.MainFragment"
+        android:label="@layout/fragment_main">
+        <action
+            android:id="@+id/action_to_favorite"
+            app:destination="@id/destination_favorite" />
+        <action
+            android:id="@+id/action_to_animal_type_selector"
+            app:destination="@id/destination_animal_type_selector" />
+        <action
+            android:id="@+id/action_to_profile"
+            app:destination="@id/destination_profile" />
+    </fragment>
 
     <fragment
-        android:id="@+id/fragment_select_category_id"
-        android:name="com.afokeeva.findfriend.ui.fragment.SelectCategoryFragment"
+        android:id="@+id/destination_favorite"
+        android:name="com.findfriend.ui.fragment.FavoriteFragment"
+        tools:layout="@layout/fragment_favorite" />
+
+    <fragment
+        android:id="@+id/destination_animal_type_selector"
+        android:name="com.findfriend.ui.fragment.AnimalTypeSelectorFragment"
         android:label="Select_category"
-        tools:layout="@layout/fragment_selector_category" >
+        tools:layout="@layout/fragment_animal_type_selector">
         <action
-            android:id="@+id/next_action"
-            app:destination="@id/fragment_search_id"
-            app:popUpTo="@+id/fragment_search_id"
-            app:popUpToInclusive="true"
-            />
+            android:id="@+id/action_to_animal_short_info_list"
+            app:destination="@id/destination_animal_short_info_list"
+            app:popUpTo="@+id/destination_animal_short_info_list"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
-        android:id="@+id/fragment_search_id"
-        android:name="com.afokeeva.findfriend.ui.fragment.SearchFragment"
+        android:id="@+id/destination_animal_short_info_list"
+        android:name="com.findfriend.ui.fragment.AnimalShortInfoListFragment"
         android:label="Search"
-        tools:layout="@layout/fragment_searching_animal" >
+        tools:layout="@layout/fragment_searching_animal">
         <action
-            android:id="@+id/next_action"
-            app:destination="@id/fragment_animal_info_id" />
+            android:id="@+id/action_to_animal_detailed_info"
+            app:destination="@id/destination_animal_detailed_info"
+            app:popUpTo="@+id/destination_animal_detailed_info"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
-        android:id="@+id/fragment_animal_info_id"
-        android:name="com.afokeeva.findfriend.ui.fragment.AnimalInfoFragment"
-        android:label="AnimalInfo"
-        tools:layout="@layout/fragment_animal_full_info" >
-    </fragment>
+        android:id="@+id/destination_animal_detailed_info"
+        android:name="com.findfriend.ui.fragment.AnimalDetailedInfoFragment"
+        android:label="AnimalDetailedInfo"
+        tools:layout="@layout/fragment_animal_detailed_info" />
+
+    <fragment
+        android:id="@+id/destination_profile"
+        android:name="com.findfriend.ui.fragment.ProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_profile" />
 
 </navigation>
+

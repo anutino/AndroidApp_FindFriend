@@ -1,95 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="@dimen/filter_dialog_width"
     android:layout_height="wrap_content"
     android:layout_gravity="center_horizontal"
-    android:background="@color/background_color_secondary"
+    android:layout_marginTop="10px"
+    android:background="@color/purple_light"
     android:orientation="vertical"
-    tools:context=".ui.fragment.FilterDialogFragment">
+    tools:context=".ui.fragment.FilterFragment">
 
     <TextView
-        style="@style/TextPrimary"
+        android:id="@+id/clarify"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/clarify"
+        android:textColor="@color/cream"
+        app:layout_constraintBottom_toTopOf="@+id/seek_bar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <!--    <TextView-->
+    <!--        android:id="@+id/age_title"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--         android:text="@string/age"-->
+    <!--        android:textColor="@color/purple_dark"-->
+    <!--         app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+
+    <it.sephiroth.android.library.rangeseekbar.RangeSeekBar
+        android:id="@+id/seek_bar"
+        style="@style/Base.Sephiroth.Widget.RangeSeekBar"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:max="10"
+        android:min="0"
+        android:progressTint="@color/purple_haze"
+        android:thumbTint="@color/purple_haze"
+        android:thumbTintMode="@color/purple_haze"
+        android:tickMark="@color/purple_haze"
+        app:layout_constraintEnd_toStartOf="@+id/ageMin"
+        app:layout_constraintStart_toEndOf="@+id/ageMax"
+        app:layout_constraintTop_toBottomOf="@+id/clarify"
+        app:range_progress_endValue="10"
+        app:range_progress_startEnd_minDiff="1"
+        app:range_progress_startValue="0" />
+
+    <TextView
+        android:id="@+id/ageMax"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="@string/fragment_filter_title" />
+        android:text="0"
+        android:textColor="@color/purple_dark"
+        app:layout_constraintEnd_toStartOf="@+id/seek_bar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/clarify" />
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/ageMin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/marginTop"
-        android:orientation="horizontal">
+        android:gravity="center"
+        android:text="10"
+        android:textColor="@color/purple_dark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/seek_bar"
+        app:layout_constraintTop_toBottomOf="@+id/clarify" />
 
-        <TextView
-            android:id="@+id/fragment_filter_age_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/fragment_filter_age_title" />
+    <!--        <TextView-->
+    <!--             style="@style/TextPrimary"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:gravity="center"-->
+    <!--            app:layout_constraintEnd_toEndOf="parent"-->
+    <!--            app:layout_constraintStart_toEndOf="@+id/choose_dog"-->
+    <!--            app:layout_constraintTop_toBottomOf="@+id/age_title" />-->
 
-        <TextView
-            android:id="@+id/fragment_filter_age"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin"
-            android:gravity="center" />
+    <Button
+        android:id="@+id/dog"
+        android:layout_width="@dimen/filter_dialog_width_half"
+        android:layout_height="@dimen/filter_dialog_button_height"
+        android:ellipsize="middle"
+        android:text="Собака"
+        android:backgroundTint="@color/color_state"
+        app:layout_constraintEnd_toStartOf="@+id/cat"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/seek_bar" />
 
-    </LinearLayout>
+    <Button
+        android:id="@+id/cat"
+        android:layout_width="@dimen/filter_dialog_width_half"
+        android:layout_height="@dimen/filter_dialog_button_height"
+        android:text="Кот/Кошка"
+        android:backgroundTint="@color/color_state"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/dog"
+        app:layout_constraintTop_toBottomOf="@+id/seek_bar" />
 
-    <SeekBar
-        android:id="@+id/seek_bar_age"
-        android:layout_width="@dimen/filter_dialog_seek_bar_age_width"
+    <Button
+        android:id="@+id/fragment_filter_apply"
+        style="@style/Widget.AppCompat.ActionButton"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:max="20"
-        android:min="0"
-        android:progress="5" />
+        android:background="@color/coral"
+        android:gravity="center"
+        android:text="@string/fragment_filter_apply"
+        android:textColor="@color/cream"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_filter_cancel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dog" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/fragment_filter_cancel"
+        android:layout_width="0dp"
+        style="@style/Widget.AppCompat.ActionButton"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/marginTop"
-        android:orientation="horizontal">
+        android:background="@color/cream"
+        android:gravity="center"
+        android:text="@string/fragment_filter_cancel"
+        android:textColor="@color/coral"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/fragment_filter_apply"
+        app:layout_constraintTop_toBottomOf="@+id/cat" />
 
-        <Button
-            android:id="@+id/choose_dog"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/filter_dialog_button_height"
-            android:layout_weight="1"
-            android:background="@color/cardview_light_background"
-            android:text="@string/dog" />
-
-        <Button
-            android:id="@+id/choose_cat"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/filter_dialog_button_height"
-            android:layout_weight="1"
-            android:background="@color/cardview_light_background"
-            android:text="@string/cat" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/marginTop"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/fragment_filter_apply"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/fragment_filter_apply" />
-
-        <Button
-            android:id="@+id/fragment_filter_cancel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/fragment_filter_cancel" />
-    </LinearLayout>
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

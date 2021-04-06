@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
+<!--    <color name="colorPrimary">#008577</color>-->
+<!--    <color name="colorPrimaryDark">#00574B</color>-->
+
+    <color name="colorPrimary">#A76286</color>
+    <color name="colorPrimaryDark">#5A3E79</color>
     <color name="colorAccent">#D81B60</color>
     <color name="blue">#42aaff</color>
     <color name="red">#ff0000</color>
@@ -15,4 +18,18 @@
     <color name="background_color_primary">#00a693</color>
     <color name="background_color_secondary">#30d5c8</color><!--25b0a4-->
     <color name="navigation_bar_color">#04857e</color>
+
+    <color name="black">#FF000000</color>
+
+<!--    https://www.canva.com/colors/color-palettes/blushing-landscape/-->
+    <color name="coral">#FF8882</color>
+    <color name="purple_haze">#543855</color>
+    <color name="burnt_sienna">#E88D72</color>
+    <color name="salmon">#FFA384</color>
+    <color name="purple_dark">#322233</color>
+    <color name="purple_light">#B07DA3</color>
+    <color name="cream">#F9F1F0</color>
+
+
+
 </resources>

@@ -1,4 +1,4 @@
-package com.afokeeva.findfriend
+package com.findfriend
 
 import org.junit.Test
 
