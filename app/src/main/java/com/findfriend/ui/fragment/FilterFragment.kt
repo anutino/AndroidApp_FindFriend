@@ -64,7 +64,7 @@ class FilterFragment : DialogFragment(), View.OnClickListener {
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
-            }
+        }
     }
 
     override fun onCreateView(
@@ -77,10 +77,10 @@ class FilterFragment : DialogFragment(), View.OnClickListener {
         mButtonApply = view.findViewById(R.id.fragment_filter_apply)
         mButtonCancel = view.findViewById(R.id.fragment_filter_cancel)
         mButtonCancel.setOnClickListener { dismiss() }
-         var seekBarAge = view.findViewById<RangeSeekBar>(R.id.seek_bar)
+        var seekBarAge = view.findViewById<RangeSeekBar>(R.id.seek_bar)
         seekBarAge.thumbStart.setTint(resources.getColor(R.color.purple_dark))
         seekBarAge.thumbEnd.setTint(resources.getColor(R.color.purple_dark))
-         mAgeMaxTextView = view.findViewById(R.id.ageMax)
+        mAgeMaxTextView = view.findViewById(R.id.ageMax)
         mAgeMinTextView = view.findViewById(R.id.ageMin)
         mViewModel = ViewModelProviders.of(activity!!).get(AnimalShortInfoViewModel::class.java)
 
@@ -114,14 +114,16 @@ class FilterFragment : DialogFragment(), View.OnClickListener {
             } else if (mIsSelectedDog && mIsSelectedCat) {
                 mSelectedAnimal =
                     ALL
-             }
+            }
 
             if (mSelectedAnimal == ALL) {
                 mViewModel.loadAnimalListFilteredByAge(
-                    mAgeMaxTextView.text.toString(), mAgeMinTextView.text.toString() )
+                    mAgeMaxTextView.text.toString(), mAgeMinTextView.text.toString())
             } else {
                 mViewModel.loadAnimalListFilteredByAgeAndType(
-                    mAgeMaxTextView.text.toString(), mAgeMinTextView.text.toString(),mSelectedAnimal)
+                    mAgeMaxTextView.text.toString(),
+                    mAgeMinTextView.text.toString(),
+                    mSelectedAnimal)
             }
             dialog?.dismiss()
         }
@@ -132,11 +134,10 @@ class FilterFragment : DialogFragment(), View.OnClickListener {
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.dog -> {
-                Log.d("AF","mIsSelectedDog="+mIsSelectedDog)
                 if (mIsSelectedDog) {
                     //   v.findViewById<Button>(R.id.choose_dog)
                     //      .setBackgroundColor(resources.getColor(R.color.blue))
-                  //  mButtonDog.background.colorFilter = ColorFilter(resources.getColor(R.color.red)) //TODO castom
+                    //  mButtonDog.background.colorFilter = ColorFilter(resources.getColor(R.color.red))
                     mIsSelectedDog = false
                     mButtonDog.isSelected = false
                 } else if (!mIsSelectedDog) {
@@ -148,7 +149,7 @@ class FilterFragment : DialogFragment(), View.OnClickListener {
             }
             R.id.cat -> {
                 if (mIsSelectedCat) {
-                 //   v.findViewById<Button>(R.id.cat).setBackgroundColor(0)
+                    //   v.findViewById<Button>(R.id.cat).setBackgroundColor(0)
                     mButtonCat.isSelected = false
                     mIsSelectedCat = false
                 } else if (!mIsSelectedCat) {

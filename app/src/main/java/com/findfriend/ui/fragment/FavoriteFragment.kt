@@ -17,7 +17,7 @@ import com.findfriend.ui.adapter.AnimalListAdapter
 import kotlinx.android.synthetic.main.fragment_favorite.view.*
 
 class FavoriteFragment : Fragment() {
-    private val TAG: String = "FavoriteFragment"
+    private val TAG: String =javaClass.simpleName
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

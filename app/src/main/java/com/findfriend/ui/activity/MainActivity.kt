@@ -18,14 +18,15 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     FilterFragment.OnFragmentInteractionListener,
     AnimalDetailedInfoFragment.OnFragmentInteractionListener {
 
-    private val TAG: String = "MainActivity"
-    private lateinit var navController: NavController
+    private val TAG: String = javaClass.simpleName
+    private lateinit var mNavController: NavController
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        navController =
+        mNavController =
             Navigation.findNavController(this, R.id.nav_host_fragment)
-        setupBottomNavMenu(navController)
+        setupBottomNavMenu(mNavController)
     }
 
     private fun setupBottomNavMenu(navController: NavController) {
@@ -34,35 +35,27 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         }
         bottom_nav.setOnNavigationItemSelectedListener(this)
         bottom_nav.selectedItemId = R.id.item_search
-        //bottomNavigationView.getMenu().findItem(bottomNavigationView.getSelectedItemId())
-        //onNavigationItemSelected(bottom_nav.menu.findItem(com.findfriend.R.id.destination_search))
-        //navController.navigateUp()
-        //navController.popBackStack()
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        navController =
+        mNavController =
             Navigation.findNavController(this, R.id.nav_host_fragment)
-        val navigated = NavigationUI.onNavDestinationSelected(item!!, navController)
+        val navigated = NavigationUI.onNavDestinationSelected(item!!, mNavController)
         return navigated || super.onOptionsItemSelected(item)
     }
 
-    //https://medium.com/@smihajlovskih/create-instagram-like-backstack-4711600c5bff
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
-        when (menuItem.itemId) { //TODO change Fragments!
+        when (menuItem.itemId) {
             R.id.item_favorite -> {
-                Log.d(TAG, "FAVORITE ")
-                 navController.navigate(R.id.destination_favorite)
+                mNavController.navigate(R.id.destination_favorite)
                 return true;
             }
             R.id.item_search -> {
-                Log.d(TAG, "SEARCH")
-                navController.navigate(R.id.destination_animal_type_selector)
+                mNavController.navigate(R.id.destination_animal_type_selector)
                 return true;
             }
             R.id.item_profile -> {
-                Log.d(TAG, "PROFILE ")
-                navController.navigate(R.id.destination_profile)
+                mNavController.navigate(R.id.destination_profile)
                 return true;
             }
         }
@@ -82,7 +75,6 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     }
 
     override fun onFragmentInteraction(age: Double, animal: String) {
-        TODO("Not yet implemented")
     }
 
 }

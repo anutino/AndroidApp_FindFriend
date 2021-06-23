@@ -20,7 +20,7 @@ import kotlinx.android.synthetic.main.fragment_animal_type_selector.*
 
 class AnimalTypeSelectorFragment : Fragment() {
 
-    private val TAG: String = "AnimalTypeSelectorFragment"
+    private val TAG: String = javaClass.simpleName
     private val ARG_PARAM1 = "param1"
     private val ARG_PARAM2 = "param2"
     private val ANIMAL_TYPE = "animalType"
@@ -65,9 +65,8 @@ class AnimalTypeSelectorFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.d("AF","onViewCreated ")
         select_dog_type.setOnClickListener {
-            Log.d("AF","setOnClickListener ")
+            Log.d(TAG,"setOnClickListener ")
             val bundle = bundleOf(ANIMAL_TYPE to DOG_TYPE)
             if (Navigation.findNavController(it).currentDestination.id == R.id.destination_animal_type_selector){
                 Navigation.findNavController(it)
@@ -78,7 +77,7 @@ class AnimalTypeSelectorFragment : Fragment() {
         select_cat_type.setOnClickListener {
             //if (it.findNavController().currentDestination?.id == R.id.next_to_fragment_animal_short_info_list) {
             val bundle = bundleOf(ANIMAL_TYPE to CAT_TYPE)
-            Log.d("AF", " it " + it)
+            Log.d(TAG, " it " + it)
             it.findNavController()
                 .navigate(R.id.destination_animal_short_info_list, bundle)
             //  }

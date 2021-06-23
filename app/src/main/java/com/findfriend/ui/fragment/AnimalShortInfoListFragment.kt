@@ -43,16 +43,16 @@ import kotlinx.android.synthetic.main.fragment_searching_animal.view.*
  * create an instance of this fragment.
  */
 class AnimalShortInfoListFragment : Fragment() {
-    private val TAG: String = "AnimalShortInfoListFragment"
+    private val TAG: String = javaClass.simpleName
     private val ANIMAL_TYPE = "animalType"
 
+     private lateinit var mRecyclerView: RecyclerView
+    private lateinit var mFilterButton: Button
+    private lateinit var mDialogFilter: FilterFragment
     private var TYPE = 0
-    lateinit var mRecyclerView: RecyclerView
     private var listener: OnFragmentInteractionListener? = null
     private var useSearchingAnimalFragment = true // if false - use Favorites Fragment
-    lateinit var mFilterButton: Button
-    private lateinit var mDialogFilter: FilterFragment
-    private var isShowFilter: Boolean = false
+
     lateinit var mHandle: Handler
 
     companion object {
@@ -76,15 +76,12 @@ class AnimalShortInfoListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView(view)
-        //  initViewModel() not delete!!!
-        //   initObserver() not delete!!!
+        initViewModel()
+        initObserver()
     }
 
     private fun initViewModel() {
         mViewModel = ViewModelProviders.of(activity!!).get(AnimalShortInfoViewModel::class.java)
-//        mViewModel = ViewModelProviders.of(this)
-//            .get(AnimalTypeViewModel::class.java)
-
         if (TYPE != 0) {
             mViewModel.loadAnimalListFilteredByType(TYPE)
         } else {
@@ -153,13 +150,13 @@ class AnimalShortInfoListFragment : Fragment() {
         list.add(0,
             ShortAnimalInfo(0, 1.0, "Iris", "2", "file:///C:/opt/animals/dog/olhon.jpg", false))
         list.add(1,
-            ShortAnimalInfo(0, 1.0, "Iris", "2", "file:///C:/opt/animals/dog/olhon.jpg", true))
+            ShortAnimalInfo(1, 1.0, "Iris1", "2", "file:///C:/opt/animals/dog/olhon.jpg", true))
         list.add(2,
-            ShortAnimalInfo(0, 1.0, "Iris", "2", "file:///C:/opt/animals/dog/olhon.jpg", true))
+            ShortAnimalInfo(3, 1.0, "Iris2", "2", "file:///C:/opt/animals/dog/olhon.jpg", true))
         list.add(3,
-            ShortAnimalInfo(0, 1.0, "Iris", "2", "file:///C:/opt/animals/dog/olhon.jpg", true))
+            ShortAnimalInfo(4, 1.0, "Iris3", "2", "file:///C:/opt/animals/dog/olhon.jpg", true))
         list.add(4,
-            ShortAnimalInfo(0, 1.0, "Iris", "2", "file:///C:/opt/animals/dog/olhon.jpg", true))
+            ShortAnimalInfo(5, 1.0, "Iris4", "2", "file:///C:/opt/animals/dog/olhon.jpg", true))
         adapter.setItems(list)
 
         mRecyclerView.adapter = adapter
@@ -171,8 +168,7 @@ class AnimalShortInfoListFragment : Fragment() {
             it?.let {
                 (mRecyclerView.adapter as AnimalListAdapter).refreshItems(it)
                 Log.d("AF", " initObserver AnimalListAdapter")
-                //myAdapter.setItem(it)
-                //     Log.d("AF", "observe " + it.size + " "+it)
+               // myAdapter.setItem(it)
             }
         })
     }

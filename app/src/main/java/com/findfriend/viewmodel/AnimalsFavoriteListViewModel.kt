@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.findfriend.data.Animal
-import com.findfriend.network.NetworkService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -30,12 +29,8 @@ class AnimalsFavoriteListViewModel : ViewModel(){
     }
 
     private fun loadUsers() {
-        // Do an asynchronous operation to fetch users.
-        GlobalScope.launch(Dispatchers.IO) {
-            // in main thread
-           // val animalsFavoritesList = NetworkService.instance.getFavoritesAnimals()
+           // val animalsFavoritesList =  AnimalRepository.repository.getFavoritesAnimals()
           //  animalsFavoritesListLiveData.postValue(animalsFavoritesList)
-        }
     }
 
 }

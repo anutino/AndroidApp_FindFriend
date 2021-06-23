@@ -1,4 +1,4 @@
-package com.findfriend.network
+package com.findfriend.networkservice
 
 import com.findfriend.data.*
 import retrofit2.Call
@@ -6,7 +6,7 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Query
 
-interface JSONPlaceHolderApi {
+interface AnimalApi {
 
     @GET("/findfriend/animal-types")
     fun fetchAnimalTypes(): Call<List<AnimalType>>

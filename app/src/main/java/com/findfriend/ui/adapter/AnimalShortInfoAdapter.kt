@@ -14,6 +14,7 @@ import com.findfriend.R
 import com.findfriend.listener.ItemTouchHelperAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.annotation.GlideModule
+import com.findfriend.ui.fragment.AnimalShortInfoListFragment
 import java.util.*
 
 class AnimalListAdapter : RecyclerView.Adapter<ItemAnimalViewHolder>(), ItemTouchHelperAdapter {
@@ -55,7 +56,7 @@ class ItemAnimalViewHolder(inflater: LayoutInflater, parent: ViewGroup) : Recycl
     inflater.inflate(R.layout.item_animal_short_info, parent, false)) {
 
     private var TAG = "ItemAnimalViewHolder"
-    private val ID = "id"
+    private var id : Int = 0
     private val NAME = "name"
     private val AGE = "age"
     private val TYPE = "type"
@@ -72,7 +73,7 @@ class ItemAnimalViewHolder(inflater: LayoutInflater, parent: ViewGroup) : Recycl
 
     fun bind(animal: ShortAnimalInfo?) {
         if (animal != null) {
-            Log.d(Constraints.TAG, "animal.img_url  " + animal.age)
+            Log.d(Constraints.TAG, "animal.img_url  " + animal.age + " "+animal.id)
             Glide
                 .with(itemView)
                 .load(mResourcesPath + animal.mainPicture)
@@ -81,7 +82,14 @@ class ItemAnimalViewHolder(inflater: LayoutInflater, parent: ViewGroup) : Recycl
             name?.text = animal.name
 
             favorite?.isSelected = animal.favorite
+            id = animal.id
+            itemView.setOnClickListener {
+                Log.d(Constraints.TAG, "setOnClickListener animal?.id "+id)
+                AnimalShortInfoListFragment.mViewModel.setAnimalInfoById(id)
 
+                Navigation.findNavController(it)
+                    .navigate(R.id.destination_animal_detailed_info)
+            }
         } else {
             name?.text = "Loading..."
         }
@@ -89,20 +97,6 @@ class ItemAnimalViewHolder(inflater: LayoutInflater, parent: ViewGroup) : Recycl
         //TODO addFavorite
         //favorite.setOnClickListener({})
 
-        itemView.setOnClickListener {
-            Log.d(Constraints.TAG, "setOnClickListener "+animal?.id)
-
-            var bundle = bundleOf(
-                ID to animal?.id,
-                NAME to animal?.name,
-                AGE to animal?.age,
-                TYPE to animal?.type
-            )
-            Log.d(TAG, "animal?.id "+animal?.id + " "+animal?.name + " "+ animal?.age +" "+ animal?.type)
-
-            Navigation.findNavController(it)
-                .navigate(R.id.destination_animal_detailed_info, bundle)
-        }
 
         favorite?.setOnClickListener {
             Log.d(Constraints.TAG, "favorite setOnClickListener ")
