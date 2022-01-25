@@ -24,8 +24,8 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        mNavController =
-            Navigation.findNavController(this, R.id.nav_host_fragment)
+        mNavController = Navigation.findNavController(this,
+            R.id.nav_host_fragment)
         setupBottomNavMenu(mNavController)
     }
 

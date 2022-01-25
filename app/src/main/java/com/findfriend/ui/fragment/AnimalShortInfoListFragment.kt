@@ -46,7 +46,7 @@ class AnimalShortInfoListFragment : Fragment() {
     private val TAG: String = javaClass.simpleName
     private val ANIMAL_TYPE = "animalType"
 
-     private lateinit var mRecyclerView: RecyclerView
+    private lateinit var mRecyclerView: RecyclerView
     private lateinit var mFilterButton: Button
     private lateinit var mDialogFilter: FilterFragment
     private var TYPE = 0
@@ -88,6 +88,7 @@ class AnimalShortInfoListFragment : Fragment() {
             mViewModel.loadAllAnimals()
         }
     }
+
     fun fastBlur(context: Context, sentBitmap: Bitmap, radius: Long): Bitmap {
         var width = Math.round(sentBitmap.getWidth() * 0.8f);
         var height = Math.round(sentBitmap.getHeight() * 0.8f);
@@ -105,6 +106,7 @@ class AnimalShortInfoListFragment : Fragment() {
         tmpOut.copyTo(outputBitmap);
         return outputBitmap;
     }
+
     private fun takeScreenShot(activity: Activity): Bitmap {
         var view = activity.window.decorView
         view.isDrawingCacheEnabled = true
@@ -120,15 +122,10 @@ class AnimalShortInfoListFragment : Fragment() {
     private fun initView(view: View) {
         mFilterButton = view.findViewById(R.id.button_filter)
         mDialogFilter = FilterFragment()
-      //  var background: Drawable
-     //   var blurBitmap: Bitmap
-   //     blurBitmap = takeScreenShot(activity!!)
-            //  background = BitmapDrawable(resources, blurBitmap)
-
         mFilterButton.setOnClickListener {
             fragmentManager?.let {
 
-                 mDialogFilter.show(it, "FilterDialog")
+                mDialogFilter.show(it, "FilterDialog")
 //                mDialogFilter.dialog!!
 //                    .window!!.setBackgroundDrawable(background)
 //                val alertDialog: AlertDialog = AlertDialog.Builder(activity,R.style.Blur)
@@ -167,8 +164,7 @@ class AnimalShortInfoListFragment : Fragment() {
         mViewModel.getAnimalInfo().observe(this, Observer {
             it?.let {
                 (mRecyclerView.adapter as AnimalListAdapter).refreshItems(it)
-                Log.d("AF", " initObserver AnimalListAdapter")
-               // myAdapter.setItem(it)
+                // myAdapter.setItem(it)
             }
         })
     }

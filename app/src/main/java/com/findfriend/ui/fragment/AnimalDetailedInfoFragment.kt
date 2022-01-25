@@ -23,7 +23,6 @@ import com.google.android.material.navigation.NavigationView
 class AnimalDetailedInfoFragment : Fragment(), NavigationView.OnNavigationItemSelectedListener {
 
     private val TAG: String = javaClass.simpleName
-
     private var listener: OnFragmentInteractionListener? = null
     private lateinit var mViewModel: AnimalDetailedInfoViewModel
     private lateinit var mViewPager: ViewPager2
@@ -47,7 +46,6 @@ class AnimalDetailedInfoFragment : Fragment(), NavigationView.OnNavigationItemSe
 
     private fun initView(view: View) {
         mItem = AnimalShortInfoListFragment.mViewModel.getItemAnimalInfo()
-
         mViewPager = view.findViewById(R.id.viewPager2_media)
         mName_Age = view.findViewById(R.id.animal_info_name_with_age)
         mName_Age.text = """${mItem.name} ${mItem.age}"""

@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">FindFriend</string>
     <!-- activity_main.xml -->
-    <string name="animal_type_title">Я хочу найти</string>
+    <string name="animal_type_title">Выберите кого искать:</string>
 
     <!-- General -->
     <string name="loading">Загрузка…</string>
