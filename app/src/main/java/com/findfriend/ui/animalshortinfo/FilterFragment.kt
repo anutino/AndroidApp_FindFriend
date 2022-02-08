@@ -1,20 +1,15 @@
-package com.findfriend.ui.fragment
+package com.findfriend.ui.animalshortinfo
 
-import android.app.Dialog
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.ImageButton
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.findfriend.R
-import com.findfriend.viewmodel.AnimalShortInfoViewModel
 import it.sephiroth.android.library.rangeseekbar.RangeSeekBar
 import it.sephiroth.android.library.rangeseekbar.RangeSeekBar.OnRangeSeekBarChangeListener
 

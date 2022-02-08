@@ -1,23 +1,10 @@
-package com.findfriend.ui.fragment
+package com.findfriend.ui.animalshortinfo
 
 //import androidx.fragment.app.viewModels
-import android.app.Activity
-import android.app.AlertDialog
 import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.Color
-import android.graphics.Rect
-import android.graphics.drawable.BitmapDrawable
-import android.graphics.drawable.ColorDrawable
-import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
-import android.renderscript.Allocation
-import android.renderscript.Element
-import android.renderscript.RenderScript
-import android.renderscript.ScriptIntrinsicBlur
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,8 +17,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.findfriend.R
 import com.findfriend.data.ShortAnimalInfo
 import com.findfriend.ui.adapter.AnimalListAdapter
-import com.findfriend.viewmodel.AnimalShortInfoViewModel
-import com.findfriend.viewmodel.AnimalTypeViewModel
 import kotlinx.android.synthetic.main.fragment_searching_animal.view.*
 
 /**
@@ -54,10 +39,7 @@ class AnimalShortInfoListFragment : Fragment() {
     private var useSearchingAnimalFragment = true // if false - use Favorites Fragment
 
     lateinit var mHandle: Handler
-
-    companion object {
-        lateinit var mViewModel: AnimalShortInfoViewModel
-    }
+    lateinit var mViewModel: AnimalShortInfoViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -77,46 +59,6 @@ class AnimalShortInfoListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initView(view)
         initViewModel()
-        initObserver()
-    }
-
-    private fun initViewModel() {
-        mViewModel = ViewModelProviders.of(activity!!).get(AnimalShortInfoViewModel::class.java)
-        if (TYPE != 0) {
-            mViewModel.loadAnimalListFilteredByType(TYPE)
-        } else {
-            mViewModel.loadAllAnimals()
-        }
-    }
-
-    fun fastBlur(context: Context, sentBitmap: Bitmap, radius: Long): Bitmap {
-        var width = Math.round(sentBitmap.getWidth() * 0.8f);
-        var height = Math.round(sentBitmap.getHeight() * 0.8f);
-
-        var inputBitmap = Bitmap.createScaledBitmap(sentBitmap, width, height, false);
-        var outputBitmap = Bitmap.createBitmap(inputBitmap);
-
-        var rs = RenderScript.create(context);
-        var theIntrinsic = ScriptIntrinsicBlur.create(rs, Element.U8_4(rs));
-        var tmpIn = Allocation.createFromBitmap(rs, inputBitmap);
-        var tmpOut = Allocation.createFromBitmap(rs, outputBitmap);
-        theIntrinsic.setRadius(radius.toFloat());
-        theIntrinsic.setInput(tmpIn);
-        theIntrinsic.forEach(tmpOut);
-        tmpOut.copyTo(outputBitmap);
-        return outputBitmap;
-    }
-
-    private fun takeScreenShot(activity: Activity): Bitmap {
-        var view = activity.window.decorView
-        view.isDrawingCacheEnabled = true
-        view.buildDrawingCache()
-        var b1 = view.getDrawingCache()
-        var frame = Rect()
-        view.getWindowVisibleDisplayFrame(frame)
-        var b = Bitmap.createBitmap(b1, frame.left, frame.top, frame.width(), frame.height())
-        view.destroyDrawingCache()
-        return fastBlur(activity.applicationContext, b, 24)
     }
 
     private fun initView(view: View) {
@@ -124,7 +66,6 @@ class AnimalShortInfoListFragment : Fragment() {
         mDialogFilter = FilterFragment()
         mFilterButton.setOnClickListener {
             fragmentManager?.let {
-
                 mDialogFilter.show(it, "FilterDialog")
 //                mDialogFilter.dialog!!
 //                    .window!!.setBackgroundDrawable(background)
@@ -157,17 +98,50 @@ class AnimalShortInfoListFragment : Fragment() {
         adapter.setItems(list)
 
         mRecyclerView.adapter = adapter
-
     }
 
-    private fun initObserver() {
-        mViewModel.getAnimalInfo().observe(this, Observer {
+    private fun initViewModel() {
+        mViewModel = ViewModelProviders.of(activity!!).get(AnimalShortInfoViewModel::class.java)
+        mViewModel.resultLive.observe(this, Observer {
             it?.let {
                 (mRecyclerView.adapter as AnimalListAdapter).refreshItems(it)
                 // myAdapter.setItem(it)
             }
         })
+        if (TYPE != 0) {
+            mViewModel.loadAnimalListFilteredByType(TYPE)
+        } else {
+            mViewModel.loadAllAnimals()
+        }
     }
+
+//    fun fastBlur(context: Context, sentBitmap: Bitmap, radius: Long): Bitmap {
+//        var width = Math.round(sentBitmap.getWidth() * 0.8f);
+//        var height = Math.round(sentBitmap.getHeight() * 0.8f);
+//        var inputBitmap = Bitmap.createScaledBitmap(sentBitmap, width, height, false);
+//        var outputBitmap = Bitmap.createBitmap(inputBitmap);
+//        var rs = RenderScript.create(context);
+//        var theIntrinsic = ScriptIntrinsicBlur.create(rs, Element.U8_4(rs));
+//        var tmpIn = Allocation.createFromBitmap(rs, inputBitmap);
+//        var tmpOut = Allocation.createFromBitmap(rs, outputBitmap);
+//        theIntrinsic.setRadius(radius.toFloat());
+//        theIntrinsic.setInput(tmpIn);
+//        theIntrinsic.forEach(tmpOut);
+//        tmpOut.copyTo(outputBitmap);
+//        return outputBitmap;
+//    }
+
+//    private fun takeScreenShot(activity: Activity): Bitmap {
+//        var view = activity.window.decorView
+//        view.isDrawingCacheEnabled = true
+//        view.buildDrawingCache()
+//        var b1 = view.getDrawingCache()
+//        var frame = Rect()
+//        view.getWindowVisibleDisplayFrame(frame)
+//        var b = Bitmap.createBitmap(b1, frame.left, frame.top, frame.width(), frame.height())
+//        view.destroyDrawingCache()
+//        return fastBlur(activity.applicationContext, b, 24)
+//    }
 //
 //    fun onClickItem(selectedButton : Button, id : Int){
 //        selectedButton.setOnClickListener {
@@ -175,7 +149,6 @@ class AnimalShortInfoListFragment : Fragment() {
 //            Navigation.findNavController(it).navigate(com.findfriend.R.id.next_action, bundle)
 //        }
 //    }
-
 
     override fun onAttach(context: Context) {
         super.onAttach(context)

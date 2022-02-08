@@ -7,7 +7,7 @@
     android:layout_gravity="center_horizontal"
     android:background="@color/purple_light"
     android:orientation="vertical"
-    tools:context=".ui.fragment.AnimalDetailedInfoFragment">
+    tools:context=".ui.animaldetailedinfo.AnimalDetailedInfoFragment">
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager2_media"

@@ -1,9 +1,8 @@
-package com.findfriend.ui.fragment
+package com.findfriend.ui.animaldetailedinfo
 
 import android.content.Context
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
@@ -16,8 +15,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.viewpager2.widget.ViewPager2
 import com.findfriend.R
 import com.findfriend.data.ShortAnimalInfo
-import com.findfriend.viewmodel.AnimalDetailedInfoViewModel
-import com.findfriend.viewpager.MediaViewPager2
+import com.findfriend.ui.animalshortinfo.AnimalShortInfoListFragment
 import com.google.android.material.navigation.NavigationView
 
 class AnimalDetailedInfoFragment : Fragment(), NavigationView.OnNavigationItemSelectedListener {
@@ -41,11 +39,10 @@ class AnimalDetailedInfoFragment : Fragment(), NavigationView.OnNavigationItemSe
         super.onViewCreated(view, savedInstanceState)
         initView(view)
         initViewModal()
-        initObserver()
     }
 
     private fun initView(view: View) {
-        mItem = AnimalShortInfoListFragment.mViewModel.getItemAnimalInfo()
+        mItem = AnimalShortInfoListFragment.mViewModel.getItemAnimalInfo()//???
         mViewPager = view.findViewById(R.id.viewPager2_media)
         mName_Age = view.findViewById(R.id.animal_info_name_with_age)
         mName_Age.text = """${mItem.name} ${mItem.age}"""
@@ -57,11 +54,7 @@ class AnimalDetailedInfoFragment : Fragment(), NavigationView.OnNavigationItemSe
     private fun initViewModal() {
         mViewModel = ViewModelProviders.of(this@AnimalDetailedInfoFragment)
             .get(AnimalDetailedInfoViewModel::class.java)
-        mViewModel.loadAnimalDetailedInfo(mItem.id)
-    }
-
-    private fun initObserver() {
-        mViewModel.getAnimalDetailedInfo().observe(this, Observer {
+        mViewModel.resultLiveData.observe(this, Observer {
             it?.let {
                  if(it.mediaList != null) {
                     mMediaViewPager.setImageList(it.mediaList)
@@ -71,6 +64,7 @@ class AnimalDetailedInfoFragment : Fragment(), NavigationView.OnNavigationItemSe
                // mFavoriteButton.isEnabled = it.favorite
             }
         })
+        mViewModel.loadAnimalDetailedInfo(mItem.id)
     }
 
     override fun onAttach(context: Context) {

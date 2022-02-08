@@ -1,4 +1,4 @@
-package com.findfriend.ui.fragment
+package com.findfriend.ui.unknown
 
 /*class AnimalImageSlidePageFragment : Fragment() {
     private var mUserView: TextView? = null

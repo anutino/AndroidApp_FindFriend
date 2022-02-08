@@ -1,4 +1,4 @@
-package com.findfriend
+package com.findfriend.ui.mainmenu
 
 import android.content.Context
 import android.net.Uri
@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import com.findfriend.R
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER

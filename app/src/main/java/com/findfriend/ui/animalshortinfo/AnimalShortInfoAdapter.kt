@@ -6,7 +6,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.compose.ViewGroup
 import androidx.constraintlayout.widget.Constraints
-import androidx.core.os.bundleOf
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.findfriend.R
@@ -14,7 +13,7 @@ import com.findfriend.R
 import com.findfriend.listener.ItemTouchHelperAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.annotation.GlideModule
-import com.findfriend.ui.fragment.AnimalShortInfoListFragment
+import com.findfriend.ui.animalshortinfo.AnimalShortInfoListFragment
 import java.util.*
 
 class AnimalListAdapter : RecyclerView.Adapter<ItemAnimalViewHolder>(), ItemTouchHelperAdapter {

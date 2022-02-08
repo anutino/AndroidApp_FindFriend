@@ -1,4 +1,4 @@
-package com.findfriend.ui.viewholder
+package com.findfriend.ui.unknown
 
 import android.util.Log
 import android.view.LayoutInflater

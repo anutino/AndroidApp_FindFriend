@@ -1,14 +1,14 @@
-package com.findfriend.ui.activity
+package com.findfriend
 
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
-import com.findfriend.R
+import com.findfriend.ui.animaldetailedinfo.AnimalDetailedInfoFragment
+import com.findfriend.ui.animalshortinfo.AnimalShortInfoListFragment
 import com.findfriend.ui.fragment.*
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*

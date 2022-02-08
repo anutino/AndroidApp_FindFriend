@@ -1,4 +1,4 @@
-package com.findfriend.viewmodel
+package com.findfriend.ui.animaldetailedinfo
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -11,15 +11,12 @@ import kotlinx.coroutines.launch
 
 class AnimalDetailedInfoViewModel : ViewModel(){
 
-    private val mAnimalDetailedInfo: MutableLiveData<AnimalDetailedInfo> = MutableLiveData()
-
-    fun getAnimalDetailedInfo(): LiveData<AnimalDetailedInfo> {
-        return mAnimalDetailedInfo
-    }
+    private val mDetailedInfoLiveMutable: MutableLiveData<AnimalDetailedInfo> = MutableLiveData()
+    val resultLiveData: LiveData<AnimalDetailedInfo> = mDetailedInfoLiveMutable
 
     fun loadAnimalDetailedInfo(animalId : Int) {
         GlobalScope.launch(Dispatchers.IO) {
-            AnimalRepository.repository.onFetchAnimalDetailedInfo(mAnimalDetailedInfo, animalId)
+            AnimalRepository.repository.onFetchAnimalDetailedInfo(mDetailedInfoLiveMutable, animalId)
         }
     }
 }

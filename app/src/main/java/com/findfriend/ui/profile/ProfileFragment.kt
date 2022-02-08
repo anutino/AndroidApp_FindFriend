@@ -1,4 +1,4 @@
-package com.findfriend.ui.fragment
+package com.findfriend.ui.profile
 
 import android.os.Bundle
 import android.util.Log

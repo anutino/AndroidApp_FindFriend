@@ -1,19 +1,15 @@
-package com.findfriend.ui.viewholder
+package com.findfriend.ui.unknown
 
 import android.util.Log
 import android.view.LayoutInflater
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.compose.Context
 import androidx.compose.ViewGroup
 import androidx.constraintlayout.widget.Constraints.TAG
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.findfriend.R
 import com.findfriend.data.Animal
-import com.bumptech.glide.Glide
 import com.bumptech.glide.annotation.GlideModule
-import java.security.AccessController.getContext
 
 
 @GlideModule

@@ -1,4 +1,4 @@
-package com.findfriend.ui.fragment
+package com.findfriend.ui.mainmenu
 
 import android.net.Uri
 import android.os.Bundle
@@ -8,12 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
 import com.findfriend.R
 import kotlinx.android.synthetic.main.fragment_animal_type_selector.*
 

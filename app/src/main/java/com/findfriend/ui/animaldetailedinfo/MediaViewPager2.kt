@@ -1,6 +1,5 @@
-package com.findfriend.viewpager
+package com.findfriend.ui.animaldetailedinfo
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup

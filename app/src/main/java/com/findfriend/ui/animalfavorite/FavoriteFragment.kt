@@ -1,4 +1,4 @@
-package com.findfriend.ui.fragment
+package com.findfriend.ui.animalfavorite
 
 import android.os.Bundle
 import android.util.Log
@@ -8,8 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
- import com.findfriend.data.Animal
-import com.findfriend.viewmodel.AnimalShortInfoViewModel
+import com.findfriend.ui.animalshortinfo.AnimalShortInfoViewModel
 import androidx.lifecycle.Observer
 import com.findfriend.R
 import com.findfriend.data.ShortAnimalInfo
@@ -30,7 +29,7 @@ class FavoriteFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val mViewModel = ViewModelProviders.of(this@FavoriteFragment)
             .get(AnimalShortInfoViewModel::class.java)
-        mViewModel.getAnimalInfo().observe(this, Observer{
+        mViewModel.resultLive.observe(this, Observer{
         })
 
         val list = mutableListOf<ShortAnimalInfo>()

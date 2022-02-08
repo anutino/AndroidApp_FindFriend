@@ -1,6 +1,6 @@
 package com.findfriend.ui;
 
-import com.findfriend.ui.activity.MainActivity;
+import com.findfriend.MainActivity;
 
 import org.junit.Before;
 import org.junit.Test;

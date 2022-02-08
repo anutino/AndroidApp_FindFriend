@@ -1,21 +1,21 @@
-package com.findfriend.viewmodel
+package com.findfriend.ui.animalshortinfo
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import com.findfriend.data.ShortAnimalInfo
 import com.findfriend.repository.AnimalRepository
-import com.findfriend.ui.adapter.AnimalListAdapter
-import com.findfriend.ui.fragment.AnimalShortInfoListFragment
 
 class AnimalShortInfoViewModel : ViewModel() {
-    private var mAnimalInfoLiveData: MutableLiveData<List<ShortAnimalInfo>> = MutableLiveData()
+
+    private var mAnimalInfoLiveMutable = MutableLiveData<List<ShortAnimalInfo>>()
+    val resultLive : LiveData<List<ShortAnimalInfo>> = mAnimalInfoLiveMutable
+
     private lateinit var mShortAnimalInfoItem: ShortAnimalInfo
 
     fun loadAllAnimals() {
-        AnimalRepository.repository.onFetchAnimalShortInfoList(mAnimalInfoLiveData)
+        AnimalRepository.repository.onFetchAnimalShortInfoList(mAnimalInfoLiveMutable)
         //for test
 //            val list = mutableListOf<ShortAnimalInfo>()
 ////            list.add(0, Animal (0, 1.0, "Iris", "Very good cat", 2, "http", true) )
@@ -37,34 +37,34 @@ class AnimalShortInfoViewModel : ViewModel() {
         list.add(6, ShortAnimalInfo(6, 8.0, "Bro", "Very good dog", "http", false))
         list.add(7, ShortAnimalInfo(7, 3.0, "Klark", "Very good dog", "http", false))
         list.add(8, ShortAnimalInfo(8, 2.0, "NewS", "Very good dog", "http", false))
-        mAnimalInfoLiveData.postValue(list)
+        mAnimalInfoLiveMutable.postValue(list)
     }
 
     fun loadAnimalListFilteredByType(type: Int) {
-        AnimalRepository.repository.fetchAnimalShortInfoListFilteredByType(mAnimalInfoLiveData,
+        AnimalRepository.repository.fetchAnimalShortInfoListFilteredByType(mAnimalInfoLiveMutable,
             type)
     }
 
     fun loadAnimalListFilteredByAgeAndType(minAge: String, maxAge: String, type: Int) {
         AnimalRepository.repository.onFetchAnimalsShortInfoListFilteredByAgeAndType(
-            mAnimalInfoLiveData,
+            mAnimalInfoLiveMutable,
             minAge,
             maxAge,
             type)
     }
 
     fun loadAnimalListFilteredByAge(minAge: String, maxAge: String) {
-        AnimalRepository.repository.onFetchAnimalShortListFilteredByAge(mAnimalInfoLiveData,
+        AnimalRepository.repository.onFetchAnimalShortListFilteredByAge(mAnimalInfoLiveMutable,
             minAge,
             maxAge)
     }
 
     fun loadAnimalFavoriteList() {
-        AnimalRepository.repository.getFavoritesAnimals(mAnimalInfoLiveData, "1")
+        AnimalRepository.repository.getFavoritesAnimals(mAnimalInfoLiveMutable, "1")
     }
 
     fun getAnimalInfo(): LiveData<List<ShortAnimalInfo>> {
-        return mAnimalInfoLiveData
+        return mAnimalInfoLiveMutable
     }
 
     fun getItemAnimalInfo(): ShortAnimalInfo {
@@ -72,7 +72,7 @@ class AnimalShortInfoViewModel : ViewModel() {
     }
 
     fun setAnimalInfoById(id: Int) {
-        mShortAnimalInfoItem = mAnimalInfoLiveData.value?.get(id)!!
+        mShortAnimalInfoItem = mAnimalInfoLiveMutable.value?.get(id)!!
         Log.d("t", "mShortAnimalInfoItem "+mShortAnimalInfoItem)
 
         //  mShortAnimalInfoItem = mAnimalInfoLiveData.value?.get(id) ?: ShortAnimalInfo(0,0.0,"","","",false)
