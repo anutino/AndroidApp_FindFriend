@@ -1,4 +1,4 @@
-package com.findfriend.data
+package com.findfriend.domain.model
 
 data class Animal(
     var id: Int,
@@ -19,7 +19,7 @@ data class ShortAnimalInfo(
     var favorite: Boolean
 )
 
-//data class DescriptionMediaAnimalInfo(val description: String, val mediaList: List<String>)
+data class DescriptionMediaAnimalInfo(val description: String, val mediaList: List<String>)
 
 data class AnimalDetailedInfo(
     var id: Int,

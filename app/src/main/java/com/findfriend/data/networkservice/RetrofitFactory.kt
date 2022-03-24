@@ -1,4 +1,4 @@
-package com.findfriend.networkservice
+package com.findfriend.data.networkservice
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

@@ -1,81 +1,91 @@
-package com.findfriend.ui.adapter
+package com.findfriend.ui.animalshortinfo
 
+import android.content.res.Resources
+import android.net.Uri
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.compose.ViewGroup
 import androidx.constraintlayout.widget.Constraints
-import androidx.navigation.Navigation
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.findfriend.R
- import com.findfriend.data.ShortAnimalInfo
-import com.findfriend.listener.ItemTouchHelperAdapter
+import com.findfriend.app.R
+import com.findfriend.domain.model.ShortAnimalInfo
 import com.bumptech.glide.Glide
 import com.bumptech.glide.annotation.GlideModule
-import com.findfriend.ui.animalshortinfo.AnimalShortInfoListFragment
-import java.util.*
+import com.findfriend.data.networkservice.AppConstants.RESOURCE_PATH
+import java.io.File
+import java.net.URI
 
-class AnimalListAdapter : RecyclerView.Adapter<ItemAnimalViewHolder>(), ItemTouchHelperAdapter {
+class AnimalShortInfoAdapter(listener: OnItemClickListener) : RecyclerView.Adapter<ItemAnimalViewHolder>() {
+
     private var mItems: List<ShortAnimalInfo> = mutableListOf()
+    private var mOnItemClickListener = listener
+
+    interface OnItemClickListener {
+        fun onItemClick(view: View, itemId: Int)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemAnimalViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        return ItemAnimalViewHolder(inflater, parent) // инициализирует views для списка
+        return ItemAnimalViewHolder(inflater, parent)
     }
 
     override fun onBindViewHolder(holder: ItemAnimalViewHolder, position: Int) {
         val selectedAnimal: ShortAnimalInfo = mItems[position]
-        holder.bind(selectedAnimal)
+        holder.bind(selectedAnimal, mOnItemClickListener)
     }
 
-    override fun onItemMove(fromPosition: Int, toPosition: Int): Boolean {
-        Collections.swap(mItems, fromPosition, toPosition);
-        notifyItemMoved(fromPosition, toPosition);
-        return true;
-    }
-    fun setItems(info : List<ShortAnimalInfo>){
+    fun setItems(info: List<ShortAnimalInfo>) {
         mItems = info
-        notifyDataSetChanged()
-    }
-
-    override fun onItemDismiss(position: Int) {
     }
 
     override fun getItemCount() = mItems.size
 
-    fun refreshItems(items: List<ShortAnimalInfo>) {
-        this.mItems = items
-        notifyDataSetChanged()
-    }
 }
 
 @GlideModule
 class ItemAnimalViewHolder(inflater: LayoutInflater, parent: ViewGroup) : RecyclerView.ViewHolder(
     inflater.inflate(R.layout.item_animal_short_info, parent, false)) {
 
-    private var TAG = "ItemAnimalViewHolder"
-    private var id : Int = 0
-    private val NAME = "name"
-    private val AGE = "age"
-    private val TYPE = "type"
+    private var id: Int = 0
     var mImage: ImageView? = null
     var favorite: ImageView? = null
     var name: TextView? = null
-    var mResourcesPath = "http://10.0.3.2:8080/resourses/findfriend/"
 
     init {
         mImage = itemView.findViewById(R.id.animal_image)
         favorite = itemView.findViewById(R.id.favorite)
         name = itemView.findViewById(R.id.animal_name_with_age)
+
     }
 
-    fun bind(animal: ShortAnimalInfo?) {
+    fun bind(animal: ShortAnimalInfo?, itemListener: AnimalShortInfoAdapter.OnItemClickListener) {
         if (animal != null) {
-            Log.d(Constraints.TAG, "animal.img_url  " + animal.age + " "+animal.id)
-            Glide
+            Log.d(Constraints.TAG, "animal.img_url  " + animal.mainPicture)
+            //val uri = Uri.parse(ContextCompat.getDrawable(ContextCompat.a, R.drawable.dog1).toString())
+            var resId =  R.drawable.dog1
+            when (animal.mainPicture){
+                "dog1.jpg" -> { resId = R.drawable.dog1}
+                "dog2.jpg" -> { resId = R.drawable.dog2}
+                "dog3.jpg" -> { resId = R.drawable.dog3}
+                "dog4.jpg" -> { resId = R.drawable.dog4}
+                "dog5.jpg" -> { resId = R.drawable.dog5}
+                "dog6.jpg" -> { resId = R.drawable.dog6}
+                "dog7.jpg" -> { resId = R.drawable.dog7}
+                "dog8.jpg" -> { resId = R.drawable.dog8}
+                "cat1.jpg" -> { resId = R.drawable.cat1}
+                "cat2.jpg" -> { resId = R.drawable.cat2}
+                "cat3.jpg" -> { resId = R.drawable.cat3}
+            }
+             Glide
                 .with(itemView)
-                .load(mResourcesPath + animal.mainPicture)
+                .load(resId)
+              //  .load(uri)
+                //.load(RESOURCE_PATH + animal.mainPicture)
                 .into(mImage)
 
             name?.text = animal.name
@@ -83,22 +93,16 @@ class ItemAnimalViewHolder(inflater: LayoutInflater, parent: ViewGroup) : Recycl
             favorite?.isSelected = animal.favorite
             id = animal.id
             itemView.setOnClickListener {
-                Log.d(Constraints.TAG, "setOnClickListener animal?.id "+id)
-                AnimalShortInfoListFragment.mViewModel.setAnimalInfoById(id)
-
-                Navigation.findNavController(it)
-                    .navigate(R.id.destination_animal_detailed_info)
+                itemListener.onItemClick(it, id)
+                Log.d(Constraints.TAG, "setOnClickListener animal?.id " + id)
             }
         } else {
             name?.text = "Loading..."
         }
 
-        //TODO addFavorite
-        //favorite.setOnClickListener({})
-
-
         favorite?.setOnClickListener {
             Log.d(Constraints.TAG, "favorite setOnClickListener ")
         }
     }
+
 }

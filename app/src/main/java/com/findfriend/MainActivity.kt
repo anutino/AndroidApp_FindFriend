@@ -1,31 +1,27 @@
 package com.findfriend
 
-import android.net.Uri
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
+import androidx.annotation.IdRes
+import androidx.annotation.NonNull
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
-import com.findfriend.ui.animaldetailedinfo.AnimalDetailedInfoFragment
-import com.findfriend.ui.animalshortinfo.AnimalShortInfoListFragment
-import com.findfriend.ui.fragment.*
+import com.findfriend.app.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener,
-    AnimalShortInfoListFragment.OnFragmentInteractionListener,
-    FilterFragment.OnFragmentInteractionListener,
-    AnimalDetailedInfoFragment.OnFragmentInteractionListener {
+open class MainActivity : AppCompatActivity(),
+    BottomNavigationView.OnNavigationItemSelectedListener {
 
-    private val TAG: String = javaClass.simpleName
     private lateinit var mNavController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        mNavController = Navigation.findNavController(this,
-            R.id.nav_host_fragment)
+        mNavController = Navigation.findNavController(this, R.id.nav_host_fragment)
         setupBottomNavMenu(mNavController)
     }
 
@@ -62,9 +58,6 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         return false
     }
 
-    override fun onFragmentInteraction(uri: Uri) {
-    }
-
     override fun onBackPressed() {
         val count = supportFragmentManager.backStackEntryCount
         if (count == 0) {
@@ -74,7 +67,8 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         }
     }
 
-    override fun onFragmentInteraction(age: Double, animal: String) {
+    fun navigate(@NonNull view: View, @IdRes resId: Int) {
+        Navigation.findNavController(view).navigate(resId)
     }
 
 }

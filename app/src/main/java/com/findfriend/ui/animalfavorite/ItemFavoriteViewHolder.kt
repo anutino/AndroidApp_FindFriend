@@ -7,8 +7,8 @@ import android.widget.TextView
 import androidx.compose.ViewGroup
 import androidx.constraintlayout.widget.Constraints.TAG
 import androidx.recyclerview.widget.RecyclerView
-import com.findfriend.R
-import com.findfriend.data.Animal
+import com.findfriend.app.R
+import com.findfriend.domain.model.Animal
 import com.bumptech.glide.annotation.GlideModule
 
 
@@ -16,7 +16,7 @@ import com.bumptech.glide.annotation.GlideModule
 class ItemFavoriteAnimalViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
     RecyclerView.ViewHolder(
         inflater.inflate(
-            com.findfriend.R.layout.item_favorite_animal_info, parent, false
+            R.layout.item_favorite_animal_info, parent, false
         )
     ) {
     var image: ImageView? = null
@@ -25,9 +25,9 @@ class ItemFavoriteAnimalViewHolder(inflater: LayoutInflater, parent: ViewGroup) 
     //   val context = context
 
     init {
-        image = itemView.findViewById(com.findfriend.R.id.animal_image)
-        favorite = itemView.findViewById(com.findfriend.R.id.favorite)
-        name = itemView.findViewById(com.findfriend.R.id.animal_name_with_age)
+        image = itemView.findViewById(R.id.animal_image)
+        favorite = itemView.findViewById(R.id.favorite)
+        name = itemView.findViewById(R.id.animal_name_with_age)
     }
 
     fun bind(animal: Animal?) {
@@ -53,7 +53,6 @@ class ItemFavoriteAnimalViewHolder(inflater: LayoutInflater, parent: ViewGroup) 
             Log.d(TAG, "setOnClickListener ")
            // Navigation.findNavController(it).navigate(com.findfriend.R.id.next_action)
         }
-
     }
 
 }

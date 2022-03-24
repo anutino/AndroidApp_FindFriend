@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/purple_light">
 
-    <androidx.recyclerview.widget.RecyclerView
+    <com.findfriend.ui.animalshortinfo.AnimalShortRecyclerView
         android:id="@+id/recycle_view_favorite_animal_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

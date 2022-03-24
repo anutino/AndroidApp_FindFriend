@@ -1,6 +1,8 @@
-package com.findfriend.networkservice
+package com.findfriend.data.networkservice
 
-import com.findfriend.data.*
+import com.findfriend.domain.model.AnimalDetailedInfo
+import com.findfriend.domain.model.AnimalType
+import com.findfriend.domain.model.ShortAnimalInfo
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.POST

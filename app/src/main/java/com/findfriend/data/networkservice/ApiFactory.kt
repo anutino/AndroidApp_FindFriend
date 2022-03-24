@@ -1,4 +1,4 @@
-package com.findfriend.networkservice
+package com.findfriend.data.networkservice
 
 object ApiFactory{
 

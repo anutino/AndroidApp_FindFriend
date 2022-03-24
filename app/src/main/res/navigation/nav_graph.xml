@@ -7,7 +7,7 @@
     app:startDestination="@id/destination_animal_type_selector">
 
     <fragment android:id="@+id/main_fragment"
-        android:name="com.findfriend.ui.fragment.MainFragment"
+        android:name="com.findfriend.ui.mainmenu.MainFragment"
         android:label="@layout/fragment_main">
         <action
             android:id="@+id/action_to_favorite"
@@ -22,12 +22,12 @@
 
     <fragment
         android:id="@+id/destination_favorite"
-        android:name="com.findfriend.ui.fragment.FavoriteFragment"
+        android:name="com.findfriend.ui.animalfavorite.AnimalFavoriteFragment"
         tools:layout="@layout/fragment_favorite" />
 
     <fragment
         android:id="@+id/destination_animal_type_selector"
-        android:name="com.findfriend.ui.fragment.AnimalTypeSelectorFragment"
+        android:name="com.findfriend.ui.mainmenu.AnimalTypeSelectorFragment"
         android:label="Select_category"
         tools:layout="@layout/fragment_animal_type_selector">
         <action
@@ -39,7 +39,7 @@
 
     <fragment
         android:id="@+id/destination_animal_short_info_list"
-        android:name="com.findfriend.ui.fragment.AnimalShortInfoListFragment"
+        android:name="com.findfriend.ui.animalshortinfo.AnimalShortInfoListFragment"
         android:label="Search"
         tools:layout="@layout/fragment_searching_animal">
         <action
@@ -51,13 +51,13 @@
 
     <fragment
         android:id="@+id/destination_animal_detailed_info"
-        android:name="com.findfriend.ui.fragment.AnimalDetailedInfoFragment"
+        android:name="com.findfriend.ui.animaldetailedinfo.AnimalDetailedInfoFragment"
         android:label="AnimalDetailedInfo"
         tools:layout="@layout/fragment_animal_detailed_info" />
 
     <fragment
         android:id="@+id/destination_profile"
-        android:name="com.findfriend.ui.fragment.ProfileFragment"
+        android:name="com.findfriend.ui.profile.ProfileFragment"
         android:label="Profile"
         tools:layout="@layout/fragment_profile" />
 

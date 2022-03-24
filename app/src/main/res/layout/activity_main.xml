@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     app:defaultNavHost="true"
-    tools:context=".MainActivity">
+    tools:context="com.findfriend.MainActivity">
 
     <fragment
         android:id="@+id/nav_host_fragment"

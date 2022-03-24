@@ -2,18 +2,26 @@ package com.findfriend.ui.mainmenu
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.findfriend.data.AnimalType
-import com.findfriend.repository.AnimalRepository
+import androidx.lifecycle.viewModelScope
+import com.findfriend.domain.model.AnimalType
+import com.findfriend.data.repository.AnimalRepository
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class AnimalTypeViewModel(animalRepository: AnimalRepository) : ViewModel() {
+class AnimalTypeViewModel @Inject constructor(animalRepository: AnimalRepository) : ViewModel() {
 
     private val repository = animalRepository
-    private val mCategoryListLiveMutable: MutableLiveData<List<AnimalType>> = MutableLiveData()
-    val resultLiveDate = mCategoryListLiveMutable
+    private val mCategoryList: MutableLiveData<List<AnimalType>> = MutableLiveData()
+    val resultLiveDate = mCategoryList
 
-    private fun loadCategoryList() {
-        val categoriesList = repository.getAnimalTypes()
-        mCategoryListLiveMutable.postValue(categoriesList)
+    fun loadTypeList() {
+        viewModelScope.launch {
+            mCategoryList.postValue(repository.fetchAnimalTypes())
+        }
+    }
+
+    fun setSelectedItem(id: Int) {
+        repository.setItemIdSelected(id)
     }
 
 }

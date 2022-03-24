@@ -1,19 +1,13 @@
 package com.findfriend.di
 
-import com.findfriend.data.AnimalRepositoryImpl
-import com.findfriend.networkservice.NetworkService
-import com.findfriend.repository.AnimalRepository
+import com.findfriend.data.repository.AnimalRepositoryImpl
+import com.findfriend.data.repository.AnimalRepository
 import dagger.Binds
 import dagger.Module
-import dagger.Provides
 
 @Module
-class RepositoryModule {
+abstract class RepositoryModule {
 
-    @Provides
-    fun provideAnimalRepository(networkService: NetworkService): AnimalRepository {
-        return AnimalRepositoryImpl(networkService)
-    }
-    //   @Binds
-    //  abstract fun bindAnimalUserRepository(repository: AnimalRepositoryImpl): AnimalRepository
+    @Binds
+    abstract fun bindAnimalRepositoryImpl(repository: AnimalRepositoryImpl): AnimalRepository
 }

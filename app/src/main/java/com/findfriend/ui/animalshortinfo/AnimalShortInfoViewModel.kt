@@ -4,77 +4,110 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.findfriend.data.ShortAnimalInfo
-import com.findfriend.repository.AnimalRepository
+import androidx.lifecycle.viewModelScope
+import com.findfriend.data.Constants
+import com.findfriend.data.networkservice.AppConstants
+import com.findfriend.domain.model.ShortAnimalInfo
+import com.findfriend.data.repository.AnimalRepository
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class AnimalShortInfoViewModel : ViewModel() {
+class AnimalShortInfoViewModel @Inject constructor(animalRepository: AnimalRepository) :
+    ViewModel() {
 
-    private var mAnimalInfoLiveMutable = MutableLiveData<List<ShortAnimalInfo>>()
-    val resultLive : LiveData<List<ShortAnimalInfo>> = mAnimalInfoLiveMutable
+    private val repository = animalRepository
+    private val mShortAnimalInfoLiveMutable = MutableLiveData<List<ShortAnimalInfo>>()
+    val resultLive: LiveData<List<ShortAnimalInfo>> = mShortAnimalInfoLiveMutable
+
+    private val mutableSelectedItem = MutableLiveData<Int>()
+    var selectedItem: LiveData<Int> = mutableSelectedItem
 
     private lateinit var mShortAnimalInfoItem: ShortAnimalInfo
 
-    fun loadAllAnimals() {
-        AnimalRepository.repository.onFetchAnimalShortInfoList(mAnimalInfoLiveMutable)
-        //for test
-//            val list = mutableListOf<ShortAnimalInfo>()
-////            list.add(0, Animal (0, 1.0, "Iris", "Very good cat", 2, "http", true) )
-////            list.add(1, Animal (1, 1.0, "Iris", "Very good cat", 2, "http", false) )
-////            list.add(2, Animal (2, 2.0, "Silvia", "Very good cat", 2, "http", false) )
-////            list.add(3, Animal (3, 1.0, "Lenskii", "Very good cat", 2, "http", false) )
-////            list.add(4, Animal (4, 1.5, "Alica", "Very good cat", 2, "http", false) )
-////            list.add(5, Animal (5, 6.0, "Wolf", "Very good dog", 1, "http", false) )
-////            list.add(6, Animal (6, 8.0, "Bro", "Very good dog", 1, "http", false) )
-////            list.add(7, Animal (7, 3.0, "Klark", "Very good dog", 1, "http", false) )
-////            list.add(8, Animal (8, 2.0, "NewS", "Very good dog", 1, "http", false) )
-        val list = mutableListOf<ShortAnimalInfo>()
-        list.add(0, ShortAnimalInfo(0, 1.0, "Iris", "cat", "http", true))
-        list.add(1, ShortAnimalInfo(1, 1.0, "Iris", "Very good cat", "http", false))
-        list.add(2, ShortAnimalInfo(2, 2.0, "Silvia", "Very good cat", "http", false))
-        list.add(3, ShortAnimalInfo(3, 1.0, "Lenskii", "Very good cat", "http", false))
-        list.add(4, ShortAnimalInfo(4, 1.5, "Alica", "Very good cat", "http", false))
-        list.add(5, ShortAnimalInfo(5, 6.0, "Wolf", "Very good dog", "http", false))
-        list.add(6, ShortAnimalInfo(6, 8.0, "Bro", "Very good dog", "http", false))
-        list.add(7, ShortAnimalInfo(7, 3.0, "Klark", "Very good dog", "http", false))
-        list.add(8, ShortAnimalInfo(8, 2.0, "NewS", "Very good dog", "http", false))
-        mAnimalInfoLiveMutable.postValue(list)
+    fun loadAnimalList() {
+        viewModelScope.launch {
+            when (repository.getItemIdSelected()) {
+                Constants.AnimalType.DOG.ordinal ->
+                    loadAnimalListFilteredByType(Constants.AnimalType.DOG.ordinal)
+                Constants.AnimalType.CAT.ordinal ->
+                    loadAnimalListFilteredByType(Constants.AnimalType.CAT.ordinal)
+                Constants.AnimalType.ALL.ordinal -> loadAllAnimals()
+            }
+        }
     }
 
-    fun loadAnimalListFilteredByType(type: Int) {
-        AnimalRepository.repository.fetchAnimalShortInfoListFilteredByType(mAnimalInfoLiveMutable,
-            type)
+    private fun loadAllAnimals() {
+        //viewModelScope.launch {
+        // mShortAnimalInfoLiveMutable.postValue(repository.fetchAnimalShortInfoList())
+    //}
+        mShortAnimalInfoLiveMutable.postValue(testData())
+    }
+
+    private fun testData(): List<ShortAnimalInfo> {
+        Log.d("TAG", " testData ")
+        val list = mutableListOf<ShortAnimalInfo>()
+        list.add(0, ShortAnimalInfo(0, 1.0, "Iris",  "2", "dog1.jpg", false))
+        list.add(1, ShortAnimalInfo(0, 1.0, "Iris",  "2", "dog2.jpg", true))
+        list.add(2, ShortAnimalInfo(0, 1.0, "Iris",  "2", "dog3.jpg", true))
+        list.add(3, ShortAnimalInfo(0, 1.0, "Iris",  "2", "dog4.jpg", true))
+        list.add(4, ShortAnimalInfo(0, 1.0, "Iris",  "2", "dog5.jpg", true))
+        list.add(5, ShortAnimalInfo(0, 1.0, "Iris",  "2", "dog6.jpg", true))
+        list.add(6, ShortAnimalInfo(0, 1.0, "Iris",  "2", "dog7.jpg", true))
+        list.add(7, ShortAnimalInfo(0, 1.0, "Iris",  "2", "dog8.jpg", true))
+        list.add(8, ShortAnimalInfo(0, 1.0, "Iris",  "2", "cat1.jpg", true))
+        list.add(9, ShortAnimalInfo(0, 1.0, "Iris",  "2", "cat2.jpg", true))
+        list.add(10, ShortAnimalInfo(0, 1.0, "Iris",  "2", "cat3.jpg", true))
+        return list
+    }
+
+    private fun loadAnimalListFilteredByType(type: Int) {
+        viewModelScope.launch {
+            mShortAnimalInfoLiveMutable.postValue(repository.fetchAnimalShortInfoListFilteredByType(
+                type))
+        }
     }
 
     fun loadAnimalListFilteredByAgeAndType(minAge: String, maxAge: String, type: Int) {
-        AnimalRepository.repository.onFetchAnimalsShortInfoListFilteredByAgeAndType(
-            mAnimalInfoLiveMutable,
-            minAge,
-            maxAge,
-            type)
+        viewModelScope.launch {
+            mShortAnimalInfoLiveMutable.postValue(
+                repository.fetchAnimalsShortInfoListFilteredByAgeAndType(
+                minAge,
+                maxAge,
+                type))
+        }
     }
 
     fun loadAnimalListFilteredByAge(minAge: String, maxAge: String) {
-        AnimalRepository.repository.onFetchAnimalShortListFilteredByAge(mAnimalInfoLiveMutable,
-            minAge,
-            maxAge)
+        viewModelScope.launch {
+            mShortAnimalInfoLiveMutable.postValue(repository.fetchAnimalShortListFilteredByAge(
+                minAge,
+                maxAge))
+        }
     }
 
     fun loadAnimalFavoriteList() {
-        AnimalRepository.repository.getFavoritesAnimals(mAnimalInfoLiveMutable, "1")
-    }
-
-    fun getAnimalInfo(): LiveData<List<ShortAnimalInfo>> {
-        return mAnimalInfoLiveMutable
-    }
-
-    fun getItemAnimalInfo(): ShortAnimalInfo {
-        return mShortAnimalInfoItem
+        viewModelScope.launch {
+            mShortAnimalInfoLiveMutable.postValue(repository.fetchFavoritesAnimals("1"))
+        }
     }
 
     fun setAnimalInfoById(id: Int) {
-        mShortAnimalInfoItem = mAnimalInfoLiveMutable.value?.get(id)!!
-        Log.d("t", "mShortAnimalInfoItem "+mShortAnimalInfoItem)
-
-        //  mShortAnimalInfoItem = mAnimalInfoLiveData.value?.get(id) ?: ShortAnimalInfo(0,0.0,"","","",false)
+        viewModelScope.launch {
+            mShortAnimalInfoItem = mShortAnimalInfoLiveMutable.value?.get(id)!!
+            //  mShortAnimalInfoItem = mAnimalInfoLiveData.value?.get(id) ?: ShortAnimalInfo(0,0.0,"","","",false)
+        }
     }
+
+    fun setSelectedItem(itemId: Int) {
+        repository.setItemIdSelected(itemId)
+    }
+
+    fun setAge(from : Int, to : Int){
+        repository.setAge(from, to)
+    }
+
+    fun setType(type : Int){
+        repository.setType(type)
+    }
+
 }

@@ -1,8 +1,9 @@
-package com.findfriend.data
+package com.findfriend.data.datasource
 
 import android.util.Log
 import androidx.constraintlayout.widget.Constraints
 import androidx.paging.PageKeyedDataSource
+import com.findfriend.domain.model.Animal
 
 class AnimalDataSource(var useSearchingAnimalFragment: Boolean) : PageKeyedDataSource<Int, Animal>() {
     val PAGE_SIZE = 50;
