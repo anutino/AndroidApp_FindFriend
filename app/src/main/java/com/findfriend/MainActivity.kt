@@ -5,6 +5,7 @@ import android.view.MenuItem
 import android.view.View
 import androidx.annotation.IdRes
 import androidx.annotation.NonNull
+import androidx.annotation.VisibleForTesting
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -71,5 +72,9 @@ open class MainActivity : AppCompatActivity(),
         Navigation.findNavController(view).navigate(resId)
     }
 
+    @VisibleForTesting
+    fun testOnlyGetNavController() : NavController {
+        return mNavController
+    }
 }
 

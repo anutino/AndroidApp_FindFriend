@@ -7,6 +7,8 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 import org.junit.Assert.*
+import org.junit.Before
+import org.robolectric.Robolectric
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -20,5 +22,10 @@ class ExampleInstrumentedTest {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         assertEquals("com.findfriend", appContext.packageName)
+    }
+
+    @Before
+    fun setup() {
+        Robolectric.setupActivity(MainActivity::class.java)
     }
 }
