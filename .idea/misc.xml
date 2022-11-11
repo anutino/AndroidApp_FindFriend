@@ -3,17 +3,31 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Programs/AndroidStudio/AndroidApp_FindFriend/app/src/main/res/drawable-v24/ic_favorite.xml" value="0.117" />
+        <entry key="..\:/Programs/AndroidStudio/AndroidApp_FindFriend/app/src/main/res/drawable-v24/ic_favorite_border_red.xml" value="0.222" />
+        <entry key="..\:/Programs/AndroidStudio/AndroidApp_FindFriend/app/src/main/res/drawable/dialog_filter_background.xml" value="0.2535" />
+        <entry key="..\:/Programs/AndroidStudio/AndroidApp_FindFriend/app/src/main/res/drawable/favorite_color_state.xml" value="0.117" />
+        <entry key="..\:/Programs/AndroidStudio/AndroidApp_FindFriend/app/src/main/res/drawable/favorite_color_state_notwork.xml" value="0.1" />
+        <entry key="..\:/Programs/AndroidStudio/AndroidApp_FindFriend/app/src/main/res/drawable/filter_button.xml" value="0.222" />
+        <entry key="..\:/Programs/AndroidStudio/AndroidApp_FindFriend/app/src/main/res/drawable/ic_baseline_filter_alt_24.xml" value="0.222" />
+        <entry key="..\:/Programs/AndroidStudio/AndroidApp_FindFriend/app/src/main/res/drawable/ic_launcher_background.xml" value="0.222" />
+        <entry key="..\:/Programs/AndroidStudio/AndroidApp_FindFriend/app/src/main/res/drawable/shape.xml" value="0.1875" />
         <entry key="..\:/Programs/AndroidStudio/AndroidApp_FindFriend/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
-        <entry key="..\:/Programs/AndroidStudio/AndroidApp_FindFriend/app/src/main/res/layout/fragment_animal_type_selector.xml" value="0.36666666666666664" />
+        <entry key="..\:/Programs/AndroidStudio/AndroidApp_FindFriend/app/src/main/res/layout/fragment_animal_detailed_info.xml" value="0.22" />
+        <entry key="..\:/Programs/AndroidStudio/AndroidApp_FindFriend/app/src/main/res/layout/fragment_animal_type_selector.xml" value="0.1" />
         <entry key="..\:/Programs/AndroidStudio/AndroidApp_FindFriend/app/src/main/res/layout/fragment_favorite.xml" value="0.3760932944606414" />
+        <entry key="..\:/Programs/AndroidStudio/AndroidApp_FindFriend/app/src/main/res/layout/fragment_filter_dialog.xml" value="0.25" />
         <entry key="..\:/Programs/AndroidStudio/AndroidApp_FindFriend/app/src/main/res/layout/fragment_main.xml" value="0.20520833333333333" />
+        <entry key="..\:/Programs/AndroidStudio/AndroidApp_FindFriend/app/src/main/res/layout/fragment_profile.xml" value="0.36666666666666664" />
         <entry key="..\:/Programs/AndroidStudio/AndroidApp_FindFriend/app/src/main/res/layout/fragment_searching_animal.xml" value="0.27309782608695654" />
-        <entry key="..\:/Programs/AndroidStudio/AndroidApp_FindFriend/app/src/main/res/layout/item_favorite_animal_info.xml" value="0.36666666666666664" />
+        <entry key="..\:/Programs/AndroidStudio/AndroidApp_FindFriend/app/src/main/res/layout/item_animal_short_info.xml" value="0.25" />
+        <entry key="..\:/Programs/AndroidStudio/AndroidApp_FindFriend/app/src/main/res/layout/item_favorite_animal_info.xml" value="0.18" />
+        <entry key="..\:/Programs/AndroidStudio/AndroidApp_FindFriend/app/src/main/res/layout/item_media.xml" value="0.36666666666666664" />
         <entry key="..\:/Programs/AndroidStudio/AndroidApp_FindFriend/app/src/main/res/menu/menu_navigation.xml" value="0.36666666666666664" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
