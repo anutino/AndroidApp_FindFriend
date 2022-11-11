@@ -1,57 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/fragment_select_category"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
-    android:orientation="vertical"
-    tools:context="com.findfriend.ui.mainmenu.AnimalTypeSelectorFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/selector_title"
-        style="@style/TextPrimary"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_margin="@dimen/margin"
-        android:layout_weight="0.0"
-        android:text="@string/animal_type_title"
-        android:textAlignment="center" />
+    <data>
+        <import type="com.findfriend.ui.mainmenu.AnimalTypeSelectorFragment" />
+        <import type="android.view.View" />
+        <variable
+            name="fragment"
+            type="AnimalTypeSelectorFragment" />
 
-    <ImageButton
-        android:id="@+id/dog_type"
+    </data>
+
+    <LinearLayout
+        android:id="@+id/fragment_select_category"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="@color/salmon"
-        android:contentDescription="@null"
-        android:focusable="true"
-        android:scaleType="centerInside"
-        android:visibility="gone"
-        app:srcCompat="@drawable/dog" />
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
+        android:orientation="vertical"
+        tools:context="com.findfriend.ui.mainmenu.AnimalTypeSelectorFragment">
 
-    <ImageButton
-        android:id="@+id/cat_type"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="@color/burnt_sienna"
-        android:contentDescription="@null"
-        android:scaleType="centerInside"
-        android:visibility="gone"
-        app:srcCompat="@drawable/cat" />
+        <TextView
+            android:id="@+id/selector_title"
+            style="@style/TextPrimary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="@dimen/margin"
+            android:layout_weight="0.0"
+            android:text="@string/animal_type_title"
+            android:textAlignment="center" />
 
-    <ImageButton
-        android:id="@+id/all_types"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="@color/coral"
-        android:contentDescription="@null"
-        android:scaleType="centerInside"
-        android:visibility="gone"
-        app:srcCompat="@drawable/cat_dog" />
+        <ImageButton
+            android:id="@+id/dog_type"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/salmon"
+            android:contentDescription="@null"
+            android:focusable="true"
+            android:scaleType="centerInside"
+            android:visibility="gone"
+            app:srcCompat="@drawable/dog" />
 
-</LinearLayout>
+        <ImageButton
+            android:id="@+id/cat_type"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/burnt_sienna"
+            android:contentDescription="@null"
+            android:scaleType="centerInside"
+            android:visibility="gone"
+            app:srcCompat="@drawable/cat" />
+
+        <ImageButton
+            android:id="@+id/all_types"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/coral"
+            android:contentDescription="@null"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/cat_dog" />
+
+    </LinearLayout>
+</layout>

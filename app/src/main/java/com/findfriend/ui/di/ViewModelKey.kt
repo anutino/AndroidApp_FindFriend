@@ -1,4 +1,4 @@
-package com.findfriend.di
+package com.findfriend.ui.di
 
 import androidx.lifecycle.ViewModel
 import dagger.MapKey

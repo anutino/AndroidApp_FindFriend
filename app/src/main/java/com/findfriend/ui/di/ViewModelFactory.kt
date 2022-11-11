@@ -1,4 +1,4 @@
-package com.findfriend.di
+package com.findfriend.ui.di
 
 import androidx.annotation.NonNull
 import androidx.lifecycle.ViewModel
@@ -10,10 +10,11 @@ import javax.inject.Inject
 
 @Singleton
 class ViewModelFactory @Inject constructor(@NonNull map: Map<Class<out ViewModel>,
-        @JvmSuppressWildcards Provider<ViewModel>>) : ViewModelProvider.Factory {
+        @JvmSuppressWildcards Provider<ViewModel>>
+) : ViewModelProvider.Factory {
 
     @NonNull
-    var mVmProviderMap : Map<Class<out ViewModel>, Provider<ViewModel>> = map
+    var mVmProviderMap: Map<Class<out ViewModel>, Provider<ViewModel>> = map
 
     @NonNull
     override fun <T : ViewModel> create(@NonNull modelClass: Class<T>): T {

@@ -2,7 +2,7 @@ package com.findfriend;
 
 import android.content.Context
 import androidx.lifecycle.ViewModel
-import com.findfriend.di.AppComponent
+import com.findfriend.ui.di.AppComponent
 
 abstract class BaseFragment<VM : ViewModel> : ViewModelFragment<VM>() {
 

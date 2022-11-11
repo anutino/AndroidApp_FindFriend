@@ -1,8 +1,8 @@
 package com.findfriend
 
 import android.app.Application
-import com.findfriend.di.AppComponent
-import com.findfriend.di.DaggerAppComponent
+import com.findfriend.ui.di.AppComponent
+import com.findfriend.ui.di.DaggerAppComponent
 
 open class App : Application() {
 

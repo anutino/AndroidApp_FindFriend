@@ -32,7 +32,7 @@ public class MainActivityTest {
 
     @Test
     public void onNavigationItemSelected() {
-        NavController navController = mock(mActivity.testOnlyGetNavController().getClass());
+        NavController navController = mock(mActivity.testOnlyGetNavController().getClass ());
         MenuItem menuItem = mock(MenuItem.class);
         when(menuItem.getItemId()).thenReturn(R.id.item_favorite);
         verify(navController).navigate(R.id.item_favorite);

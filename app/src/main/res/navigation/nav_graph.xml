@@ -6,19 +6,19 @@
     app:defaultNavHost="true"
     app:startDestination="@id/destination_animal_type_selector">
 
-    <fragment android:id="@+id/main_fragment"
-        android:name="com.findfriend.ui.mainmenu.MainFragment"
-        android:label="@layout/fragment_main">
-        <action
-            android:id="@+id/action_to_favorite"
-            app:destination="@id/destination_favorite" />
-        <action
-            android:id="@+id/action_to_animal_type_selector"
-            app:destination="@id/destination_animal_type_selector" />
-        <action
-            android:id="@+id/action_to_profile"
-            app:destination="@id/destination_profile" />
-    </fragment>
+<!--    <fragment android:id="@+id/destination_main_fragment"-->
+<!--        android:name="com.findfriend.ui.mainmenu.MainFragment"-->
+<!--        android:label="@layout/fragment_main">-->
+<!--        <action-->
+<!--            android:id="@+id/action_to_favorite"-->
+<!--            app:destination="@id/destination_favorite" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_to_animal_type_selector"-->
+<!--            app:destination="@id/destination_animal_type_selector" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_to_profile"-->
+<!--            app:destination="@id/destination_profile" />-->
+<!--    </fragment>-->
 
     <fragment
         android:id="@+id/destination_favorite"
@@ -42,6 +42,9 @@
         android:name="com.findfriend.ui.animalshortinfo.AnimalShortInfoListFragment"
         android:label="Search"
         tools:layout="@layout/fragment_searching_animal">
+        <argument
+            android:name="animalTypeArgs"
+            app:argType="com.findfriend.data.Constants" />
         <action
             android:id="@+id/action_to_animal_detailed_info"
             app:destination="@id/destination_animal_detailed_info"
@@ -53,7 +56,12 @@
         android:id="@+id/destination_animal_detailed_info"
         android:name="com.findfriend.ui.animaldetailedinfo.AnimalDetailedInfoFragment"
         android:label="AnimalDetailedInfo"
-        tools:layout="@layout/fragment_animal_detailed_info" />
+        tools:layout="@layout/fragment_animal_detailed_info" >
+        <argument
+            android:name="animalId"
+            app:argType="integer"
+            android:defaultValue="0"/>
+    </fragment>
 
     <fragment
         android:id="@+id/destination_profile"

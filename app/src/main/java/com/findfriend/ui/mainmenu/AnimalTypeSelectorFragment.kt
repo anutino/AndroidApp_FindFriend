@@ -4,76 +4,63 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.Observer
-import androidx.navigation.Navigation
-import androidx.navigation.findNavController
+import androidx.databinding.DataBindingUtil
+import androidx.navigation.fragment.findNavController
 import com.findfriend.app.R
-import com.findfriend.di.AppComponent
+import com.findfriend.ui.di.AppComponent
 import com.findfriend.BaseFragment
-import com.findfriend.MainActivity
+import com.findfriend.app.databinding.FragmentAnimalTypeSelectorBinding
 import com.findfriend.data.Constants
-import kotlinx.android.synthetic.main.fragment_animal_type_selector.*
 
-class AnimalTypeSelectorFragment : BaseFragment<AnimalTypeViewModel>() {
+class AnimalTypeSelectorFragment : BaseFragment<AnimalTypeSelectorViewModel>() {
+
+    lateinit var binding: FragmentAnimalTypeSelectorBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.fragment_animal_type_selector, container, false)
+        binding = DataBindingUtil.inflate(inflater,
+            R.layout.fragment_animal_type_selector, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mViewModel.resultLiveDate.observe(viewLifecycleOwner, Observer {
+        viewModel.resultLiveDate.observe(viewLifecycleOwner) {
             it?.let {
-                initDogTypeSelector()
-                initCatTypeSelector()
-                initAllTypeSelector()
-
-                /*for (animalType in it) {
+                for (animalType in it) {
                     when (animalType.name) {
-                        Constants.AnimalType.DOG.toString() -> initDogTypeSelector()
-                        Constants.AnimalType.CAT.toString() -> initCatTypeSelector()
-                        Constants.AnimalType.ALL.toString() -> initAllTypeSelector()
+                        Constants.AnimalType.DOG.toString() -> {
+                            binding.dogType.visibility = View.VISIBLE
+                            binding.dogType.setOnClickListener {
+                                navigateToAnimalShortInfoList(Constants.AnimalType.DOG)
+                            }
+                        }
+                        Constants.AnimalType.CAT.toString() -> {
+                            binding.catType.visibility = View.VISIBLE
+                            binding.catType.setOnClickListener {
+                                navigateToAnimalShortInfoList(Constants.AnimalType.CAT)
+                            }
+                        }
+                        Constants.AnimalType.ALL.toString() ->
+                            binding.allTypes.setOnClickListener {
+                                navigateToAnimalShortInfoList(Constants.AnimalType.ALL)
+                            }
                     }
-                }*/
+                }
             }
-        })
-        mViewModel.loadTypeList()
-    }
-
-    private fun initDogTypeSelector() {
-        dog_type.visibility = View.VISIBLE
-        dog_type.setOnClickListener {
-                mViewModel.setSelectedItem(Constants.AnimalType.DOG.ordinal)
-            (requireActivity() as MainActivity).navigate(it,
-                R.id.destination_animal_short_info_list)
-
         }
+        viewModel.loadTypes()
     }
 
-    private fun initCatTypeSelector() {
-        cat_type.visibility = View.VISIBLE
-        cat_type.setOnClickListener {
-            mViewModel.setSelectedItem(Constants.AnimalType.CAT.ordinal)
-            (requireActivity() as MainActivity).navigate(it,
-                R.id.destination_animal_short_info_list)
-        }
+    private fun navigateToAnimalShortInfoList(type: Constants.AnimalType) {
+        findNavController().navigate(
+            AnimalTypeSelectorFragmentDirections.actionToAnimalShortInfoList(Constants(type)))
     }
 
-    private fun initAllTypeSelector() {
-        all_types.visibility = View.VISIBLE
-        all_types.setOnClickListener {
-            mViewModel.setSelectedItem(Constants.AnimalType.ALL.ordinal)
-            (requireActivity() as MainActivity).navigate(it,
-                R.id.destination_animal_short_info_list)
-        }
-    }
-
-
-    override fun getViewModelClass(): Class<AnimalTypeViewModel> {
-        return AnimalTypeViewModel::class.java
+    override fun getViewModelClass(): Class<AnimalTypeSelectorViewModel> {
+        return AnimalTypeSelectorViewModel::class.java
     }
 
     override fun injectDependencies(appComponent: AppComponent) {

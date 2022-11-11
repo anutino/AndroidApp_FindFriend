@@ -17,7 +17,8 @@
         android:theme="@style/AppTheme.NoActionBar">
 
 
-        <activity android:name="com.findfriend.MainActivity">
+        <activity android:name="com.findfriend.MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

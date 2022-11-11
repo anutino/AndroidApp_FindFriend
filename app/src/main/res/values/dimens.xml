@@ -28,6 +28,9 @@
     <!--BottomNavigationView -->
     <dimen name="bottom_navigation_view_high">90px</dimen>
 
+    <dimen name="viewpager_next_item_visible">26dp</dimen>
+    <dimen name="viewpager_current_item_horizontal_margin">42dp</dimen>
+
 
     <!--    <dimen name="animal_info_margin_top">10dp</dimen>-->
 

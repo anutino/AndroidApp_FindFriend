@@ -1,4 +1,4 @@
-package com.findfriend.di
+package com.findfriend.ui.di
 
 import androidx.lifecycle.ViewModelProvider
 import dagger.Binds

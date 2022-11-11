@@ -11,7 +11,6 @@ import com.findfriend.app.R
 import com.findfriend.domain.model.Animal
 import com.bumptech.glide.annotation.GlideModule
 
-
 @GlideModule
 class ItemFavoriteAnimalViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
     RecyclerView.ViewHolder(
@@ -22,7 +21,6 @@ class ItemFavoriteAnimalViewHolder(inflater: LayoutInflater, parent: ViewGroup) 
     var image: ImageView? = null
     var favorite: ImageView? = null
     var name: TextView? = null
-    //   val context = context
 
     init {
         image = itemView.findViewById(R.id.animal_image)
@@ -32,13 +30,11 @@ class ItemFavoriteAnimalViewHolder(inflater: LayoutInflater, parent: ViewGroup) 
 
     fun bind(animal: Animal?) {
         image?.setImageResource(R.drawable.dog);
-        //Log.d(TAG, "bind ")//+ listAnimal.size)
         if (animal != null) {
 //            Glide
 //                .with(itemView)
 //                .load(Animal.img_url)
 //                .into(image)
-
             name?.text = animal.name
             favorite?.isPressed = animal.favorite
 
@@ -51,7 +47,7 @@ class ItemFavoriteAnimalViewHolder(inflater: LayoutInflater, parent: ViewGroup) 
 
         itemView.setOnClickListener {
             Log.d(TAG, "setOnClickListener ")
-           // Navigation.findNavController(it).navigate(com.findfriend.R.id.next_action)
+            // Navigation.findNavController(it).navigate(com.findfriend.R.id.next_action)
         }
     }
 

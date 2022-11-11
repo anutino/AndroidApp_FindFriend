@@ -7,69 +7,54 @@
     android:layout_gravity="center_horizontal"
     android:background="@color/purple_light"
     android:orientation="vertical"
-    tools:context=".ui.animaldetailedinfo.AnimalDetailedInfoFragment">
-
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/viewPager2_media"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/item_media_content_height"
-        android:layout_gravity="center"
-        android:layout_marginTop="1dp"
-        android:layout_weight="7"
-        android:background="@color/coral"
-        app:layout_constraintBottom_toTopOf="@+id/animal_info_name_with_age"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    tools:context="com.findfriend.ui.animaldetailedinfo.AnimalDetailedInfoFragment">
 
     <TextView
         android:id="@+id/animal_info_name_with_age"
+        style="@style/TextPrimary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/marginTop"
-        android:layout_weight="0.2"
-        android:textColor="@color/purple_dark"
         android:text="@string/loading"
+        android:textColor="@color/purple_dark"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/viewPager2_media" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager2_media"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/marginTop"
+        android:background="@color/coral"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/animal_info_name_with_age" />
 
     <TextView
         android:id="@+id/animal_info_description"
+        style="@style/TextPrimary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/marginTop"
         android:layout_weight="10"
-        android:textColor="@color/purple_dark"
         android:text="@string/loading"
+        android:textColor="@color/purple_dark"
         app:layout_constraintStart_toStartOf="parent"
-         app:layout_constraintTop_toBottomOf="@id/animal_info_name_with_age" />
-
-<!--    <ImageButton-->
-<!--        android:id="@+id/button_favorite"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_gravity="end"-->
-<!--        android:layout_marginTop="@dimen/marginTop"-->
-<!--        android:layout_marginEnd="@dimen/margin"-->
-<!--        android:layout_marginBottom="@dimen/marginTop"-->
-<!--        android:layout_weight="0.5"-->
-<!--        android:contentDescription="@null"-->
-<!--        android:maxHeight="10dp"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/animal_info_description"-->
-<!--        app:layout_constraintStart_toStartOf="parent" />-->
+        app:layout_constraintTop_toBottomOf="@id/viewPager2_media" />
 
     <ImageButton
         android:id="@+id/button_favorite"
-        android:src="@drawable/ic_favorite"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_marginTop="@dimen/marginTop"
         android:layout_marginEnd="@dimen/margin"
         android:layout_marginBottom="@dimen/marginTop"
-        android:layout_weight="0.5"
-        android:tint="@drawable/favorite_color_state"
-        android:contentDescription="@null"
-        android:maxHeight="10dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_favorite"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/animal_info_description"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:tint="@color/color_state" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

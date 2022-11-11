@@ -1,30 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    app:defaultNavHost="true"
-    tools:context="com.findfriend.MainActivity">
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+    </data>
 
-    <fragment
-        android:id="@+id/nav_host_fragment"
-        android:name="androidx.navigation.fragment.NavHostFragment"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
         app:defaultNavHost="true"
-        app:navGraph="@navigation/nav_graph" />
+        tools:context="com.findfriend.MainActivity">
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_nav"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:background="@color/purple_haze"
-        app:itemIconTint="@drawable/favorite_color_state"
-        app:itemTextColor="@drawable/favorite_color_state"
-        app:menu="@menu/menu_navigation" />
+        <fragment
+            android:id="@+id/nav_host_fragment"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            app:defaultNavHost="true"
+            app:navGraph="@navigation/nav_graph" />
 
-</LinearLayout>
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_nav"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@color/purple_haze"
+            app:itemIconTint="@color/favorite_color_state"
+            app:itemTextColor="@color/favorite_color_state"
+            app:menu="@menu/menu_navigation" />
+
+    </LinearLayout>
+</layout>

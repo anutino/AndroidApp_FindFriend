@@ -1,10 +1,11 @@
-package com.findfriend.di
+package com.findfriend.ui.di
 
 import androidx.lifecycle.ViewModel
 import com.findfriend.ui.animaldetailedinfo.AnimalDetailedInfoViewModel
 import com.findfriend.ui.animalfavorite.AnimalsFavoriteListViewModel
 import com.findfriend.ui.animalshortinfo.AnimalShortInfoViewModel
-import com.findfriend.ui.mainmenu.AnimalTypeViewModel
+import com.findfriend.ui.mainmenu.AnimalTypeSelectorViewModel
+import com.findfriend.ui.profile.ProfileViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -29,7 +30,12 @@ abstract class ViewModelModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(AnimalTypeViewModel::class)
-    abstract fun bindTypeViewModule(viewModel: AnimalTypeViewModel): ViewModel
+    @ViewModelKey(AnimalTypeSelectorViewModel::class)
+    abstract fun bindTypeViewModule(viewModel: AnimalTypeSelectorViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ProfileViewModel::class)
+    abstract fun bindProfileViewModule(viewModel: ProfileViewModel): ViewModel
 
 }

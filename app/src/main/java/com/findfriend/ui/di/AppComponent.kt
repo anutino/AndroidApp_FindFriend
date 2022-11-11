@@ -1,4 +1,4 @@
-package com.findfriend.di
+package com.findfriend.ui.di
 
 import android.app.Application
 import com.findfriend.ui.animaldetailedinfo.AnimalDetailedInfoFragment
@@ -11,7 +11,7 @@ import dagger.Component
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [RepositoryModule::class, ViewModelModule::class,
+@Component(modules = [ViewModelModule::class,
     ViewModuleFactoryModule::class, AndroidModule::class])
 interface AppComponent {
     fun inject(fragment: AnimalDetailedInfoFragment)

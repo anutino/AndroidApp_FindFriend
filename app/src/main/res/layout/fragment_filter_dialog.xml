@@ -5,13 +5,13 @@
     android:layout_width="@dimen/filter_dialog_width"
     android:layout_height="wrap_content"
     android:layout_gravity="center_horizontal"
-    android:layout_marginTop="10px"
-    android:background="@color/purple_light"
+    android:background="@drawable/dialog_filter_background"
     android:orientation="vertical"
-    tools:context=".ui.fragment.FilterFragment">
+    tools:context="com.findfriend.ui.dialog.FilterFragment">
 
     <TextView
-        android:id="@+id/clarify"
+        android:id="@+id/filter"
+        style="@style/TextAppearance.AppCompat.Large"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/clarify"
@@ -20,15 +20,51 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-    <!--    <TextView-->
-    <!--        android:id="@+id/age_title"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--         android:text="@string/age"-->
-    <!--        android:textColor="@color/purple_dark"-->
-    <!--         app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toTopOf="parent" />-->
 
+    <TextView
+        android:id="@+id/minAgeText"
+        style="@style/TextAppearance.AppCompat.Body1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:text="Мин возвраст: "
+        app:layout_constraintBottom_toTopOf="@+id/seek_bar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/filter" />
+
+    <TextView
+        android:id="@+id/ageMin"
+        style="@style/TextAppearance.AppCompat.Body1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="0"
+        android:textColor="@color/purple_dark"
+        app:layout_constraintStart_toEndOf="@+id/minAgeText"
+        app:layout_constraintTop_toBottomOf="@+id/filter" />
+
+    <TextView
+        android:id="@+id/maxAgeText"
+        style="@style/TextAppearance.AppCompat.Body1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Мах возвраст: "
+        app:layout_constraintBottom_toTopOf="@+id/seek_bar"
+        app:layout_constraintEnd_toStartOf=" @+id/ageMax"
+        app:layout_constraintTop_toBottomOf="@+id/filter" />
+
+    <TextView
+        android:id="@+id/ageMax"
+        style="@style/TextAppearance.AppCompat.Body1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
+        android:gravity="center"
+        android:text="10"
+        android:textColor="@color/purple_dark"
+        app:layout_constraintBottom_toTopOf="@+id/seek_bar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/filter" />
 
     <it.sephiroth.android.library.rangeseekbar.RangeSeekBar
         android:id="@+id/seek_bar"
@@ -41,72 +77,42 @@
         android:thumbTint="@color/purple_haze"
         android:thumbTintMode="@color/purple_haze"
         android:tickMark="@color/purple_haze"
-        app:layout_constraintEnd_toStartOf="@+id/ageMin"
-        app:layout_constraintStart_toEndOf="@+id/ageMax"
-        app:layout_constraintTop_toBottomOf="@+id/clarify"
+        app:layout_constraintBottom_toTopOf="@+id/dog"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/minAgeText"
         app:range_progress_endValue="10"
         app:range_progress_startEnd_minDiff="1"
         app:range_progress_startValue="0" />
 
-    <TextView
-        android:id="@+id/ageMax"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="0"
-        android:textColor="@color/purple_dark"
-        app:layout_constraintEnd_toStartOf="@+id/seek_bar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/clarify" />
-
-    <TextView
-        android:id="@+id/ageMin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="10"
-        android:textColor="@color/purple_dark"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/seek_bar"
-        app:layout_constraintTop_toBottomOf="@+id/clarify" />
-
-    <!--        <TextView-->
-    <!--             style="@style/TextPrimary"-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:gravity="center"-->
-    <!--            app:layout_constraintEnd_toEndOf="parent"-->
-    <!--            app:layout_constraintStart_toEndOf="@+id/choose_dog"-->
-    <!--            app:layout_constraintTop_toBottomOf="@+id/age_title" />-->
-
-    <Button
+    <ImageButton
         android:id="@+id/dog"
         android:layout_width="@dimen/filter_dialog_width_half"
         android:layout_height="@dimen/filter_dialog_button_height"
-        android:ellipsize="middle"
-        android:text="Собака"
         android:backgroundTint="@color/color_state"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_dog_face"
         app:layout_constraintEnd_toStartOf="@+id/cat"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/seek_bar" />
 
-    <Button
+    <ImageButton
         android:id="@+id/cat"
         android:layout_width="@dimen/filter_dialog_width_half"
         android:layout_height="@dimen/filter_dialog_button_height"
-        android:text="Кот/Кошка"
         android:backgroundTint="@color/color_state"
+        android:scaleType="fitXY"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/dog"
-        app:layout_constraintTop_toBottomOf="@+id/seek_bar" />
+        app:layout_constraintTop_toBottomOf="@+id/seek_bar"
+        app:srcCompat="@drawable/ic_cat_face" />
 
     <Button
         android:id="@+id/fragment_filter_apply"
-        style="@style/Widget.AppCompat.ActionButton"
+        style="@style/TextAppearance.AppCompat.Body1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/coral"
-        android:gravity="center"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/shape"
         android:text="@string/fragment_filter_apply"
         android:textColor="@color/cream"
         app:layout_constraintEnd_toStartOf="@+id/fragment_filter_cancel"
@@ -115,11 +121,10 @@
 
     <Button
         android:id="@+id/fragment_filter_cancel"
+        style="@style/TextAppearance.AppCompat.Body1"
         android:layout_width="0dp"
-        style="@style/Widget.AppCompat.ActionButton"
         android:layout_height="wrap_content"
-        android:background="@color/cream"
-        android:gravity="center"
+        android:background="@drawable/shape"
         android:text="@string/fragment_filter_cancel"
         android:textColor="@color/coral"
         app:layout_constraintEnd_toEndOf="parent"

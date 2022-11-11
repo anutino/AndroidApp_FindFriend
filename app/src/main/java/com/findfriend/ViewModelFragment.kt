@@ -9,26 +9,27 @@ import javax.inject.Inject
 
 abstract class ViewModelFragment<VM : ViewModel> : Fragment() {
     @Inject
-    protected lateinit var mViewModelFactory: ViewModelProvider.Factory
+    protected lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    protected lateinit var mViewModel: VM
+    protected lateinit var viewModel: VM
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (mViewModelFactory == null) {
-            mViewModelFactory =
+        if (viewModelFactory == null) {
+            viewModelFactory =
                 ViewModelProvider.AndroidViewModelFactory.getInstance(activity?.application!!)
         }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mViewModel = provideViewModel(getViewModelClass(), mViewModelFactory)
+        viewModel = provideViewModel(getViewModelClass(), viewModelFactory)
     }
 
-    private fun <T : ViewModel?> provideViewModel(modelClass: Class<T>,
-                                                  factory: ViewModelProvider.Factory): T {
-        return getViewModelProvider(factory).get(modelClass)
+    private fun <T : ViewModel> provideViewModel(modelClass: Class<T>,
+                                                 factory: ViewModelProvider.Factory
+    ): T {
+        return getViewModelProvider(factory)[modelClass]
     }
 
     private fun getViewModelProvider(factory: ViewModelProvider.Factory): ViewModelProvider {

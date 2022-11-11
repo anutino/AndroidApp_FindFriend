@@ -1,10 +1,13 @@
 package com.findfriend.ui.dialog
 
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.fragment.app.DialogFragment
 import com.findfriend.app.R
@@ -15,19 +18,18 @@ import it.sephiroth.android.library.rangeseekbar.RangeSeekBar.OnRangeSeekBarChan
 
 class FilterFragment : DialogFragment(), View.OnClickListener {
 
-    private var mIsSelectedDog = false
-    private var mIsSelectedCat = false
+    private var isSelectedDog = false
+    private var isSelectedCat = false
 
-    private var mAgeFrom: Int = 0
-    private var mAgeTo: Int = 20
-    private lateinit var mButtonDog: Button
-    private lateinit var mButtonCat: Button
-    private lateinit var mButtonApply: Button
-    private lateinit var mButtonCancel: Button
-    private lateinit var mAgeMaxTextView: TextView
-    private lateinit var mAgeMinTextView: TextView
-    private lateinit var mViewModel: AnimalShortInfoViewModel
-
+    private var ageFrom: Int = 0
+    private var ageTo: Int = 20
+    private lateinit var buttonDog: ImageButton
+    private lateinit var buttonCat: ImageButton
+    private lateinit var buttonApply: Button
+    private lateinit var buttonCancel: Button
+    private lateinit var ageMaxTextView: TextView
+    private lateinit var ageMinTextView: TextView
+    private lateinit var viewModel: AnimalShortInfoViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,16 +40,17 @@ class FilterFragment : DialogFragment(), View.OnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mButtonDog = view.findViewById(R.id.dog)
-        mButtonCat = view.findViewById(R.id.cat)
-        mButtonApply = view.findViewById(R.id.fragment_filter_apply)
-        mButtonCancel = view.findViewById(R.id.fragment_filter_cancel)
-        mButtonCancel.setOnClickListener { dismiss() }
-        var seekBarAge = view.findViewById<RangeSeekBar>(R.id.seek_bar)
+        dialog!!.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        buttonDog = view.findViewById(R.id.dog)
+        buttonCat = view.findViewById(R.id.cat)
+        buttonApply = view.findViewById(R.id.fragment_filter_apply)
+        buttonCancel = view.findViewById(R.id.fragment_filter_cancel)
+        buttonCancel.setOnClickListener { dismiss() }
+        val seekBarAge = view.findViewById<RangeSeekBar>(R.id.seek_bar)
         seekBarAge.thumbStart.setTint(resources.getColor(R.color.purple_dark))
         seekBarAge.thumbEnd.setTint(resources.getColor(R.color.purple_dark))
-        mAgeMaxTextView = view.findViewById(R.id.ageMax)
-        mAgeMinTextView = view.findViewById(R.id.ageMin)
+        ageMaxTextView = view.findViewById(R.id.ageMin)
+        ageMinTextView = view.findViewById(R.id.ageMax)
 
         seekBarAge.setOnRangeSeekBarChangeListener(object : OnRangeSeekBarChangeListener {
             override fun onStopTrackingTouch(seekBar: RangeSeekBar) {
@@ -62,31 +65,31 @@ class FilterFragment : DialogFragment(), View.OnClickListener {
                 progressEnd: Int,
                 fromUser: Boolean
             ) {
-                mAgeFrom = progressStart
-                mAgeTo = progressEnd
-                mAgeMaxTextView.text = progressStart.toString()
-                mAgeMinTextView.text = progressEnd.toString()
+                ageFrom = progressStart
+                ageTo = progressEnd
+                ageMaxTextView.text = progressStart.toString()
+                ageMinTextView.text = progressEnd.toString()
             }
         })
 
-        mButtonDog.setOnClickListener(this)
-        mButtonCat.setOnClickListener(this)
-        mButtonApply.setOnClickListener {
+        buttonDog.setOnClickListener(this)
+        buttonCat.setOnClickListener(this)
+        buttonApply.setOnClickListener {
             when {
-                mIsSelectedDog -> {
-                    mViewModel.setType(Constants.AnimalType.DOG.ordinal)
-                    mViewModel.loadAnimalListFilteredByAge(
-                        mAgeMaxTextView.text.toString(), mAgeMinTextView.text.toString())
+                isSelectedDog -> {
+                    viewModel.setType(Constants.AnimalType.DOG.ordinal)
+                    viewModel.getAnimalShortInfoListFilteredByAge(
+                        ageMaxTextView.minEms, ageMinTextView.maxEms)
                 }
-                mIsSelectedCat -> {
-                    mViewModel.setType(Constants.AnimalType.CAT.ordinal)
-                    mViewModel.loadAnimalListFilteredByAge(
-                        mAgeMaxTextView.text.toString(), mAgeMinTextView.text.toString())
+                isSelectedCat -> {
+                    viewModel.setType(Constants.AnimalType.CAT.ordinal)
+                    viewModel.getAnimalShortInfoListFilteredByAge(
+                        ageMaxTextView.minEms, ageMinTextView.maxEms)
                 }
                 else -> {
-                    mViewModel.setType(Constants.AnimalType.ALL.ordinal)
-                    mViewModel.loadAnimalListFilteredByAge(
-                        mAgeMaxTextView.text.toString(), mAgeMinTextView.text.toString())
+                    viewModel.setType(Constants.AnimalType.ALL.ordinal)
+                    viewModel.getAnimalShortInfoListFilteredByAge(
+                        ageMaxTextView.minEms, ageMinTextView.maxEms)
                 }
             }
             dialog?.dismiss()
@@ -96,31 +99,33 @@ class FilterFragment : DialogFragment(), View.OnClickListener {
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.dog -> {
-                if (mIsSelectedDog) {
-                    mIsSelectedDog = false
-                    mButtonDog.isSelected = false
-                } else if (!mIsSelectedDog) {
+                if (isSelectedDog) {
+                    isSelectedDog = false
+                    buttonDog.isSelected = false
+                } else if (!isSelectedDog) {
                     v.findViewById<Button>(R.id.dog)
-                    mButtonDog.isSelected = true
-                    mIsSelectedDog = true
+                    buttonDog.isSelected = true
+                    isSelectedDog = true
                 }
             }
             R.id.cat -> {
-                if (mIsSelectedCat) {
-                    mButtonCat.isSelected = false
-                    mIsSelectedCat = false
-                } else if (!mIsSelectedCat) {
-                    mButtonCat.isSelected = true
-                    mIsSelectedCat = true
+                if (isSelectedCat) {
+                    buttonCat.isSelected = false
+                    isSelectedCat = false
+                } else if (!isSelectedCat) {
+                    buttonCat.isSelected = true
+                    isSelectedCat = true
                 }
             }
         }
     }
 
     fun setViewModel(viewModel: AnimalShortInfoViewModel) {
-        mViewModel = viewModel
+        this.viewModel = viewModel
     }
 
 }
+
+
 
 

@@ -1,29 +1,23 @@
 package com.findfriend.ui.animalshortinfo
 
-import android.content.res.Resources
-import android.net.Uri
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.compose.ViewGroup
 import androidx.constraintlayout.widget.Constraints
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.findfriend.app.R
 import com.findfriend.domain.model.ShortAnimalInfo
 import com.bumptech.glide.Glide
 import com.bumptech.glide.annotation.GlideModule
-import com.findfriend.data.networkservice.AppConstants.RESOURCE_PATH
-import java.io.File
-import java.net.URI
 
-class AnimalShortInfoAdapter(listener: OnItemClickListener) : RecyclerView.Adapter<ItemAnimalViewHolder>() {
+class AnimalShortInfoAdapter(listener: OnItemClickListener) :
+    RecyclerView.Adapter<ItemAnimalViewHolder>() {
 
-    private var mItems: List<ShortAnimalInfo> = mutableListOf()
-    private var mOnItemClickListener = listener
+    private var items: List<ShortAnimalInfo> = mutableListOf()
+    private var onItemClickListener = listener
 
     interface OnItemClickListener {
         fun onItemClick(view: View, itemId: Int)
@@ -35,15 +29,16 @@ class AnimalShortInfoAdapter(listener: OnItemClickListener) : RecyclerView.Adapt
     }
 
     override fun onBindViewHolder(holder: ItemAnimalViewHolder, position: Int) {
-        val selectedAnimal: ShortAnimalInfo = mItems[position]
-        holder.bind(selectedAnimal, mOnItemClickListener)
+        val selectedAnimal: ShortAnimalInfo = items[position]
+        holder.bind(selectedAnimal, onItemClickListener)
     }
 
     fun setItems(info: List<ShortAnimalInfo>) {
-        mItems = info
+        items = info
+        notifyDataSetChanged()
     }
 
-    override fun getItemCount() = mItems.size
+    override fun getItemCount() = items.size
 
 }
 
@@ -52,21 +47,19 @@ class ItemAnimalViewHolder(inflater: LayoutInflater, parent: ViewGroup) : Recycl
     inflater.inflate(R.layout.item_animal_short_info, parent, false)) {
 
     private var id: Int = 0
-    var mImage: ImageView? = null
-    var favorite: ImageView? = null
-    var name: TextView? = null
+    var mImage: ImageView = itemView.findViewById(R.id.animal_image)
+    var favorite: ImageView = itemView.findViewById(R.id.favorite)
+    var name: TextView = itemView.findViewById(R.id.animal_name_with_age)
 
-    init {
-        mImage = itemView.findViewById(R.id.animal_image)
-        favorite = itemView.findViewById(R.id.favorite)
-        name = itemView.findViewById(R.id.animal_name_with_age)
-
-    }
+//    init {
+//        favorite = itemView.findViewById(R.id.favorite)
+//        name = itemView.findViewById(R.id.animal_name_with_age)
+//
+//    }
 
     fun bind(animal: ShortAnimalInfo?, itemListener: AnimalShortInfoAdapter.OnItemClickListener) {
         if (animal != null) {
             Log.d(Constraints.TAG, "animal.img_url  " + animal.mainPicture)
-            //val uri = Uri.parse(ContextCompat.getDrawable(ContextCompat.a, R.drawable.dog1).toString())
             var resId =  R.drawable.dog1
             when (animal.mainPicture){
                 "dog1.jpg" -> { resId = R.drawable.dog1}
@@ -81,26 +74,26 @@ class ItemAnimalViewHolder(inflater: LayoutInflater, parent: ViewGroup) : Recycl
                 "cat2.jpg" -> { resId = R.drawable.cat2}
                 "cat3.jpg" -> { resId = R.drawable.cat3}
             }
-             Glide
+            Glide
                 .with(itemView)
                 .load(resId)
-              //  .load(uri)
+                //  .load(uri)
                 //.load(RESOURCE_PATH + animal.mainPicture)
                 .into(mImage)
 
-            name?.text = animal.name
+            name.text = animal.name
 
-            favorite?.isSelected = animal.favorite
+            favorite.isSelected = animal.favorite
             id = animal.id
             itemView.setOnClickListener {
                 itemListener.onItemClick(it, id)
                 Log.d(Constraints.TAG, "setOnClickListener animal?.id " + id)
             }
         } else {
-            name?.text = "Loading..."
+            name.text = "Loading..."
         }
 
-        favorite?.setOnClickListener {
+        favorite.setOnClickListener {
             Log.d(Constraints.TAG, "favorite setOnClickListener ")
         }
     }
